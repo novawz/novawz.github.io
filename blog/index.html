@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Blogs — Wei Zhang</title>
+    <title>Blog — Wei Zhang, Ph.D.</title>
     <meta name="description" content="Technical notes on tools and side projects by Wei Zhang." />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESMS0RZM0Z"></script>
@@ -16,288 +16,215 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #f3f7f5;
-        --surface: #ffffff;
-        --surface-soft: #eef4f1;
-        --text: #10231d;
-        --text-soft: #4a635a;
-        --line: #d6e3dd;
-        --brand: #0f766e;
-        --brand-strong: #0b5f58;
-        --accent: #b45309;
-        --shadow: 0 20px 40px -26px rgba(16, 35, 29, 0.35);
-        --radius: 16px;
-        --radius-sm: 12px;
-        --container: 860px;
+        --bg: #ffffff;
+        --ink: #1d1d1b;
+        --mute: #5c5c58;
+        --line: #dcd7ce;
+        --accent: #1f5138;
+        --accent-strong: #173e2a;
+        --accent-soft: #e8efe8;
+        --serif: "Source Serif 4", "Charter", Georgia, "Times New Roman", serif;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       }
-
-      * { box-sizing: border-box; }
-
+      * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
       html, body { margin: 0; padding: 0; }
+      body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.6; }
+      a { color: inherit; text-decoration: none; }
+      a.link { color: var(--accent); }
+      a.link:hover { color: var(--accent-strong); text-decoration: underline; }
 
-      body {
-        font-family: "Space Grotesk", sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at 15% 0%, #dcf3ea 0, transparent 34%),
-          radial-gradient(circle at 85% 10%, #ffe9cc 0, transparent 25%),
-          var(--bg);
-        line-height: 1.6;
+      .accent-rule { height: 4px; background: var(--accent); }
+
+      header.site-header { border-bottom: 1px solid var(--line); background: #fff; }
+      .affiliation-row {
+        padding: 14px 48px;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 1rem; flex-wrap: wrap;
       }
+      .affiliation { font-family: var(--serif); font-size: 13.5px; color: var(--mute); }
+      .top-links { font-family: var(--sans); font-size: 12.5px; display: flex; gap: 20px; }
+      .top-links a { color: var(--mute); }
+      .top-links a:hover { color: var(--accent); }
 
-      a { color: inherit; }
-
-      .container {
-        width: min(var(--container), 100% - 2rem);
-        margin-inline: auto;
+      .masthead {
+        padding: 22px 48px 24px;
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 1.5rem; flex-wrap: wrap;
       }
+      .masthead h1 { font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+      .masthead .role { font-family: var(--sans); font-size: 14px; color: var(--mute); margin-top: 4px; }
+      nav.primary { display: flex; gap: 28px; font-family: var(--sans); font-size: 14px; }
+      nav.primary a { color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 4px; }
+      nav.primary a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+      nav.primary a.current { border-bottom-color: var(--accent); color: var(--accent); }
 
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(10px);
-        background: rgba(243, 247, 245, 0.82);
-        border-bottom: 1px solid rgba(214, 227, 221, 0.85);
+      /* Blog body */
+      .wrap { max-width: 860px; margin: 0 auto; padding: 48px 48px 80px; }
+
+      .page-head {
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 18px;
+        margin-bottom: 28px;
       }
-
-      .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 72px;
-        gap: 1rem;
+      .label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--mute); font-weight: 500;
       }
-
-      .brand {
-        display: flex;
-        align-items: baseline;
-        gap: 0.65rem;
-        text-decoration: none;
+      .page-head h2 {
+        font-family: var(--serif); font-size: 32px; font-weight: 600;
+        letter-spacing: -0.005em; margin: 8px 0 6px;
       }
+      .page-head p { color: var(--mute); font-size: 15px; margin: 0; max-width: 60ch; }
 
-      .brand-name {
-        font-size: 1.06rem;
-        font-weight: 700;
-        letter-spacing: 0.01em;
+      ol.posts {
+        list-style: none; padding: 0; margin: 0;
       }
-
-      .brand-tag {
-        font-size: 0.78rem;
-        color: var(--text-soft);
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 600;
-        border-radius: 999px;
-        padding: 0.5rem 0.9rem;
-        border: 1px solid var(--line);
-        background: var(--surface-soft);
-        color: var(--text-soft);
-        transition: 0.2s ease;
-      }
-
-      .btn:hover { background: #e4eeea; color: var(--text); }
-
-      .page-hero {
-        padding: 4rem 0 2rem;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-        color: var(--brand-strong);
-        background: #dcf3ea;
-        padding: 0.35rem 0.65rem;
-        border-radius: 999px;
-        margin-bottom: 0.85rem;
-      }
-
-      h1, h2, h3 { margin: 0; line-height: 1.15; }
-
-      h1 {
-        margin-top: 0.6rem;
-        font-size: clamp(2rem, 4vw, 2.8rem);
-        font-family: "Newsreader", serif;
-        font-weight: 600;
-      }
-
-      .hero-sub {
-        margin-top: 0.7rem;
-        color: var(--text-soft);
-        font-size: 1.02rem;
-        max-width: 50ch;
-      }
-
-      .posts {
-        padding: 0.5rem 0 4rem;
+      ol.posts li.post {
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
         display: grid;
-        gap: 1rem;
+        grid-template-columns: 80px 1fr auto;
+        gap: 24px;
+        align-items: baseline;
       }
+      ol.posts li.post:last-child { border-bottom: 1px solid var(--line); }
 
-      .post-card {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 1.5rem;
-        text-decoration: none;
-        display: block;
-        transition: box-shadow 0.2s ease, border-color 0.2s ease;
+      .post-num {
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        letter-spacing: 0.06em;
       }
+      .post-body h3 {
+        font-family: var(--serif); font-size: 20px; font-weight: 600;
+        margin: 0 0 6px;
+      }
+      .post-body h3 a { color: var(--ink); border-bottom: 1px solid transparent; }
+      .post-body h3 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
 
-      .post-card:hover {
-        box-shadow: var(--shadow);
-        border-color: #b6d4cc;
+      .post-body p { color: var(--mute); font-size: 15px; line-height: 1.6; margin: 0 0 10px; max-width: 68ch; }
+
+      .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+      .tag {
+        font-family: var(--sans); font-size: 11px; padding: 3px 8px;
+        border: 1px solid var(--accent); color: var(--accent);
+        background: var(--accent-soft);
       }
 
       .post-meta {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        flex-wrap: wrap;
-        margin-bottom: 0.65rem;
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
       }
 
-      .tag {
-        font-size: 0.73rem;
-        font-weight: 600;
-        color: var(--brand-strong);
-        background: #dcf3ea;
-        border-radius: 999px;
-        padding: 0.22rem 0.55rem;
+      .post-body .read-more {
+        display: inline-block; margin-top: 10px;
+        font-family: var(--sans); font-size: 12.5px; color: var(--accent);
+      }
+      .post-body .read-more:hover { text-decoration: underline; }
+
+      footer.site-footer {
+        padding: 18px 48px; border-top: 1px solid var(--line);
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
       }
 
-      .post-date {
-        font-size: 0.8rem;
-        color: var(--text-soft);
+      @media (max-width: 980px) {
+        .affiliation-row { padding: 12px 24px; }
+        .masthead { padding: 18px 24px 20px; }
+        .wrap { padding: 32px 24px 64px; }
+        footer.site-footer { padding: 16px 24px; }
+        ol.posts li.post { grid-template-columns: 1fr; gap: 10px; }
+        .post-num { order: -1; }
+        .post-meta { text-align: left; }
       }
-
-      .post-card h2 {
-        font-family: "Newsreader", serif;
-        font-size: 1.45rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-      }
-
-      .post-card p {
-        color: var(--text-soft);
-        font-size: 0.97rem;
-        margin: 0;
-        max-width: 68ch;
-      }
-
-      .post-footer {
-        margin-top: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        flex-wrap: wrap;
-      }
-
-      .pill {
-        font-size: 0.72rem;
-        font-weight: 600;
-        color: var(--text-soft);
-        background: var(--surface-soft);
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.22rem 0.55rem;
-      }
-
-      .read-more {
-        margin-left: auto;
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: var(--brand);
-        text-decoration: none;
-      }
-
-      footer {
-        border-top: 1px solid var(--line);
-        color: var(--text-soft);
-        font-size: 0.87rem;
-        padding: 1rem 0 2rem;
+      @media (max-width: 620px) {
+        .masthead h1 { font-size: 26px; }
+        .page-head h2 { font-size: 26px; }
       }
     </style>
   </head>
   <body>
+    <div class="accent-rule"></div>
+
     <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/">
-          <span class="brand-name">Wei Zhang</span>
-          <span class="brand-tag">Academic Portfolio</span>
-        </a>
-        <a class="btn" href="/">← Home</a>
+      <div class="affiliation-row">
+        <div class="affiliation">
+          University of Miami &nbsp;·&nbsp; Miller School of Medicine &nbsp;·&nbsp; Department of Public Health Sciences
+        </div>
+        <div class="top-links">
+          <a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a href="mailto:wei.zhang60@med.miami.edu">Contact</a>
+        </div>
+      </div>
+      <div class="masthead">
+        <div class="name-block">
+          <h1><a href="../index.html">Wei Zhang, Ph.D.</a></h1>
+          <div class="role">Postdoctoral Associate · Division of Biostatistics</div>
+        </div>
+        <nav class="primary" aria-label="Primary">
+          <a href="../index.html#biography">Biography</a>
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#publications">Publications</a>
+          <a href="index.html" class="current">Blog</a>
+          <a href="../CV_WeiZhang.pdf" target="_blank" rel="noreferrer">CV</a>
+        </nav>
       </div>
     </header>
 
     <main>
-      <div class="container">
-        <div class="page-hero">
-          <span class="eyebrow">Writing</span>
-          <h1>Blogs</h1>
-          <p class="hero-sub">Technical notes on tools and side projects I've built alongside my research.</p>
+      <div class="wrap">
+        <div class="page-head">
+          <div class="label">Writing</div>
+          <h2>Blog &amp; Side Projects</h2>
+          <p>Technical notes on tools and side projects built alongside research.</p>
         </div>
 
-        <div class="posts">
-          <a class="post-card" href="research-pipeline.html">
-            <div class="post-meta">
-              <span class="tag">Tool</span>
-              <span class="post-date">2026</span>
+        <ol class="posts">
+          <li class="post">
+            <div class="post-num">[1]</div>
+            <div class="post-body">
+              <h3><a href="research-pipeline.html">Building a Personal Research Pipeline with AI</a></h3>
+              <p>
+                Keeping up with new papers across journals and preprint servers is a constant challenge. I built an automated pipeline that fetches, scores, and summarizes daily literature — so I can spend more time reading and less time searching.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Tool</span>
+                <span class="tag">Literature Tracking</span>
+                <span class="tag">AI Scoring</span>
+                <span class="tag">Self-hosted</span>
+              </div>
+              <a class="read-more" href="research-pipeline.html">Read article →</a>
             </div>
-            <h2>Building a Personal Research Pipeline with AI</h2>
-            <p>
-              Keeping up with new papers across journals and preprint servers is a constant challenge.
-              I built an automated pipeline that fetches, scores, and summarizes daily literature — so I can spend more time reading and less time searching.
-            </p>
-            <div class="post-footer">
-              <span class="pill">Literature Tracking</span>
-              <span class="pill">AI Scoring</span>
-              <span class="pill">Daily Digest</span>
-              <span class="pill">Self-hosted</span>
-              <span class="read-more">Read →</span>
-            </div>
-          </a>
+            <div class="post-meta">2026</div>
+          </li>
 
-          <a class="post-card" href="bloomly.html">
-            <div class="post-meta">
-              <span class="tag">App</span>
-              <span class="post-date">2026</span>
+          <li class="post">
+            <div class="post-num">[2]</div>
+            <div class="post-body">
+              <h3><a href="bloomly.html">Bloomly: An Atomic Knowledge Hub</a></h3>
+              <p>
+                Ideas rarely arrive fully formed — they grow through connection. Bloomly is a personal knowledge app I built to capture atomic notes, link them into a network, and let AI help develop them further. Available on web and iOS.
+              </p>
+              <div class="tag-row">
+                <span class="tag">App</span>
+                <span class="tag">Knowledge Management</span>
+                <span class="tag">AI-Powered</span>
+                <span class="tag">Web + iOS</span>
+              </div>
+              <a class="read-more" href="bloomly.html">Read article →</a>
             </div>
-            <h2>Bloomly: An Atomic Knowledge Hub</h2>
-            <p>
-              Ideas rarely arrive fully formed — they grow through connection.
-              Bloomly is a personal knowledge app I built to capture atomic notes, link them into a network, and let AI help develop them further.
-            </p>
-            <div class="post-footer">
-              <span class="pill">Knowledge Management</span>
-              <span class="pill">AI-Powered</span>
-              <span class="pill">Network Graph</span>
-              <span class="pill">Web + iOS</span>
-              <span class="read-more">Read →</span>
-            </div>
-          </a>
-        </div>
+            <div class="post-meta">2026</div>
+          </li>
+        </ol>
       </div>
     </main>
 
-    <footer>
-      <div class="container">© <span id="year"></span> Wei Zhang</div>
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
+      <div>Last updated: April 2026</div>
     </footer>
 
     <script>

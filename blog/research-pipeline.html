@@ -16,326 +16,212 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:opsz,ital,wght@6..72,0,400;6..72,0,600;6..72,1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #f3f7f5;
-        --surface: #ffffff;
-        --surface-soft: #eef4f1;
-        --text: #10231d;
-        --text-soft: #4a635a;
-        --line: #d6e3dd;
-        --brand: #0f766e;
-        --brand-strong: #0b5f58;
-        --accent: #b45309;
-        --shadow: 0 20px 40px -26px rgba(16, 35, 29, 0.35);
-        --radius: 16px;
-        --radius-sm: 12px;
-        --container: 720px;
+        --bg: #ffffff;
+        --ink: #1d1d1b;
+        --mute: #5c5c58;
+        --line: #dcd7ce;
+        --accent: #1f5138;
+        --accent-strong: #173e2a;
+        --accent-soft: #e8efe8;
+        --serif: "Source Serif 4", "Charter", Georgia, "Times New Roman", serif;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       }
-
-      * { box-sizing: border-box; }
+      * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
       html, body { margin: 0; padding: 0; }
+      body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.65; }
+      a { color: inherit; text-decoration: none; }
+      a.link, .prose a { color: var(--accent); }
+      a.link:hover, .prose a:hover { color: var(--accent-strong); text-decoration: underline; }
 
-      body {
-        font-family: "Space Grotesk", sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at 15% 0%, #dcf3ea 0, transparent 34%),
-          radial-gradient(circle at 85% 10%, #ffe9cc 0, transparent 25%),
-          var(--bg);
-        line-height: 1.7;
+      .accent-rule { height: 4px; background: var(--accent); }
+
+      header.site-header { border-bottom: 1px solid var(--line); background: #fff; }
+      .affiliation-row {
+        padding: 14px 48px;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 1rem; flex-wrap: wrap;
       }
+      .affiliation { font-family: var(--serif); font-size: 13.5px; color: var(--mute); }
+      .top-links { font-family: var(--sans); font-size: 12.5px; display: flex; gap: 20px; }
+      .top-links a { color: var(--mute); }
+      .top-links a:hover { color: var(--accent); }
 
-      a { color: var(--brand); }
-      a:hover { color: var(--brand-strong); }
-
-      .container {
-        width: min(var(--container), 100% - 2rem);
-        margin-inline: auto;
+      .masthead {
+        padding: 22px 48px 24px;
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 1.5rem; flex-wrap: wrap;
       }
+      .masthead h1 { font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+      .masthead .role { font-family: var(--sans); font-size: 14px; color: var(--mute); margin-top: 4px; }
+      nav.primary { display: flex; gap: 28px; font-family: var(--sans); font-size: 14px; }
+      nav.primary a { color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 4px; }
+      nav.primary a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+      nav.primary a.current { border-bottom-color: var(--accent); color: var(--accent); }
 
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(10px);
-        background: rgba(243, 247, 245, 0.82);
-        border-bottom: 1px solid rgba(214, 227, 221, 0.85);
-      }
+      /* Article */
+      .wrap { max-width: 760px; margin: 0 auto; padding: 48px 48px 80px; }
 
-      .header-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 64px;
-        gap: 1rem;
-      }
-
-      .brand {
-        display: flex;
-        align-items: baseline;
-        gap: 0.65rem;
-        text-decoration: none;
-        color: var(--text);
-      }
-
-      .brand-name { font-size: 1rem; font-weight: 700; }
-      .brand-tag {
-        font-size: 0.75rem;
-        color: var(--text-soft);
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        font-size: 0.88rem;
-        font-weight: 600;
-        border-radius: 999px;
-        padding: 0.45rem 0.85rem;
-        border: 1px solid var(--line);
-        background: var(--surface-soft);
-        color: var(--text-soft);
-        transition: 0.2s ease;
-      }
-
-      .btn:hover { background: #e4eeea; color: var(--text); }
-
-      /* Article layout */
-      .post-wrap {
-        padding: 3.5rem 0 5rem;
-      }
-
-      .post-header {
-        margin-bottom: 2.5rem;
+      .label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--mute); font-weight: 500;
       }
 
       .breadcrumb {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.83rem;
-        color: var(--text-soft);
-        margin-bottom: 1.4rem;
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 22px;
       }
+      .breadcrumb a { color: var(--mute); }
+      .breadcrumb a:hover { color: var(--accent); }
+      .breadcrumb .sep { margin: 0 6px; }
 
-      .breadcrumb a { color: var(--brand); text-decoration: none; }
-      .breadcrumb a:hover { text-decoration: underline; }
-
-      .post-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-        margin-bottom: 0.85rem;
+      .article-head {
+        padding-bottom: 22px;
+        border-bottom: 2px solid var(--ink);
+        margin-bottom: 32px;
       }
+      .article-head .kicker { color: var(--accent); margin-bottom: 10px; }
+      .article-head h2 {
+        font-family: var(--serif); font-size: 34px; font-weight: 600;
+        letter-spacing: -0.01em; line-height: 1.2; margin: 0 0 10px;
+      }
+      .article-head .subtitle {
+        font-family: var(--serif); font-style: italic;
+        font-size: 17px; color: var(--mute); margin: 0 0 16px;
+      }
+      .article-meta {
+        display: flex; gap: 24px; flex-wrap: wrap;
+        font-family: var(--sans); font-size: 12.5px; color: var(--mute);
+        margin-top: 14px;
+      }
+      .article-meta .mitem { display: flex; gap: 6px; }
+      .article-meta strong { color: var(--ink); font-weight: 600; }
 
+      .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 12px 0 0; }
       .tag {
-        font-size: 0.73rem;
-        font-weight: 600;
-        color: var(--brand-strong);
-        background: #dcf3ea;
-        border-radius: 999px;
-        padding: 0.22rem 0.55rem;
+        font-family: var(--sans); font-size: 11px; padding: 3px 8px;
+        border: 1px solid var(--accent); color: var(--accent);
+        background: var(--accent-soft);
       }
 
-      .pill {
-        font-size: 0.73rem;
-        font-weight: 600;
-        color: var(--text-soft);
-        background: var(--surface-soft);
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.22rem 0.55rem;
-      }
-
-      h1 {
-        font-family: "Newsreader", serif;
-        font-size: clamp(1.8rem, 4vw, 2.6rem);
-        font-weight: 600;
-        line-height: 1.2;
-        margin: 0 0 0.7rem;
-      }
-
-      .post-subtitle {
-        font-size: 1.12rem;
-        color: var(--text-soft);
-        font-family: "Newsreader", serif;
-        font-style: italic;
-        margin: 0;
-      }
-
-      .divider {
-        border: none;
-        border-top: 1px solid var(--line);
-        margin: 2rem 0;
-      }
-
-      /* Prose */
-      .prose h2 {
-        font-family: "Newsreader", serif;
-        font-size: 1.45rem;
-        font-weight: 600;
-        margin: 2.2rem 0 0.7rem;
-        line-height: 1.25;
-      }
-
+      .prose { font-size: 16.5px; line-height: 1.75; }
       .prose h3 {
-        font-size: 1.05rem;
-        font-weight: 700;
-        margin: 1.6rem 0 0.45rem;
-        color: var(--text);
+        font-family: var(--serif); font-size: 22px; font-weight: 600;
+        margin: 36px 0 14px; letter-spacing: -0.005em;
       }
-
-      .prose p {
-        margin: 0 0 1.1rem;
-        font-size: 1.02rem;
+      .prose h3::before {
+        content: ""; display: inline-block; width: 20px; height: 2px;
+        background: var(--accent); margin-right: 10px; vertical-align: middle;
       }
-
-      .prose ul {
-        margin: 0 0 1.1rem;
-        padding-left: 1.3rem;
-      }
-
-      .prose li {
-        margin-bottom: 0.35rem;
-        font-size: 1.02rem;
-      }
-
-      .prose a {
-        color: var(--brand);
-        font-weight: 500;
-      }
+      .prose p { margin: 0 0 16px; }
+      .prose ul { margin: 0 0 18px; padding-left: 1.3rem; }
+      .prose li { margin-bottom: 8px; }
+      .prose strong { color: var(--ink); font-weight: 600; }
+      .prose em { font-style: italic; }
 
       .callout {
-        background: var(--surface-soft);
-        border-left: 3px solid var(--brand);
-        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-        padding: 0.9rem 1.1rem;
-        margin: 1.4rem 0;
-        font-size: 0.98rem;
-        color: var(--text-soft);
-      }
-
-      .arch-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-        margin: 1rem 0 1.4rem;
-      }
-
-      .arch-card {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        padding: 0.9rem;
-      }
-
-      .arch-card .arch-label {
-        font-size: 0.72rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
-        color: var(--brand-strong);
-        margin-bottom: 0.35rem;
-      }
-
-      .arch-card p {
-        margin: 0;
-        font-size: 0.93rem;
-        color: var(--text-soft);
+        margin: 20px 0;
+        padding: 14px 18px;
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        color: var(--ink);
+        font-style: italic;
       }
 
       .post-links {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 1.3rem;
-        margin-top: 2.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        align-items: center;
+        margin-top: 44px;
+        padding-top: 22px;
+        border-top: 2px solid var(--ink);
+        display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline;
       }
-
-      .post-links span {
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-right: 0.3rem;
-      }
-
+      .post-links .label { margin-right: 4px; }
       .post-links a {
-        text-decoration: none;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.45rem 0.85rem;
-        background: var(--surface-soft);
-        font-size: 0.9rem;
-        color: var(--text-soft);
-        font-weight: 500;
-        transition: 0.2s ease;
+        font-family: var(--sans); font-size: 13px;
+        color: var(--accent); padding-bottom: 2px;
+        border-bottom: 1px solid var(--accent-soft);
+      }
+      .post-links a:hover { border-bottom-color: var(--accent); }
+
+      footer.site-footer {
+        padding: 18px 48px; border-top: 1px solid var(--line);
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
       }
 
-      .post-links a:hover { background: #e4eeea; color: var(--text); }
-
-      footer {
-        border-top: 1px solid var(--line);
-        color: var(--text-soft);
-        font-size: 0.87rem;
-        padding: 1rem 0 2rem;
+      @media (max-width: 980px) {
+        .affiliation-row { padding: 12px 24px; }
+        .masthead { padding: 18px 24px 20px; }
+        .wrap { padding: 32px 24px 64px; }
+        footer.site-footer { padding: 16px 24px; }
       }
-
-      @media (max-width: 600px) {
-        .arch-grid { grid-template-columns: 1fr; }
+      @media (max-width: 620px) {
+        .article-head h2 { font-size: 26px; }
+        .prose { font-size: 16px; }
       }
     </style>
   </head>
   <body>
+    <div class="accent-rule"></div>
+
     <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/">
-          <span class="brand-name">Wei Zhang</span>
-          <span class="brand-tag">Academic Portfolio</span>
-        </a>
-        <a class="btn" href="index.html">← Blogs</a>
+      <div class="affiliation-row">
+        <div class="affiliation">
+          University of Miami &nbsp;·&nbsp; Miller School of Medicine &nbsp;·&nbsp; Department of Public Health Sciences
+        </div>
+        <div class="top-links">
+          <a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a href="mailto:wei.zhang60@med.miami.edu">Contact</a>
+        </div>
+      </div>
+      <div class="masthead">
+        <div class="name-block">
+          <h1><a href="../index.html">Wei Zhang, Ph.D.</a></h1>
+          <div class="role">Postdoctoral Associate · Division of Biostatistics</div>
+        </div>
+        <nav class="primary" aria-label="Primary">
+          <a href="../index.html#biography">Biography</a>
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#publications">Publications</a>
+          <a href="index.html" class="current">Blog</a>
+          <a href="../CV_WeiZhang.pdf" target="_blank" rel="noreferrer">CV</a>
+        </nav>
       </div>
     </header>
 
     <main>
-      <div class="container post-wrap">
-        <header class="post-header">
-          <nav class="breadcrumb" aria-label="breadcrumb">
-            <a href="/">Home</a>
-            <span>›</span>
-            <a href="index.html">Blogs</a>
-            <span>›</span>
-            <span>Research Pipeline</span>
-          </nav>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">·</span>
+          <a href="index.html">Blog</a>
+          <span class="sep">·</span>
+          <span>Research Pipeline</span>
+        </nav>
 
-          <div class="post-tags">
-            <span class="tag">Tool</span>
-            <span class="pill">Literature Tracking</span>
-            <span class="pill">AI Scoring</span>
-            <span class="pill">Daily Digest</span>
-            <span class="pill">Self-hosted</span>
+        <header class="article-head">
+          <div class="label kicker">Essay &nbsp;·&nbsp; Tool</div>
+          <h2>Building a Personal Research Pipeline with AI</h2>
+          <p class="subtitle">An automated tool for fetching, scoring, and summarizing daily academic literature.</p>
+          <div class="tag-row">
+            <span class="tag">Literature Tracking</span>
+            <span class="tag">AI Scoring</span>
+            <span class="tag">Daily Digest</span>
+            <span class="tag">Self-hosted</span>
           </div>
-
-          <h1>Building a Personal Research Pipeline with AI</h1>
-          <p class="post-subtitle">An automated tool for fetching, scoring, and summarizing daily academic literature.</p>
+          <div class="article-meta">
+            <div class="mitem"><span>Published</span><strong>2026</strong></div>
+            <div class="mitem"><span>Author</span><strong>Wei Zhang</strong></div>
+          </div>
         </header>
 
-        <hr class="divider" />
-
         <article class="prose">
-          <h2>The Problem</h2>
+          <h3>The Problem</h3>
           <p>
-            Staying current with new literature is one of the quieter burdens of academic life.
-            Relevant papers appear daily across Nature, Science, bioRxiv, and arXiv — often simultaneously, sometimes overlapping, rarely in one place.
-            The standard workflow (RSS feeds, journal alerts, Twitter/X threads) produces a firehose of titles that's easy to skim and equally easy to let pile up.
+            Staying current with new literature is one of the quieter burdens of academic life. Relevant papers appear daily across Nature, Science, bioRxiv, and arXiv — often simultaneously, sometimes overlapping, rarely in one place. The standard workflow (RSS feeds, journal alerts, Twitter/X threads) produces a firehose of titles that's easy to skim and equally easy to let pile up.
           </p>
           <p>
             What I actually wanted was a tool that would do the first pass for me: retrieve new papers each morning, judge their relevance to my work, and surface the two or three I genuinely need to read — with enough context to decide whether to read the full paper or just the abstract.
@@ -345,7 +231,7 @@
             The goal wasn't to replace reading. It was to replace the hour spent deciding <em>what</em> to read.
           </div>
 
-          <h2>Features</h2>
+          <h3>Features</h3>
           <ul>
             <li><strong>Multi-source coverage</strong> — monitors Nature, Science, bioRxiv, and arXiv daily, so new papers across journals and preprints show up in one place.</li>
             <li><strong>AI scoring</strong> — each paper is rated across four dimensions: relevance to your topics, novelty, methodological rigor, and field impact. Only the top papers move on to full reports.</li>
@@ -354,35 +240,24 @@
             <li><strong>Configurable relevance</strong> — you define your research interests once in a config file; the AI judges papers against your topics specifically, not just general field importance.</li>
           </ul>
 
-          <h2>Getting Started</h2>
+          <h3>Getting Started</h3>
           <p>
             If you'd like to try the core idea without any setup, there's a lightweight web version at
-            <a href="https://research-push.streamlit.app" target="_blank" rel="noreferrer">research-push.streamlit.app</a> —
-            enter your interests and an API key, and it will fetch and score papers on the spot.
-            It's a good way to see whether the scoring approach works for your field before committing to the full self-hosted setup.
+            <a href="https://research-push.streamlit.app" target="_blank" rel="noreferrer">research-push.streamlit.app</a> — enter your interests and an API key, and it will fetch and score papers on the spot. It's a good way to see whether the scoring approach works for your field before committing to the full self-hosted setup.
           </p>
           <p>
-            For the full pipeline: clone the repo and add your OpenAI or Gemini API key.
-            Edit the config file to describe your research interests — a few sentences about the topics and methods you care about is enough.
-            Set your score threshold (how selective you want the filter to be), then run the pipeline.
+            For the full pipeline: clone the repo and add your OpenAI or Gemini API key. Edit the config file to describe your research interests — a few sentences about the topics and methods you care about is enough. Set your score threshold (how selective you want the filter to be), then run the pipeline.
           </p>
           <p>
-            On the first run it will fetch recent papers and build your local archive.
-            After that, running it daily (e.g. via a cron job) keeps the archive current.
-            Open the web dashboard to browse scored papers, read reports, and add your own notes.
-            The dashboard also shows per-source analytics so you can see where the most relevant work has been appearing.
+            On the first run it will fetch recent papers and build your local archive. After that, running it daily (e.g. via a cron job) keeps the archive current. Open the web dashboard to browse scored papers, read reports, and add your own notes. The dashboard also shows per-source analytics so you can see where the most relevant work has been appearing.
           </p>
 
-          <h2>A Note on the Scoring</h2>
+          <h3>A Note on the Scoring</h3>
           <p>
-            The scored list turns out to be more useful than the reports themselves.
-            Having a ranked set of papers each morning shifts the reading problem from "what do I look at first?" to "do I agree with this ranking?" — which is a much faster judgment to make.
-            The reports are there when you want depth; the scores are what you actually interact with every day.
+            The scored list turns out to be more useful than the reports themselves. Having a ranked set of papers each morning shifts the reading problem from <em>"what do I look at first?"</em> to <em>"do I agree with this ranking?"</em> — which is a much faster judgment to make. The reports are there when you want depth; the scores are what you actually interact with every day.
           </p>
           <p>
-            The tool treats scores as a first filter, not a final verdict.
-            The goal is to narrow 40 new titles down to 5 worth reading — not to replace your own judgment about what matters.
-            If your interests change, update the config and re-run; the relevance profile is just a few lines of text.
+            The tool treats scores as a first filter, not a final verdict. The goal is to narrow 40 new titles down to 5 worth reading — not to replace your own judgment about what matters. If your interests change, update the config and re-run; the relevance profile is just a few lines of text.
           </p>
           <p>
             The project is open source. If you work in a field where new preprints appear faster than you can track them, it's straightforward to adapt to your own topics and source journals.
@@ -390,14 +265,17 @@
         </article>
 
         <div class="post-links">
-          <span>Links</span>
+          <span class="label">Links</span>
           <a href="https://github.com/novawz/research-pipeline" target="_blank" rel="noreferrer">GitHub →</a>
+          <a href="https://research-push.streamlit.app" target="_blank" rel="noreferrer">Web version →</a>
+          <a href="index.html">← Back to Blog</a>
         </div>
       </div>
     </main>
 
-    <footer>
-      <div class="container">© <span id="year"></span> Wei Zhang</div>
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
+      <div>Last updated: April 2026</div>
     </footer>
 
     <script>

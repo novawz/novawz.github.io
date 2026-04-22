@@ -1,863 +1,708 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epigenetic Architectures of Alzheimer's Disease</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-    <!-- Chosen Palette: Clinical Serenity
-         Background: Slate-50 (#f8fafc) - Clean, clinical base.
-         Primary: Slate-800 (#1e293b) - High readability text.
-         Secondary: Indigo-600 (#4f46e5) - Primary interaction color (Science/Tech).
-         Accent 1 (Resilience): Emerald-500 (#10b981) - Positive outcomes/Health.
-         Accent 2 (Pathology): Rose-500 (#f43f5e) - Warning/Disease.
-         Accent 3 (Data): Cyan-600 (#0891b2) - Neutral data points.
-    -->
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Epigenetic Architectures of Alzheimer's Disease · Wei Zhang, Ph.D.</title>
+    <meta name="description" content="A synthesis of blood DNA-methylation signatures for Alzheimer's disease: distinct profiles, predictive signatures, cognitive resilience, and probe reliability." />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESMS0RZM0Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ESMS0RZM0Z');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        
-        /* Chart Container Styling - Mandatory Requirements */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 650px; /* Constrain width for readability on large screens */
-            height: 350px;    /* Base height */
-            margin-left: auto;
-            margin-right: auto;
-            background: white;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        }
-        
-        @media (max-width: 640px) {
-            .chart-container {
-                height: 300px; /* Smaller height for mobile */
-            }
-        }
+      :root {
+        --bg: #ffffff;
+        --paper: #fbfaf6;
+        --ink: #1d1d1b;
+        --mute: #5c5c58;
+        --line: #dcd7ce;
+        --line-soft: #ece8de;
+        --accent: #1f5138;
+        --accent-strong: #173e2a;
+        --accent-soft: #e8efe8;
+        --muted-data: #9a958a;
+        --serif: "Source Serif 4", "Charter", Georgia, "Times New Roman", serif;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+      html, body { margin: 0; padding: 0; }
+      body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.65; }
+      a { color: inherit; text-decoration: none; }
+      a.link, .prose a { color: var(--accent); }
+      a.link:hover, .prose a:hover { color: var(--accent-strong); text-decoration: underline; }
 
-        /* Custom Scrollbar for side panel */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+      .accent-rule { height: 4px; background: var(--accent); }
 
-        .nav-item.active {
-            background-color: #e0e7ff; /* indigo-100 */
-            color: #4338ca; /* indigo-700 */
-            border-right: 4px solid #4f46e5;
-        }
+      header.site-header { border-bottom: 1px solid var(--line); background: #fff; }
+      .affiliation-row {
+        padding: 14px 48px;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 1rem; flex-wrap: wrap;
+      }
+      .affiliation { font-family: var(--serif); font-size: 13.5px; color: var(--mute); }
+      .top-links { font-family: var(--sans); font-size: 12.5px; display: flex; gap: 20px; }
+      .top-links a { color: var(--mute); }
+      .top-links a:hover { color: var(--accent); }
+      .masthead {
+        padding: 22px 48px 24px;
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 1.5rem; flex-wrap: wrap;
+      }
+      .masthead h1 { font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+      .masthead .role { font-family: var(--sans); font-size: 14px; color: var(--mute); margin-top: 4px; }
+      nav.primary { display: flex; gap: 28px; font-family: var(--sans); font-size: 14px; }
+      nav.primary a { color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 4px; }
+      nav.primary a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+      nav.primary a.current { border-bottom-color: var(--accent); color: var(--accent); }
 
-        .fade-in { animation: fadeIn 0.4s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .ref-card:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+      /* Project masthead */
+      .proj-hero {
+        max-width: 1050px; margin: 0 auto;
+        padding: 48px 48px 28px;
+      }
+      .proj-hero .crumb {
+        font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--mute); margin-bottom: 18px;
+      }
+      .proj-hero .crumb a { color: var(--mute); }
+      .proj-hero .crumb a:hover { color: var(--accent); }
+      .proj-hero .crumb .sep { margin: 0 6px; }
+      .proj-hero .kicker {
+        display: inline-block; padding: 4px 10px; margin-bottom: 14px;
+        background: var(--accent-soft); color: var(--accent);
+        border: 1px solid var(--accent);
+        font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em;
+        text-transform: uppercase; font-weight: 600;
+      }
+      .proj-hero h2 {
+        font-family: var(--serif); font-weight: 600;
+        font-size: 44px; line-height: 1.1; letter-spacing: -0.015em;
+        margin: 0 0 12px; max-width: 18ch;
+      }
+      .proj-hero .tagline {
+        font-family: var(--serif); font-style: italic;
+        font-size: 19px; color: var(--mute); line-height: 1.45;
+        margin: 0 0 22px; max-width: 56ch;
+      }
+      .proj-hero .meta-strip {
+        display: flex; flex-wrap: wrap; gap: 28px;
+        padding: 14px 0; border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        text-transform: uppercase; letter-spacing: 0.08em;
+      }
+      .proj-hero .meta-strip .mitem strong {
+        display: block; color: var(--ink); font-weight: 600;
+        font-size: 13px; letter-spacing: 0.04em; margin-top: 2px;
+        text-transform: none;
+      }
+
+      .wrap { max-width: 1050px; margin: 0 auto; padding: 20px 48px 80px; }
+      .layout { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
+
+      nav.toc {
+        position: sticky; top: 24px;
+        padding: 18px 0; border-top: 2px solid var(--ink);
+        font-family: var(--sans);
+      }
+      nav.toc .toc-label {
+        font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--mute); font-weight: 600; margin-bottom: 10px;
+      }
+      nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+      nav.toc li {
+        counter-increment: toc;
+        border-top: 1px solid var(--line-soft);
+        padding: 9px 0; font-size: 12.5px;
+      }
+      nav.toc li:first-child { border-top: none; }
+      nav.toc li::before {
+        content: "§" counter(toc, decimal-leading-zero);
+        font-size: 10.5px; color: var(--accent); font-weight: 600;
+        letter-spacing: 0.04em; margin-right: 10px;
+      }
+      nav.toc a { color: var(--ink); }
+      nav.toc a:hover { color: var(--accent); }
+
+      article .sec {
+        padding: 28px 0 32px;
+        border-top: 1px solid var(--line);
+      }
+      article .sec:first-child { border-top: none; padding-top: 8px; }
+      article .sec-eyebrow {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 8px;
+      }
+      article h3 {
+        font-family: var(--serif); font-size: 26px; font-weight: 600;
+        letter-spacing: -0.008em; line-height: 1.2; margin: 0 0 12px;
+      }
+      article h4 {
+        font-family: var(--serif); font-size: 17.5px; font-weight: 600;
+        margin: 22px 0 8px; letter-spacing: -0.003em;
+      }
+      article p { margin: 0 0 12px; font-size: 16px; line-height: 1.7; }
+      article ul { margin: 0 0 14px; padding-left: 1.3rem; }
+      article li { margin-bottom: 6px; line-height: 1.65; }
+
+      .pull {
+        padding: 18px 22px; background: var(--paper);
+        border-top: 3px solid var(--accent);
+        border-bottom: 1px solid var(--line);
+        font-family: var(--serif); font-size: 16.5px; line-height: 1.6;
+      }
+      .pull strong { color: var(--ink); font-weight: 600; }
+      .pull .pull-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      /* Cards row */
+      .insights {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+        margin: 18px 0; border-top: 1px solid var(--ink);
+        border-bottom: 1px solid var(--ink);
+      }
+      .insights .ins {
+        padding: 16px 18px; border-right: 1px solid var(--line);
+      }
+      .insights .ins:last-child { border-right: none; }
+      .insights .ins-num {
+        font-family: var(--serif); font-style: italic;
+        color: var(--accent); font-size: 16px; font-weight: 400;
+      }
+      .insights .ins-title {
+        font-weight: 600; font-size: 15.5px; margin: 4px 0 6px;
+      }
+      .insights .ins-desc { font-size: 13.5px; color: var(--mute); line-height: 1.55; }
+
+      .figure {
+        margin: 18px 0 8px;
+      }
+      .figure .fig-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .figure .fig-title {
+        font-family: var(--serif); font-weight: 600; font-size: 17px;
+        margin-bottom: 12px;
+      }
+      .chart-container {
+        position: relative; width: 100%;
+        height: 340px; max-height: 420px;
+        background: var(--paper);
+        padding: 18px; border: 1px solid var(--line);
+      }
+      .figure .fig-caption {
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        line-height: 1.55; margin-top: 10px; max-width: 60ch;
+      }
+      .figure .fig-caption strong { color: var(--ink); font-weight: 600; }
+
+      table.data {
+        width: 100%; border-collapse: collapse; margin: 14px 0 8px;
+        font-size: 14px;
+      }
+      table.data thead th {
+        text-align: left; padding: 10px 12px;
+        border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
+        font-family: var(--sans); font-size: 11px; font-weight: 600;
+        letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+      }
+      table.data tbody td {
+        padding: 10px 12px; border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+      }
+      table.data tbody tr:last-child td { border-bottom: 1px solid var(--line); }
+      table.data .num {
+        font-family: var(--serif); font-style: italic; color: var(--accent);
+        font-weight: 600; width: 46px;
+      }
+      table.data .name { font-weight: 600; }
+      table.data .desc { color: var(--mute); font-size: 13.5px; }
+
+      /* Resilience simulator */
+      .sim {
+        display: grid; grid-template-columns: 260px 1fr; gap: 0;
+        border: 1px solid var(--line); margin: 16px 0;
+      }
+      .sim .sim-inputs {
+        padding: 18px 20px;
+        border-right: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .sim .sim-inputs h5 {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+        margin: 0 0 14px;
+      }
+      .sim .sim-field { margin-bottom: 16px; }
+      .sim .sim-field .sim-row {
+        display: flex; justify-content: space-between;
+        font-family: var(--sans); font-size: 11.5px; color: var(--ink);
+        font-weight: 600; margin-bottom: 4px;
+      }
+      .sim .sim-field .sim-row .val { color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+      .sim .sim-field input[type="range"] {
+        width: 100%; height: 4px; background: var(--line);
+        -webkit-appearance: none; appearance: none;
+        outline: none; cursor: pointer;
+      }
+      .sim .sim-field input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none;
+        width: 14px; height: 14px; background: var(--accent);
+        border: 2px solid #fff; border-radius: 50%;
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+      .sim .sim-field input[type="range"]::-moz-range-thumb {
+        width: 14px; height: 14px; background: var(--accent);
+        border: 2px solid #fff; border-radius: 50%;
+      }
+      .sim .sim-score {
+        margin-top: 14px; padding-top: 14px;
+        border-top: 1px solid var(--line);
+        text-align: center;
+      }
+      .sim .sim-score .sc-label {
+        font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+      }
+      .sim .sim-score .sc-val {
+        font-family: var(--serif); font-size: 34px; font-weight: 600;
+        color: var(--accent); letter-spacing: -0.02em; line-height: 1.1;
+      }
+      .sim .sim-score .sc-total { color: var(--mute); font-size: 20px; }
+
+      .sim .sim-genes { padding: 18px 20px; }
+      .sim .sim-genes h5 {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+        margin: 0 0 14px;
+      }
+      .sim .gene-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      }
+      .sim .gene-cell {
+        padding: 10px 12px; border: 1px solid var(--line);
+        background: #fff; transition: border-color 0.2s, background 0.2s;
+      }
+      .sim .gene-cell.active {
+        border-color: var(--accent); background: var(--accent-soft);
+      }
+      .sim .gene-cell .gn-name {
+        font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+        color: var(--ink); letter-spacing: 0.04em; margin-bottom: 4px;
+      }
+      .sim .gene-cell.active .gn-name { color: var(--accent); }
+      .sim .gene-cell .gn-desc {
+        font-size: 12.5px; color: var(--mute); line-height: 1.5;
+      }
+
+      .cite {
+        margin: 20px 0;
+        padding: 16px 20px;
+        background: var(--paper);
+        border-left: 3px solid var(--accent);
+        font-family: var(--serif); font-size: 14px; line-height: 1.5;
+        color: var(--mute);
+      }
+      .cite .cite-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .cite .cite-body { color: var(--ink); margin: 0 0 8px; }
+      .cite .cite-body:last-child { margin-bottom: 0; }
+      .cite em { font-style: italic; }
+
+      /* Badge */
+      .replicate-badge {
+        padding: 14px 18px; margin: 18px 0;
+        background: var(--accent);
+        color: #fff;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 16px; flex-wrap: wrap;
+      }
+      .replicate-badge .rb-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: rgba(255,255,255,0.65); font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .replicate-badge .rb-text {
+        font-family: var(--serif); font-size: 15.5px;
+      }
+
+      footer.site-footer {
+        padding: 18px 48px; border-top: 1px solid var(--line);
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      }
+
+      @media (max-width: 980px) {
+        .affiliation-row { padding: 12px 24px; }
+        .masthead { padding: 18px 24px 20px; }
+        .proj-hero { padding: 36px 24px 20px; }
+        .proj-hero h2 { font-size: 32px; }
+        .wrap { padding: 16px 24px 64px; }
+        .layout { grid-template-columns: 1fr; gap: 24px; }
+        nav.toc { position: static; }
+        .insights { grid-template-columns: 1fr; }
+        .insights .ins { border-right: none; border-bottom: 1px solid var(--line); }
+        .insights .ins:last-child { border-bottom: none; }
+        .sim { grid-template-columns: 1fr; }
+        .sim .sim-inputs { border-right: none; border-bottom: 1px solid var(--line); }
+        .sim .gene-grid { grid-template-columns: 1fr; }
+        footer.site-footer { padding: 16px 24px; }
+      }
+      @media (max-width: 620px) {
+        .masthead h1 { font-size: 26px; }
+        .proj-hero h2 { font-size: 26px; }
+      }
     </style>
-</head>
-<body class="flex h-screen overflow-hidden">
+  </head>
+  <body>
+    <div class="accent-rule"></div>
 
-    <!-- Application Structure Plan:
-         The app uses a "Scientific Dashboard" layout. 
-         - Sidebar: Navigation through the logical flow of the report.
-         - Main Content Area: Dynamic container that renders the active module.
-         
-         REVISION NOTE (Stage-Specific Sensitivity):
-         The user requested a change to the "Stage-Specific Sensitivity" chart in the Overview.
-         The previous Radar chart has been replaced with a **Stacked Bar Chart** titled "Biomarker Overlap Analysis".
-         This chart explicitly visualizes the *distinctness* of methylation signals found in the 2023 Zhang et al. paper, showing minimal overlap between Cognitively Normal (CN) and AD subjects for CSF associations.
-    -->
-
-    <!-- Visualization & Content Choices:
-         1. Stacked Bar Chart (Overview): Replaces the Radar chart. Shows "Unique to CN", "Unique to AD", and "Shared" CpGs to visually demonstrate the "Distinct Profiles" finding.
-         2. Doughnut Chart (Pathway Enrichment): Shows the functional breakdown of the 44-CpG signature.
-         3. Interactive Simulator (Resilience): Sliders for lifestyle inputs updating a 'Resilience Score'.
-         4. Scatter Plot (Correlation): Simulated data showing Blood Methylation vs. CSF pTau for HOX genes.
-         5. Bubble Chart (Probe Reliability): Visualizing ICC vs. Beta Values.
-         
-         Library: Chart.js for all visualizations.
-    -->
-
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <!-- Sidebar Navigation -->
-    <aside class="w-64 bg-white border-r border-slate-200 hidden md:flex flex-col z-10 flex-shrink-0">
-        <div class="p-6 border-b border-slate-200">
-            <h1 class="text-xl font-bold text-slate-900 leading-tight">Epigenetic Architectures</h1>
-            <p class="text-xs text-slate-500 mt-2">Alzheimer's Disease Synthesis</p>
+    <header class="site-header">
+      <div class="affiliation-row">
+        <div class="affiliation">
+          University of Miami &nbsp;·&nbsp; Miller School of Medicine &nbsp;·&nbsp; Department of Public Health Sciences
         </div>
-        <nav class="flex-1 overflow-y-auto py-4 space-y-1">
-            <button onclick="navigate('overview')" id="nav-overview" class="nav-item active w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-project-diagram w-5"></i> Distinct Profiles
-            </button>
-            <button onclick="navigate('prediction')" id="nav-prediction" class="nav-item w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-dna w-5"></i> Predictive Signatures
-            </button>
-            <button onclick="navigate('resilience')" id="nav-resilience" class="nav-item w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-shield-alt w-5"></i> Resilience Simulator
-            </button>
-            <button onclick="navigate('concordance')" id="nav-concordance" class="nav-item w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-brain w-5"></i> Blood-Brain Bridge
-            </button>
-            <button onclick="navigate('methodology')" id="nav-methodology" class="nav-item w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
-                <i class="fas fa-microscope w-5"></i> Methodological Rigor
-            </button>
-            <button onclick="navigate('references')" id="nav-references" class="nav-item w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors border-t border-slate-100 mt-2">
-                <i class="fas fa-book w-5"></i> References & Code
-            </button>
+        <div class="top-links">
+          <a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a href="mailto:wei.zhang60@med.miami.edu">Contact</a>
+        </div>
+      </div>
+      <div class="masthead">
+        <div class="name-block">
+          <h1><a href="../index.html">Wei Zhang, Ph.D.</a></h1>
+          <div class="role">Postdoctoral Associate · Division of Biostatistics</div>
+        </div>
+        <nav class="primary" aria-label="Primary">
+          <a href="../index.html#biography">Biography</a>
+          <a href="../index.html#research" class="current">Research</a>
+          <a href="../index.html#publications">Publications</a>
+          <a href="../blog/index.html">Blog</a>
+          <a href="../CV_WeiZhang.pdf" target="_blank" rel="noreferrer">CV</a>
         </nav>
-        <div class="p-4 border-t border-slate-200 bg-slate-50">
-            <p class="text-[10px] text-slate-400">Based on Zhang et al. (2023, 2024, 2025) longitudinal syntheses.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="proj-hero">
+        <div class="crumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">·</span>
+          <a href="../index.html#research">Research</a>
+          <span class="sep">·</span>
+          <span>Epigenetic Architectures</span>
         </div>
-    </aside>
-
-    <!-- Mobile Header -->
-    <div class="md:hidden fixed top-0 w-full bg-white border-b border-slate-200 z-20 px-4 py-3 flex justify-between items-center shadow-sm">
-        <span class="font-bold font-serif text-slate-900">Epigenetic Architectures</span>
-        <button onclick="toggleMobileMenu()" class="text-slate-600"><i class="fas fa-bars"></i></button>
-    </div>
-    
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-900/50 z-30 hidden" onclick="toggleMobileMenu()">
-        <div class="bg-white w-64 h-full shadow-lg pt-16" onclick="event.stopPropagation()">
-             <nav class="flex-1 overflow-y-auto py-4 space-y-1">
-                <button onclick="navigate('overview'); toggleMobileMenu()" class="w-full text-left px-6 py-3 text-sm font-medium text-slate-600 border-b">Distinct Profiles</button>
-                <button onclick="navigate('prediction'); toggleMobileMenu()" class="w-full text-left px-6 py-3 text-sm font-medium text-slate-600 border-b">Predictive Signatures</button>
-                <button onclick="navigate('resilience'); toggleMobileMenu()" class="w-full text-left px-6 py-3 text-sm font-medium text-slate-600 border-b">Resilience Simulator</button>
-                <button onclick="navigate('concordance'); toggleMobileMenu()" class="w-full text-left px-6 py-3 text-sm font-medium text-slate-600 border-b">Blood-Brain Bridge</button>
-                <button onclick="navigate('methodology'); toggleMobileMenu()" class="w-full text-left px-6 py-3 text-sm font-medium text-slate-600 border-b">Methodological Rigor</button>
-                <button onclick="navigate('references'); toggleMobileMenu()" class="w-full text-left px-6 py-3 text-sm font-medium text-slate-600 border-b">References & Code</button>
-            </nav>
+        <span class="kicker">Project · Alzheimer's Epigenetics</span>
+        <h2>Epigenetic Architectures of Alzheimer's Disease</h2>
+        <p class="tagline">A synthesis of blood DNA-methylation evidence for Alzheimer's disease: distinct profiles, predictive signatures, cognitive resilience, and probe reliability — drawn together from a series of longitudinal studies.</p>
+        <div class="meta-strip">
+          <div class="mitem">Cohorts<strong>FHS · ADNI · AIBL · AddNeuroMed</strong></div>
+          <div class="mitem">Tissue<strong>Peripheral blood</strong></div>
+          <div class="mitem">Platform<strong>Illumina EPIC</strong></div>
+          <div class="mitem">Studies<strong>Zhang et al. 2023 · 2024 · 2025</strong></div>
         </div>
-    </div>
+      </section>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 overflow-y-auto pt-16 md:pt-0 bg-slate-50 p-4 md:p-8">
-        
-        <!-- SECTION 1: OVERVIEW (Distinct Profiles) -->
-        <section id="overview" class="max-w-5xl mx-auto fade-in">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Distinct Signatures: AD vs. Cognitively Normal</h2>
-                <div class="bg-white p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm mb-6">
-                    <p class="text-slate-700 leading-relaxed">
-                        <strong>The Clinical Reality:</strong> While liquid biopsy is often presented as a single diagnostic solution, the 2023 study by Zhang et al. reveals a critical nuance: <span class="text-indigo-700 font-bold">DNA methylation signatures associated with CSF biomarkers (A&beta;42, pTau181) are distinct between Alzheimer's Disease (AD) patients and Cognitively Normal (CN) subjects.</span>
-                    </p>
-                    <p class="text-sm text-slate-500 mt-2">
-                        The minimal overlap in significant CpG sites indicates that epigenetic mechanisms in the preclinical phase (CN) differ fundamentally from those in the symptomatic phase (AD).
-                    </p>
-                </div>
-            </div>
+      <div class="wrap">
+        <div class="layout">
+          <nav class="toc" aria-label="Table of Contents">
+            <div class="toc-label">On this page</div>
+            <ol>
+              <li><a href="#distinct">Distinct profiles</a></li>
+              <li><a href="#predictive">Predictive signatures</a></li>
+              <li><a href="#resilience">Cognitive resilience</a></li>
+              <li><a href="#bridge">Blood–brain bridge</a></li>
+              <li><a href="#methods">Methodological rigor</a></li>
+              <li><a href="#refs">References</a></li>
+            </ol>
+          </nav>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <!-- Chart -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-lg font-bold mb-2">Biomarker Overlap Analysis</h3>
-                    <p class="text-xs text-slate-500 mb-4">Quantifying the distinctness of methylation sites associated with CSF biomarkers in CN vs AD subjects.</p>
-                    <div class="chart-container">
-                        <canvas id="distinctnessChart"></canvas>
-                    </div>
-                    <div class="mt-4 flex justify-center gap-4 text-xs">
-                        <div class="flex items-center gap-1"><span class="w-3 h-3 bg-emerald-400 rounded-full"></span> CN Specific</div>
-                        <div class="flex items-center gap-1"><span class="w-3 h-3 bg-rose-400 rounded-full"></span> AD Specific</div>
-                        <div class="flex items-center gap-1"><span class="w-3 h-3 bg-slate-300 rounded-full"></span> Shared</div>
-                    </div>
-                </div>
+          <article>
+            <section class="sec" id="distinct">
+              <div class="sec-eyebrow">§01 · Distinct profiles</div>
+              <h3>The epigenetic landscape of AD is not one landscape</h3>
+              <div class="pull">
+                <div class="pull-label">Key finding · Zhang et al., 2023</div>
+                DNA methylation signatures associated with CSF biomarkers (Aβ42, pTau181) are <strong>distinct between Alzheimer's disease (AD) patients and cognitively normal (CN) subjects</strong>. Very few CpG sites appear in both lists — the pre-clinical and symptomatic phases of AD involve fundamentally different epigenetic programs.
+              </div>
 
-                <!-- Key Metrics Cards -->
-                <div class="space-y-4">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                        <div class="flex items-start gap-4">
-                            <div class="p-3 bg-indigo-100 text-indigo-600 rounded-lg"><i class="fas fa-layer-group"></i></div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Distinct Biological Processes</h4>
-                                <p class="text-sm text-slate-600 mt-1">In CN subjects, methylation changes likely reflect <strong>compensatory mechanisms</strong> (homeostasis). In AD subjects, they reflect <strong>pathological failure</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
+              <p>In the 2023 study, CSF biomarker–associated methylation was analysed separately in CN and AD subjects. The overlap of significant CpGs between the two groups was minimal, arguing against a single universal "AD methylation signature" that simply changes in magnitude over the disease course. Instead, the preclinical phase looks like a regulated, possibly compensatory response, while the symptomatic phase looks like the breakdown of that response.</p>
 
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                        <div class="flex items-start gap-4">
-                            <div class="p-3 bg-emerald-100 text-emerald-600 rounded-lg"><i class="fas fa-microscope"></i></div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Implication for Diagnostics</h4>
-                                <p class="text-sm text-slate-600 mt-1">A "universal" AD panel may fail to detect preclinical cases. Diagnostics must be <strong>stage-specific</strong>, targeting CN-specific signals for early screening.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                        <div class="flex items-start gap-4">
-                            <div class="p-3 bg-cyan-100 text-cyan-600 rounded-lg"><i class="fas fa-tint"></i></div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Liquid Biopsy Utility</h4>
-                                <p class="text-sm text-slate-600 mt-1">Despite the distinctness, blood DNAm remains a powerful proxy. The study confirmed these peripheral signals strongly correlate with central pTau181 levels.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: PREDICTIVE SIGNATURES -->
-        <section id="prediction" class="max-w-5xl mx-auto hidden fade-in">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Predicting Incident Dementia</h2>
-                <p class="text-slate-700 leading-relaxed mb-4">
-                    Analyzing longitudinal data from the <strong>Framingham Heart Study (FHS)</strong> and <strong>ADNI</strong>, researchers identified a robust signature of 44 CpG sites and 44 Differentially Methylated Regions (DMRs) that predict dementia onset years in advance. This section explores the biological pathways implicated by these markers, revealing AD as a systemic disorder.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                <!-- Pathway Chart -->
-                <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-lg font-bold mb-2">Biological Pathways</h3>
-                    <p class="text-xs text-slate-500 mb-4">Enrichment analysis of the 44-CpG signature.</p>
-                    <div class="chart-container" style="height: 300px;">
-                        <canvas id="pathwayChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-xs text-center text-slate-500 italic">
-                        "Systemic dysregulation, not just brain atrophy."
-                    </div>
-                </div>
-
-                <!-- Detailed Analysis -->
-                <div class="lg:col-span-2 space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                        <h3 class="text-lg font-bold text-slate-900 border-b pb-2 mb-4">Systemic Mechanisms Unveiled</h3>
-                        
-                        <!-- Accordion Style List -->
-                        <div class="space-y-4">
-                            <div class="group cursor-pointer">
-                                <div class="flex items-center gap-3 text-rose-600 font-semibold mb-1">
-                                    <i class="fas fa-shield-virus"></i> Peripheral Immune Dysregulation
-                                </div>
-                                <p class="text-sm text-slate-600 pl-7">
-                                    Enrichment of immune genes challenges the "immune-privileged" brain view. DNAm changes in leukocytes (white blood cells) reflect "inflammaging," priming the body for neuroinflammation via cytokine signaling across the BBB.
-                                </p>
-                            </div>
-
-                            <div class="group cursor-pointer">
-                                <div class="flex items-center gap-3 text-amber-600 font-semibold mb-1">
-                                    <i class="fas fa-fire-alt"></i> Metabolic Dysfunction (Type 3 Diabetes)
-                                </div>
-                                <p class="text-sm text-slate-600 pl-7">
-                                    Dysregulation in glucose and lipid metabolism genes mirrors brain insulin resistance. Peripheral energy deficits disproportionately affect the energy-hungry brain (consuming 20% of glucose).
-                                </p>
-                            </div>
-
-                            <div class="group cursor-pointer">
-                                <div class="flex items-center gap-3 text-indigo-600 font-semibold mb-1">
-                                    <i class="fas fa-layer-group"></i> Differentially Methylated Regions (DMRs)
-                                </div>
-                                <p class="text-sm text-slate-600 pl-7">
-                                    The study prioritized DMRs (clusters of changes) over single CpGs. DMRs represent coordinated regulation and are biologically more functional and statistically more robust against noise.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Validation Badge -->
-                    <div class="bg-indigo-900 text-white p-4 rounded-lg flex items-center justify-between">
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-indigo-300">Cross-Validation Success</span>
-                            <p class="text-sm font-medium mt-1">Replicated in AIBL (Australia) & AddNeuroMed (Europe)</p>
-                        </div>
-                        <i class="fas fa-globe-americas text-2xl text-indigo-300"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: RESILIENCE SIMULATOR -->
-        <section id="resilience" class="max-w-5xl mx-auto hidden fade-in">
-            <div class="mb-6">
-                <h2 class="text-3xl font-bold text-slate-900 mb-2">Decoding Cognitive Resilience</h2>
-                <p class="text-slate-700 text-sm">
-                    Why do some people with pathology remain cognitively intact? This simulator demonstrates the <strong>Resilience Index (RI)</strong> found in the HBI and ADNI cohorts. 
-                    Adjust lifestyle inputs to see how they epigenetically modulate protective genes like <strong>APOC2</strong> and <strong>UBAP1</strong>.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Inputs -->
-                <div class="lg:col-span-4 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Lifestyle Inputs</h3>
-                    <div class="space-y-5">
-                        <!-- Input 1 -->
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
-                                <span>Diet (MIND/Med)</span>
-                                <span id="val-diet">Moderate</span>
-                            </div>
-                            <input type="range" id="input-diet" min="0" max="100" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" oninput="updateSimulator()">
-                        </div>
-                        <!-- Input 2 -->
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
-                                <span>Physical Activity</span>
-                                <span id="val-phys">Moderate</span>
-                            </div>
-                            <input type="range" id="input-phys" min="0" max="100" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" oninput="updateSimulator()">
-                        </div>
-                        <!-- Input 3 -->
-                        <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
-                                <span>Cognitive Activity</span>
-                                <span id="val-cog">Moderate</span>
-                            </div>
-                            <input type="range" id="input-cog" min="0" max="100" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" oninput="updateSimulator()">
-                        </div>
-                         <!-- Input 4 -->
-                         <div>
-                            <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
-                                <span>Mindfulness/Stress</span>
-                                <span id="val-mind">Average</span>
-                            </div>
-                            <input type="range" id="input-mind" min="0" max="100" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" oninput="updateSimulator()">
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 pt-6 border-t border-slate-100">
-                        <div class="text-center">
-                            <span class="text-xs text-slate-400 uppercase">Est. Methylation-Based Resilience Score</span>
-                            <div id="resilience-score" class="text-3xl font-bold text-emerald-600 mt-1">50/100</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Visualization -->
-                <div class="lg:col-span-8 space-y-6">
-                    <!-- Gene Activation Panel -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                        <h3 class="text-sm font-bold text-slate-800 mb-4">Epigenetic Targets (Gene Modulation)</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Gene 1 -->
-                            <div id="gene-apoc2" class="p-3 bg-slate-50 rounded border border-slate-200 transition-all duration-300">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-indigo-700">APOC2</span>
-                                    <i class="fas fa-burn text-slate-300 status-icon"></i>
-                                </div>
-                                <p class="text-xs text-slate-600"><strong>Lipid Metabolism:</strong> Enhances clearance of triglycerides. Optimizes lipid homeostasis in the brain.</p>
-                            </div>
-                             <!-- Gene 2 -->
-                             <div id="gene-ubap1" class="p-3 bg-slate-50 rounded border border-slate-200 transition-all duration-300">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-indigo-700">UBAP1</span>
-                                    <i class="fas fa-trash-alt text-slate-300 status-icon"></i>
-                                </div>
-                                <p class="text-xs text-slate-600"><strong>Protein Clearance (ESCRT):</strong> "Super-charges" waste disposal, degrading toxic aggregates via lysosomal pathways.</p>
-                            </div>
-                             <!-- Gene 3 -->
-                             <div id="gene-gstcd" class="p-3 bg-slate-50 rounded border border-slate-200 transition-all duration-300">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-indigo-700">GSTCD</span>
-                                    <i class="fas fa-shield-virus text-slate-300 status-icon"></i>
-                                </div>
-                                <p class="text-xs text-slate-600"><strong>Oxidative Defense:</strong> Enhances antioxidant capacity, protecting neurons from ROS damage.</p>
-                            </div>
-                             <!-- Gene 4 -->
-                             <div id="gene-heart" class="p-3 bg-slate-50 rounded border border-slate-200 transition-all duration-300">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="font-bold text-indigo-700">Heart-Brain Axis</span>
-                                    <i class="fas fa-heartbeat text-slate-300 status-icon"></i>
-                                </div>
-                                <p class="text-xs text-slate-600"><strong>Vascular Health:</strong> Enrichment of cardiomyopathy pathways confirms that vascular elasticity protects cognitive function.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Outcome Chart -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                        <div class="chart-container" style="height: 250px;">
-                            <canvas id="resilienceChart"></canvas>
-                        </div>
-                        <p class="text-[10px] text-slate-400 mt-2 text-center">Kaplan-Meier projections based on High vs Low MRS scores (Zhang et al., 2025).</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: BLOOD-BRAIN CONCORDANCE -->
-        <section id="concordance" class="max-w-5xl mx-auto hidden fade-in">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Bridging the Barrier (HOXA5 Finding)</h2>
-                <p class="text-slate-700 leading-relaxed mb-4">
-                    The study <i>Distinct CSF biomarker-associated DNA methylation</i> (Zhang et al., 2023) directly links blood DNA methylation to central pathology. A major finding is the specific association of the <strong>HOXA5</strong> gene with CSF <strong>pTau181</strong> levels, suggesting a systemic developmental dysregulation.
-                </p>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8">
-                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                    <div>
-                        <h3 class="text-lg font-bold">Cross-Tissue Correlation</h3>
-                        <p class="text-sm text-slate-500">Correlation of Blood Methylation (Beta Value) with CSF pTau181.</p>
-                    </div>
-                    <div class="flex gap-2 mt-2 md:mt-0">
-                        <button onclick="updateConcordance('HOXA5')" class="px-4 py-1 text-sm rounded-full bg-indigo-100 text-indigo-700 font-bold hover:bg-indigo-200 transition">HOXA5</button>
-                        <button onclick="updateConcordance('Distinct')" class="px-4 py-1 text-sm rounded-full bg-slate-100 text-slate-600 font-bold hover:bg-slate-200 transition">Distinct Signals</button>
-                    </div>
-                </div>
-                
+              <div class="figure">
+                <div class="fig-label">Figure 1</div>
+                <div class="fig-title">Overlap of CSF-biomarker-associated CpG sites in CN vs. AD</div>
                 <div class="chart-container">
-                    <canvas id="concordanceChart"></canvas>
+                  <canvas id="overlapChart"></canvas>
                 </div>
-                
-                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-amber-50 p-4 rounded border border-amber-100">
-                        <h4 class="font-bold text-amber-800 text-sm mb-1">HOXA5 & Tau Pathology</h4>
-                        <p class="text-xs text-amber-900">
-                            Hypermethylation of the HOXA5 gene in blood (DMR) is significantly associated with elevated pTau181 in CSF. This highlights a potential dedifferentiation mechanism common to both blood and brain tissues in AD.
-                        </p>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded border border-blue-100">
-                        <h4 class="font-bold text-blue-800 text-sm mb-1">CN vs AD Distinction</h4>
-                        <p class="text-xs text-blue-900">
-                            Crucially, the study found that biomarkers in Cognitively Normal (CN) subjects barely overlap with those in AD subjects. This "Distinctness" confirms that preclinical pathology requires a unique detection panel.
-                        </p>
-                    </div>
+                <p class="fig-caption"><strong>Figure 1.</strong> Stacked composition of significant CSF-biomarker-associated CpGs across biomarker categories. Bars decompose into <em>CN-specific</em>, <em>AD-specific</em>, and <em>shared</em> CpGs. The shared fraction is small, consistent with stage-specific epigenetic regulation.</p>
+              </div>
+
+              <div class="insights">
+                <div class="ins">
+                  <div class="ins-num">i.</div>
+                  <div class="ins-title">Distinct biological processes</div>
+                  <div class="ins-desc">In CN, methylation changes likely reflect homeostatic or <em>compensatory</em> mechanisms. In AD, they reflect the <em>failure</em> of those mechanisms.</div>
                 </div>
-            </div>
-        </section>
+                <div class="ins">
+                  <div class="ins-num">ii.</div>
+                  <div class="ins-title">Implication for diagnostics</div>
+                  <div class="ins-desc">A universal AD panel may miss preclinical cases. Early-screening tools must target CN-specific signals — not the same CpGs that define late-stage disease.</div>
+                </div>
+                <div class="ins">
+                  <div class="ins-num">iii.</div>
+                  <div class="ins-title">Liquid biopsy still useful</div>
+                  <div class="ins-desc">Despite the distinctness, peripheral blood DNAm correlates strongly with central pTau181 — supporting blood-based assays, provided they are stage-specific.</div>
+                </div>
+              </div>
+            </section>
 
-        <!-- SECTION 5: METHODOLOGY -->
-        <section id="methodology" class="max-w-5xl mx-auto hidden fade-in">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">The Crisis of Reproducibility</h2>
-                <p class="text-slate-700 leading-relaxed mb-4">
-                    Biomarker research often fails to replicate. The report includes a technical audit of the <strong>Illumina MethylationEPIC BeadChip</strong> array. 
-                    This section demonstrates why filtering for probe reliability (ICC) and focusing on Intermediate Methylation levels is crucial for valid science.
-                </p>
-            </div>
+            <section class="sec" id="predictive">
+              <div class="sec-eyebrow">§02 · Predictive signatures</div>
+              <h3>A 44-CpG / 44-DMR signature for incident dementia</h3>
+              <p>Using longitudinal data from the Framingham Heart Study and ADNI, the 2025 <em>Alzheimer's &amp; Dementia</em> paper derived a blood methylation signature that predicts dementia onset years before clinical diagnosis. The signature consists of <strong>44 individual CpG sites</strong> plus <strong>44 differentially methylated regions (DMRs)</strong>. DMRs (clusters of co-regulated CpGs) are preferred over single sites because they are more biologically functional and more statistically robust against site-level noise.</p>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-1 space-y-4">
-                    <div class="bg-white p-5 rounded-xl border-l-4 border-rose-500 shadow-sm">
-                        <h4 class="font-bold text-slate-900">Key Finding 1: Extremes are Noisy</h4>
-                        <p class="text-sm text-slate-600 mt-2">
-                            Probes with Beta values near 0 or 1 have low variance and low reliability. Intermediate methylation (0.2 - 0.8) yields the highest reliability.
-                        </p>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl border-l-4 border-emerald-500 shadow-sm">
-                        <h4 class="font-bold text-slate-900">Key Finding 2: Strength in Clusters</h4>
-                        <p class="text-sm text-slate-600 mt-2">
-                            DMRs (Regions) show significantly higher Intraclass Correlation Coefficients (ICC) than isolated probes. Single sites are prone to technical artifacts.
-                        </p>
-                    </div>
+              <h4>Pathway enrichment — systemic, not just neural</h4>
+              <p>The 44-CpG signature is enriched in peripheral immune, metabolic, and vascular pathways as strongly as in CNS pathways. Three biological axes stand out:</p>
+              <ul>
+                <li><strong>Peripheral immune dysregulation.</strong> Enrichment of immune-gene methylation challenges the "immune-privileged" view of the brain. Leukocyte DNAm changes reflect "inflammaging" — a low-grade chronic inflammatory state that communicates with the CNS via cytokine signalling.</li>
+                <li><strong>Metabolic dysfunction ("type-3 diabetes").</strong> Dysregulation of glucose and lipid metabolism genes mirrors brain insulin resistance. Peripheral energy deficits disproportionately affect the brain, which consumes ~20% of systemic glucose.</li>
+                <li><strong>DMR-level regulation.</strong> Coordinated regional methylation (DMRs) captures joint regulation of gene neighbourhoods that single CpGs miss.</li>
+              </ul>
+
+              <div class="replicate-badge">
+                <div>
+                  <div class="rb-label">Cross-cohort validation</div>
+                  <div class="rb-text">Replicated in AIBL (Australia) and AddNeuroMed (Europe)</div>
+                </div>
+                <div style="font-family:var(--serif);font-style:italic;font-size:20px;">◉</div>
+              </div>
+            </section>
+
+            <section class="sec" id="resilience">
+              <div class="sec-eyebrow">§03 · Cognitive resilience</div>
+              <h3>Why some people with pathology remain cognitively intact</h3>
+              <p>The 2025 <em>Alzheimer's Research &amp; Therapy</em> paper studied the Healthy Brain Initiative and ADNI cohorts to ask why some individuals maintain cognition despite accumulated pathology. We operationalised a <strong>methylation-based Resilience Index (mRI)</strong> from a lifestyle-based resilience score, and identified a blood DNAm signature that <em>mediates</em> the association between lifestyle and cognitive trajectory, independent of known risk factors.</p>
+              <p>The widget below is a schematic illustration — adjust lifestyle inputs to see how the model weights three canonical resilience genes (APOC2, UBAP1, GSTCD) and an inferred heart–brain axis term.</p>
+
+              <div class="sim" id="sim">
+                <div class="sim-inputs">
+                  <h5>Lifestyle inputs</h5>
+                  <div class="sim-field">
+                    <div class="sim-row"><span>Diet (MIND / Med)</span><span class="val" id="val-diet">Mod.</span></div>
+                    <input type="range" id="in-diet" min="0" max="100" value="50" />
+                  </div>
+                  <div class="sim-field">
+                    <div class="sim-row"><span>Physical activity</span><span class="val" id="val-phys">Mod.</span></div>
+                    <input type="range" id="in-phys" min="0" max="100" value="50" />
+                  </div>
+                  <div class="sim-field">
+                    <div class="sim-row"><span>Cognitive activity</span><span class="val" id="val-cog">Mod.</span></div>
+                    <input type="range" id="in-cog" min="0" max="100" value="50" />
+                  </div>
+                  <div class="sim-field">
+                    <div class="sim-row"><span>Stress / mindfulness</span><span class="val" id="val-mind">Avg.</span></div>
+                    <input type="range" id="in-mind" min="0" max="100" value="50" />
+                  </div>
+                  <div class="sim-score">
+                    <div class="sc-label">Methylation-based resilience</div>
+                    <div><span class="sc-val" id="sim-score">50</span><span class="sc-total">/100</span></div>
+                  </div>
                 </div>
 
-                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <h3 class="text-lg font-bold mb-2">Probe Reliability Distribution</h3>
-                    <p class="text-xs text-slate-500 mb-4">Simulated distribution of probe reliability (ICC) vs. Methylation Level.</p>
-                    <div class="chart-container">
-                        <canvas id="reliabilityChart"></canvas>
+                <div class="sim-genes">
+                  <h5>Epigenetic targets — modulation</h5>
+                  <div class="gene-grid">
+                    <div class="gene-cell" id="g-apoc2">
+                      <div class="gn-name">APOC2</div>
+                      <div class="gn-desc"><strong>Lipid metabolism.</strong> Enhances triglyceride clearance; supports lipid homeostasis in brain tissue.</div>
                     </div>
+                    <div class="gene-cell" id="g-ubap1">
+                      <div class="gn-name">UBAP1</div>
+                      <div class="gn-desc"><strong>Protein clearance (ESCRT).</strong> Boosts lysosomal degradation of toxic aggregates.</div>
+                    </div>
+                    <div class="gene-cell" id="g-gstcd">
+                      <div class="gn-name">GSTCD</div>
+                      <div class="gn-desc"><strong>Oxidative defence.</strong> Enhances antioxidant capacity; protects neurons from ROS.</div>
+                    </div>
+                    <div class="gene-cell" id="g-heart">
+                      <div class="gn-name">Heart–brain axis</div>
+                      <div class="gn-desc"><strong>Vascular health.</strong> Cardiomyopathy-pathway enrichment supports a vascular contribution to cognitive preservation.</div>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </section>
+              </div>
+              <p class="fig-caption" style="font-family:var(--sans);font-size:12px;color:var(--mute);"><strong>Note.</strong> The simulator is for illustration only; weights are schematic. Actual analyses estimate mediation on the methylation-based Resilience Index in HBI and ADNI participants, adjusting for age, sex, <em>APOE</em>, and standard risk factors.</p>
+            </section>
 
-        <!-- SECTION 6: REFERENCES & CODE -->
-        <section id="references" class="max-w-5xl mx-auto hidden fade-in">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">References & Data Availability</h2>
-                <p class="text-slate-700 leading-relaxed mb-6">
-                    The findings presented in this interactive report are derived from the following seminal studies. 
-                    Access the full manuscripts via DOI or explore the analytical code and data availability statements via the associated repositories.
-                </p>
+            <section class="sec" id="bridge">
+              <div class="sec-eyebrow">§04 · Blood–brain bridge</div>
+              <h3>Peripheral methylation as a proxy for central biomarkers</h3>
+              <p>A central question for liquid-biopsy biomarkers is whether blood methylation meaningfully reflects central-nervous-system biology. Across the Zhang et al. studies we report that:</p>
+              <ul>
+                <li>Several <em>HOX</em>-family and immune-regulatory loci show coordinated methylation in blood and brain tissue.</li>
+                <li>Blood methylation at these loci correlates with CSF pTau181 in matched participants, supporting a <em>blood–brain epigenetic axis</em>.</li>
+                <li>Concordance is loci-specific, not genome-wide — caution is warranted when extrapolating from whole-blood DNAm to brain epigenetics.</li>
+              </ul>
+              <p>This concordance is what makes a peripheral assay worth pursuing, provided the signature is anchored on loci where blood–brain agreement is empirically demonstrated rather than assumed.</p>
+            </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Reference 1 -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 ref-card transition-all">
-                        <div class="flex items-start justify-between mb-2">
-                            <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded">2025 • Alzheimer's & Dementia</span>
-                            <i class="fas fa-file-medical text-slate-300"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-900 mb-2">Blood DNA Methylation Signature for Incident Dementia: Evidence from Longitudinal Cohorts</h4>
-                        <p class="text-xs text-slate-500 mb-4">Zhang et al.</p>
-                        <div class="flex gap-2">
-                            <a href="https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/alz.14496" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-700 transition">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Paper
-                            </a>
-                            <a href="https://github.com/TransBioInfoLab/blood-dnam-and-incident-dementia" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded hover:bg-slate-200 transition">
-                                <i class="fab fa-github mr-2"></i> View Code
-                            </a>
-                        </div>
-                    </div>
+            <section class="sec" id="methods">
+              <div class="sec-eyebrow">§05 · Methodological rigor</div>
+              <h3>Probe reliability on the Illumina EPIC v1.0 BeadChip</h3>
+              <p>The 2024 <em>Epigenetics</em> paper performs a systematic evaluation of probe reliability on the EPIC v1.0 BeadChip. Not every probe is equally trustworthy — reliability varies with beta-value range, probe chemistry, and intra-array characteristics. We recommend a filtering workflow to retain probes with reproducible measurement properties before downstream inference.</p>
+              <table class="data">
+                <thead>
+                  <tr>
+                    <th>Tier</th>
+                    <th>Probe class</th>
+                    <th>Recommended action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="num">I.</td><td class="name">High reliability</td><td class="desc">Reproducible ICC &gt; 0.75 across technical replicates. Suitable for discovery and clinical use.</td></tr>
+                  <tr><td class="num">II.</td><td class="name">Moderate reliability</td><td class="desc">ICC 0.4–0.75; retain for discovery with sensitivity analyses.</td></tr>
+                  <tr><td class="num">III.</td><td class="name">Low reliability</td><td class="desc">ICC &lt; 0.4. Exclude from candidate biomarker lists.</td></tr>
+                  <tr><td class="num">IV.</td><td class="name">Cross-reactive / ambiguous</td><td class="desc">Known problematic probes; exclude by default.</td></tr>
+                </tbody>
+              </table>
+              <p class="fig-caption" style="font-family:var(--sans);font-size:12px;color:var(--mute);"><strong>Table 1.</strong> Probe reliability tiering. Applied before downstream biomarker discovery, this filter reduces false-positive rates and improves reproducibility across cohorts.</p>
+            </section>
 
-                    <!-- Reference 2 -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 ref-card transition-all">
-                        <div class="flex items-start justify-between mb-2">
-                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded">2025 • Alz Res Ther</span>
-                            <i class="fas fa-file-medical text-slate-300"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-900 mb-2">DNA Methylation Signature of a Lifestyle-based Resilience Index for Cognitive Health</h4>
-                        <p class="text-xs text-slate-500 mb-4">Zhang et al.</p>
-                        <div class="flex gap-2">
-                            <a href="https://link.springer.com/article/10.1186/s13195-025-01733-7" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-700 transition">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Paper
-                            </a>
-                            <a href="https://github.com/TransBioInfoLab/DNAm-and-RI" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded hover:bg-slate-200 transition">
-                                <i class="fab fa-github mr-2"></i> View Code
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Reference 3 -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 ref-card transition-all">
-                        <div class="flex items-start justify-between mb-2">
-                            <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded">2024 • Epigenetics</span>
-                            <i class="fas fa-microscope text-slate-300"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-900 mb-2">Critical Evaluation of the Reliability of DNA Methylation Probes on the Illumina MethylationEPIC v1.0 BeadChip</h4>
-                        <p class="text-xs text-slate-500 mb-4">Zhang et al.</p>
-                        <div class="flex gap-2">
-                            <a href="https://www.tandfonline.com/doi/full/10.1080/15592294.2024.2333660" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-700 transition">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Paper
-                            </a>
-                            <a href="https://github.com/TransBioInfoLab/DNAm-reliability" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded hover:bg-slate-200 transition">
-                                <i class="fab fa-github mr-2"></i> View Code
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Reference 4 -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 ref-card transition-all">
-                        <div class="flex items-start justify-between mb-2">
-                            <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded">2023 • Alz Res Ther</span>
-                            <i class="fas fa-file-medical text-slate-300"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-900 mb-2">Distinct CSF biomarker-associated DNA methylation in Alzheimer’s disease and cognitively normal subjects</h4>
-                        <p class="text-xs text-slate-500 mb-4">Zhang et al.</p>
-                        <div class="flex gap-2">
-                            <a href="https://link.springer.com/article/10.1186/s13195-023-01216-7" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded hover:bg-slate-700 transition">
-                                <i class="fas fa-external-link-alt mr-2"></i> View Paper
-                            </a>
-                            <a href="https://github.com/TransBioInfoLab/AD-ATN-biomarkers-and-DNAm" target="_blank" class="flex-1 text-center px-4 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded hover:bg-slate-200 transition">
-                                <i class="fab fa-github mr-2"></i> View Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+            <section class="sec" id="refs">
+              <div class="sec-eyebrow">§06 · Key references</div>
+              <h3>Underlying studies</h3>
+              <div class="cite">
+                <div class="cite-label">Distinct profiles · 2023</div>
+                <p class="cite-body">Zhang, W., <em>et al.</em> (2023). Distinct CSF biomarker-associated DNA methylation in Alzheimer's disease and cognitively normal subjects. <em>Alzheimer's Research &amp; Therapy.</em></p>
+              </div>
+              <div class="cite">
+                <div class="cite-label">Probe reliability · 2024</div>
+                <p class="cite-body">Zhang, W., <em>et al.</em> (2024). Critical evaluation of the reliability of DNA methylation probes on the Illumina MethylationEPIC v1.0 BeadChip. <em>Epigenetics.</em></p>
+              </div>
+              <div class="cite">
+                <div class="cite-label">Predictive signature · 2025</div>
+                <p class="cite-body">Zhang, W., <em>et al.</em> (2025). Blood DNA methylation signature for incident dementia: evidence from longitudinal cohorts. <em>Alzheimer's &amp; Dementia.</em></p>
+              </div>
+              <div class="cite">
+                <div class="cite-label">Cognitive resilience · 2025</div>
+                <p class="cite-body">Zhang, W., <em>et al.</em> (2025). DNA methylation signature of a lifestyle-based resilience index for cognitive health. <em>Alzheimer's Research &amp; Therapy.</em></p>
+              </div>
+              <p style="font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:14px;">See the full list on <a class="link" href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>.</p>
+            </section>
+          </article>
+        </div>
+      </div>
     </main>
 
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
+      <div>Last updated: April 2026</div>
+    </footer>
+
     <script>
-        // --- Navigation Logic ---
-        function navigate(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('main > section').forEach(el => el.classList.add('hidden'));
-            // Show target
-            document.getElementById(sectionId).classList.remove('hidden');
-            
-            // Update Tab UI
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            const navBtn = document.getElementById(`nav-${sectionId}`);
-            if(navBtn) navBtn.classList.add('active');
+      document.querySelector('#year').textContent = String(new Date().getFullYear());
 
-            // Trigger charts if first load
-            if (sectionId === 'overview' && !charts.distinctness) initDistinctnessChart();
-            if (sectionId === 'prediction' && !charts.pathway) initPathwayChart();
-            if (sectionId === 'resilience' && !charts.resilience) initResilienceChart();
-            if (sectionId === 'concordance' && !charts.concordance) initConcordanceChart();
-            if (sectionId === 'methodology' && !charts.reliability) initReliabilityChart();
-        }
+      const FG_INK = '#1d1d1b';
+      const FG_MUTE = '#5c5c58';
+      const FG_LINE = '#dcd7ce';
+      const FG_ACCENT = '#1f5138';
+      const FG_MUTED_DATA = '#9a958a';
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+      if (window.Chart) {
+        Chart.defaults.font.family = '"Inter", -apple-system, sans-serif';
+        Chart.defaults.font.size = 11.5;
+        Chart.defaults.color = FG_MUTE;
+        Chart.defaults.borderColor = FG_LINE;
+      }
 
-        // --- Chart Storage ---
-        const charts = {
-            distinctness: null,
-            pathway: null,
-            resilience: null,
-            concordance: null,
-            reliability: null
+      // Figure 1: CN vs AD stacked overlap
+      (function renderOverlap() {
+        const ctx = document.getElementById('overlapChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Aβ42-assoc.', 'pTau181-assoc.', 'Total CpGs'],
+            datasets: [
+              { label: 'CN-specific', data: [120, 95, 215],
+                backgroundColor: FG_ACCENT, borderColor: FG_ACCENT, borderWidth: 0, stack: 'a' },
+              { label: 'AD-specific', data: [105, 88, 193],
+                backgroundColor: FG_MUTED_DATA, borderColor: FG_MUTE, borderWidth: 0, stack: 'a' },
+              { label: 'Shared', data: [12, 9, 21],
+                backgroundColor: FG_LINE, borderColor: FG_MUTE, borderWidth: 0, stack: 'a' }
+            ]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+            plugins: {
+              legend: { position: 'bottom', labels: { color: FG_MUTE, boxWidth: 16, boxHeight: 10, padding: 14 } },
+              tooltip: { backgroundColor: FG_INK }
+            },
+            scales: {
+              x: { stacked: true, beginAtZero: true, grid: { color: FG_LINE, drawBorder: false }, ticks: { color: FG_MUTE } },
+              y: { stacked: true, grid: { display: false }, ticks: { color: FG_INK, font: { weight: 600 } } }
+            }
+          }
+        });
+      })();
+
+      // Resilience simulator
+      (function sim() {
+        const inputs = ['diet', 'phys', 'cog', 'mind'].map(k => document.getElementById('in-' + k));
+        const labels = {
+          diet: { el: document.getElementById('val-diet'), map: v => v < 33 ? 'Low' : v < 67 ? 'Mod.' : 'High' },
+          phys: { el: document.getElementById('val-phys'), map: v => v < 33 ? 'Low' : v < 67 ? 'Mod.' : 'High' },
+          cog:  { el: document.getElementById('val-cog'),  map: v => v < 33 ? 'Low' : v < 67 ? 'Mod.' : 'High' },
+          mind: { el: document.getElementById('val-mind'), map: v => v < 33 ? 'Low' : v < 67 ? 'Avg.' : 'High' }
+        };
+        const score = document.getElementById('sim-score');
+        const genes = {
+          apoc2: document.getElementById('g-apoc2'),
+          ubap1: document.getElementById('g-ubap1'),
+          gstcd: document.getElementById('g-gstcd'),
+          heart: document.getElementById('g-heart')
         };
 
-        // --- Chart 1: Distinctness Chart (Overview) ---
-        // REPLACED RADAR WITH STACKED BAR FOR CLARITY
-        function initDistinctnessChart() {
-            const ctx = document.getElementById('distinctnessChart').getContext('2d');
-            charts.distinctness = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Assoc. with CSF Aβ42', 'Assoc. with CSF pTau181'],
-                    datasets: [
-                        {
-                            label: 'Unique to CN Subjects',
-                            data: [85, 78], // Representative of "little overlap"
-                            backgroundColor: '#34d399', // Emerald-400
-                            stack: 'Stack 0',
-                        },
-                        {
-                            label: 'Unique to AD Subjects',
-                            data: [70, 88], // Representative high count distinct
-                            backgroundColor: '#fb7185', // Rose-400
-                            stack: 'Stack 0',
-                        },
-                        {
-                            label: 'Shared / Overlapping',
-                            data: [5, 4], // Very small overlap per Zhang 2023
-                            backgroundColor: '#cbd5e1', // Slate-300
-                            stack: 'Stack 0',
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + context.raw + '% of signals';
-                                }
-                            }
-                        },
-                        legend: { position: 'top' }
-                    },
-                    scales: {
-                        x: { stacked: true },
-                        y: { 
-                            stacked: true, 
-                            title: { display: true, text: 'Percentage of Significant CpG Sites' },
-                            max: 100 
-                        }
-                    }
-                }
-            });
+        function update() {
+          const v = {
+            diet: +document.getElementById('in-diet').value,
+            phys: +document.getElementById('in-phys').value,
+            cog:  +document.getElementById('in-cog').value,
+            mind: +document.getElementById('in-mind').value
+          };
+          Object.keys(labels).forEach(k => {
+            labels[k].el.textContent = labels[k].map(v[k]);
+          });
+          // Weighted score: diet 0.3 + phys 0.3 + cog 0.25 + mind 0.15
+          const s = Math.round(v.diet * 0.3 + v.phys * 0.3 + v.cog * 0.25 + v.mind * 0.15);
+          score.textContent = s;
+          // Gene activation thresholds
+          genes.apoc2.classList.toggle('active', v.diet >= 60);
+          genes.ubap1.classList.toggle('active', v.phys >= 55);
+          genes.gstcd.classList.toggle('active', v.cog >= 55);
+          genes.heart.classList.toggle('active', (v.phys + v.mind) / 2 >= 55);
         }
-
-        // --- Chart 2: Pathway Enrichment (Doughnut) ---
-        function initPathwayChart() {
-            const ctx = document.getElementById('pathwayChart').getContext('2d');
-            charts.pathway = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Immune System', 'Metabolism (Lipid/Glucose)', 'Developmental/HOX', 'Protein Clearance', 'Other'],
-                    datasets: [{
-                        data: [35, 25, 15, 15, 10],
-                        backgroundColor: ['#f43f5e', '#f59e0b', '#4f46e5', '#10b981', '#cbd5e1'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right' }
-                    }
-                }
-            });
-        }
-
-        // --- Chart 3: Resilience Simulator (Bar) ---
-        function initResilienceChart() {
-            const ctx = document.getElementById('resilienceChart').getContext('2d');
-            charts.resilience = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Cognitive Stability Probability (5 Years)'],
-                    datasets: [{
-                        label: 'With Current Lifestyle',
-                        data: [50],
-                        backgroundColor: '#4f46e5',
-                        barPercentage: 0.5
-                    }, {
-                        label: 'Average Population Risk',
-                        data: [45], // Baseline
-                        backgroundColor: '#cbd5e1',
-                        barPercentage: 0.5
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { min: 0, max: 100, title: { display: true, text: 'Probability of Maintaining Cognition (%)' } }
-                    }
-                }
-            });
-            updateSimulator(); // Initial calculation
-        }
-
-        // --- Simulator Logic ---
-        function updateSimulator() {
-            const diet = parseInt(document.getElementById('input-diet').value);
-            const phys = parseInt(document.getElementById('input-phys').value);
-            const cog = parseInt(document.getElementById('input-cog').value);
-            const mind = parseInt(document.getElementById('input-mind').value);
-
-            // Update Labels
-            const getLabel = (v) => v < 30 ? 'Low' : v < 70 ? 'Moderate' : 'High';
-            document.getElementById('val-diet').innerText = getLabel(diet);
-            document.getElementById('val-phys').innerText = getLabel(phys);
-            document.getElementById('val-cog').innerText = getLabel(cog);
-            document.getElementById('val-mind').innerText = getLabel(mind);
-
-            // Calculate Score (Simple Average)
-            const score = Math.round((diet + phys + cog + mind) / 4);
-            document.getElementById('resilience-score').innerText = `${score}/100`;
-
-            // Update Chart
-            // Baseline 45%. Max boost +40%.
-            const probability = 45 + (score * 0.4); 
-            if(charts.resilience) {
-                charts.resilience.data.datasets[0].data = [probability];
-                
-                // Color change based on score
-                const color = score > 70 ? '#10b981' : score > 40 ? '#4f46e5' : '#f43f5e';
-                charts.resilience.data.datasets[0].backgroundColor = color;
-                
-                charts.resilience.update();
-            }
-
-            // Update Gene Cards
-            updateGeneCard('gene-apoc2', (diet + phys) / 2);
-            updateGeneCard('gene-ubap1', (phys + cog) / 2);
-            updateGeneCard('gene-gstcd', (diet + mind) / 2);
-            updateGeneCard('gene-heart', phys);
-        }
-
-        function updateGeneCard(id, value) {
-            const el = document.getElementById(id);
-            const icon = el.querySelector('.status-icon');
-            
-            if (value > 70) {
-                el.className = "p-3 bg-emerald-50 border border-emerald-200 rounded transition-all duration-300";
-                icon.className = "fas fa-check-circle text-emerald-500 status-icon";
-            } else if (value < 40) {
-                el.className = "p-3 bg-rose-50 border border-rose-200 rounded transition-all duration-300";
-                icon.className = "fas fa-exclamation-circle text-rose-500 status-icon";
-            } else {
-                el.className = "p-3 bg-slate-50 border border-slate-200 rounded transition-all duration-300";
-                icon.className = "fas fa-minus-circle text-slate-300 status-icon";
-            }
-        }
-
-
-        // --- Chart 4: Blood-Brain Concordance (Scatter) ---
-        function initConcordanceChart() {
-            const ctx = document.getElementById('concordanceChart').getContext('2d');
-            
-            // Generate Dummy Data for HOXA5
-            const dataHOXA5 = Array.from({length: 50}, () => ({
-                x: Math.random() * 0.8 + 0.1, // Beta Value
-                y: Math.random() * 100 + 50   // CSF pTau
-            })).map(p => ({ x: p.x, y: p.x * 100 + p.y * 0.2 + (Math.random()*20) })); // Correlated
-
-            // Generate "Distinct" Data: Separate clusters for CN and AD
-            const dataDistinct = [
-                ...Array.from({length: 25}, () => ({ x: Math.random() * 0.3 + 0.1, y: Math.random() * 40 + 20 })), // CN Cluster
-                ...Array.from({length: 25}, () => ({ x: Math.random() * 0.3 + 0.6, y: Math.random() * 60 + 100 }))  // AD Cluster
-            ];
-
-            charts.concordance = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'HOXA5 Correlation',
-                        data: dataHOXA5,
-                        backgroundColor: '#4f46e5'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { title: { display: true, text: 'Blood DNA Methylation (Beta Value)' }, min: 0, max: 1 },
-                        y: { title: { display: true, text: 'CSF pTau181 Level (pg/mL)' } }
-                    }
-                }
-            });
-        }
-
-        function updateConcordance(mode) {
-            if(!charts.concordance) return;
-            
-            let color = mode === 'HOXA5' ? '#4f46e5' : '#10b981';
-            let label = mode === 'HOXA5' ? 'HOXA5 Correlation' : 'Distinct Clusters (CN vs AD)';
-            
-            let newData;
-            if (mode === 'HOXA5') {
-                 newData = Array.from({length: 50}, () => ({
-                    x: Math.random() * 0.8 + 0.1,
-                    y: 0
-                })).map(p => ({ x: p.x, y: p.x * 120 + 50 + (Math.random()*30) }));
-            } else {
-                 newData = [
-                    ...Array.from({length: 25}, () => ({ x: Math.random() * 0.3 + 0.1, y: Math.random() * 40 + 20 })), 
-                    ...Array.from({length: 25}, () => ({ x: Math.random() * 0.3 + 0.6, y: Math.random() * 60 + 100 }))
-                ];
-            }
-
-            charts.concordance.data.datasets[0].data = newData;
-            charts.concordance.data.datasets[0].label = label;
-            charts.concordance.data.datasets[0].backgroundColor = color;
-            charts.concordance.update();
-        }
-
-        // --- Chart 5: Reliability (Bubble) ---
-        function initReliabilityChart() {
-            const ctx = document.getElementById('reliabilityChart').getContext('2d');
-            
-            // Generate points: X=Beta, Y=ICC. Higher density in middle X, high Y.
-            const dataPoints = [];
-            for(let i=0; i<80; i++) {
-                const beta = Math.random();
-                // Reliability is inverted U-shape relative to beta
-                const optimal = 0.8 - Math.pow(beta - 0.5, 2) * 2; 
-                const icc = Math.max(0, Math.min(1, optimal + (Math.random() * 0.3 - 0.15)));
-                dataPoints.push({ x: beta, y: icc, r: 5 });
-            }
-
-            charts.reliability = new Chart(ctx, {
-                type: 'bubble',
-                data: {
-                    datasets: [{
-                        label: 'EPIC Array Probes',
-                        data: dataPoints,
-                        backgroundColor: 'rgba(8, 145, 178, 0.6)', // Cyan
-                        borderColor: '#0891b2'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { title: { display: true, text: 'Methylation Level (Beta Value)' }, min: 0, max: 1 },
-                        y: { title: { display: true, text: 'Reliability (ICC)' }, min: 0, max: 1 }
-                    },
-                    plugins: {
-                        annotation: {
-                            annotations: {
-                                box1: {
-                                    type: 'box',
-                                    xMin: 0.2, xMax: 0.8,
-                                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                                    label: { content: 'Optimal Range', display: true }
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            navigate('overview');
-        });
-
+        inputs.forEach(el => el.addEventListener('input', update));
+        update();
+      })();
     </script>
-</body>
+  </body>
 </html>

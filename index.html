@@ -245,6 +245,32 @@
       .project .plinks a { color: var(--accent); margin-right: 16px; }
       .project .plinks a:hover { text-decoration: underline; }
       .project-end-rule { border-top: 1px solid var(--line); }
+      /* Sub-projects inside a parent project card */
+      .project .psubs {
+        margin: 10px 0 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px dashed var(--line);
+        padding-top: 10px;
+      }
+      .project .psubs li {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 0;
+        padding: 6px 0;
+        font-size: 14px;
+        line-height: 1.55;
+        border-bottom: 1px dashed var(--line);
+      }
+      .project .psubs li:last-child { border-bottom: none; }
+      .project .psubs .psub-marker {
+        font-family: var(--sans); font-size: 10.5px; color: var(--accent);
+        font-weight: 600; letter-spacing: 0.06em; padding-top: 2px;
+      }
+      .project .psubs .psub-title {
+        font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px;
+      }
+      .project .psubs .psub-desc { color: var(--mute); font-size: 13.5px; }
 
       /* Publications */
       .pub-filters {
@@ -549,10 +575,27 @@
           <h3 class="subhead">Active Projects</h3>
           <div class="project">
             <div class="ptitle">Multivariate Random Forest Framework for Multi-omics Integration</div>
-            <div class="pdesc">A directed random forest framework that learns sample-by-sample similarity from shared terminal-node structure across omics blocks, and decomposes the result into shared and omics-specific components for clustering, variable selection, and visualization.</div>
+            <div class="pdesc">A directed random forest framework that learns sample-by-sample similarity from shared terminal-node structure across omics blocks, then decomposes the result into shared and omics-specific components. Two sub-projects extend the framework in complementary directions:</div>
+            <ul class="psubs">
+              <li>
+                <span class="psub-marker">a.</span>
+                <span>
+                  <span class="psub-title">Variable Selection</span>
+                  <span class="psub-desc">Robust biomarker ranking via an Inverse-Minimal-Depth (IMD) importance measure, with three selection strategies benchmarked on pan-cancer TCGA data and applied to dementia prediction in ADNI.</span>
+                </span>
+              </li>
+              <li>
+                <span class="psub-marker">b.</span>
+                <span>
+                  <span class="psub-title">Clustering</span>
+                  <span class="psub-desc">Subtype discovery using forest-based sample-similarity as a distance metric for integrative clustering — leveraging shared terminal-node structure across omics blocks to uncover joint and modality-specific patient subgroups.</span>
+                </span>
+              </li>
+            </ul>
             <div class="plinks">
               <a href="https://github.com/novawz/multiRF" target="_blank" rel="noreferrer">GitHub →</a>
               <a href="https://novawz.github.io/multiRF/" target="_blank" rel="noreferrer">Vignette →</a>
+              <a href="research/mrf1.html">Project page →</a>
             </div>
           </div>
           <div class="project">

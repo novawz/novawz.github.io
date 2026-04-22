@@ -22,9 +22,11 @@
     <style>
       :root {
         --bg: #ffffff;
+        --paper: #fbfaf6;
         --ink: #1d1d1b;
         --mute: #5c5c58;
         --line: #dcd7ce;
+        --line-soft: #ece8de;
         --accent: #1f5138;
         --accent-strong: #173e2a;
         --accent-soft: #e8efe8;
@@ -63,67 +65,232 @@
       nav.primary a:hover { border-bottom-color: var(--accent); color: var(--accent); }
       nav.primary a.current { border-bottom-color: var(--accent); color: var(--accent); }
 
-      /* Blog body */
-      .wrap { max-width: 860px; margin: 0 auto; padding: 48px 48px 80px; }
-
-      .page-head {
-        border-bottom: 2px solid var(--ink);
-        padding-bottom: 18px;
-        margin-bottom: 28px;
+      /* Editorial masthead — magazine style */
+      .editorial {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 56px 48px 28px;
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 56px;
+        align-items: end;
+        border-bottom: 3px double var(--ink);
       }
-      .label {
-        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+      .ed-title-block .ed-eyebrow {
+        font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .ed-title-block .ed-eyebrow .dot {
+        display: inline-block; width: 6px; height: 6px; background: var(--accent);
+        margin: 0 10px 2px; vertical-align: middle;
+      }
+      .ed-title-block h2 {
+        font-family: var(--serif); font-weight: 600;
+        font-size: 64px; line-height: 0.98; letter-spacing: -0.025em;
+        margin: 0 0 6px;
+      }
+      .ed-title-block h2 em {
+        font-style: italic; color: var(--accent); font-weight: 600;
+      }
+      .ed-title-block .ed-sub {
+        font-family: var(--serif); font-style: italic;
+        font-size: 18px; color: var(--mute); margin: 14px 0 0;
+        max-width: 38ch;
+      }
+      .ed-meta {
+        font-family: var(--sans); font-size: 11.5px;
+        color: var(--mute); text-transform: uppercase; letter-spacing: 0.1em;
+        text-align: right;
+        border-left: 1px solid var(--line);
+        padding-left: 22px;
+        line-height: 1.9;
+      }
+      .ed-meta strong { display: block; color: var(--ink); font-weight: 600; }
+      .ed-meta .vol { font-family: var(--serif); font-style: italic;
+        font-size: 22px; color: var(--ink); text-transform: none;
+        letter-spacing: 0; margin-top: 8px; display: block; }
+
+      /* Body */
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 48px 80px;
+      }
+
+      /* Intro note — editor's letter style */
+      .intro-note {
+        max-width: 720px;
+        margin: 30px auto 56px;
+        padding: 0 12px;
+        text-align: center;
+      }
+      .intro-note .label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.18em;
         text-transform: uppercase; color: var(--mute); font-weight: 500;
+        margin-bottom: 10px;
       }
-      .page-head h2 {
-        font-family: var(--serif); font-size: 32px; font-weight: 600;
-        letter-spacing: -0.005em; margin: 8px 0 6px;
+      .intro-note p {
+        font-family: var(--serif);
+        font-size: 19px; line-height: 1.55;
+        color: var(--ink);
+        margin: 0;
+        font-style: italic;
       }
-      .page-head p { color: var(--mute); font-size: 15px; margin: 0; max-width: 60ch; }
+      .intro-note p::first-letter {
+        font-family: var(--serif);
+        font-size: 56px; font-weight: 600; font-style: normal;
+        float: left; line-height: 0.85;
+        margin: 6px 8px 0 0;
+        color: var(--accent);
+      }
+      .intro-note .sig {
+        font-family: var(--sans); font-size: 11px; color: var(--mute);
+        text-transform: uppercase; letter-spacing: 0.14em;
+        margin-top: 18px;
+      }
 
+      /* Section header */
+      .sec-bar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: baseline;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 10px;
+      }
+      .sec-bar .sec-eyebrow {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+      }
+      .sec-bar .sec-count {
+        font-family: var(--sans); font-size: 11px; color: var(--mute);
+        letter-spacing: 0.08em; text-transform: uppercase;
+      }
+
+      /* Featured (first) post — large editorial treatment */
+      .featured {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 32px;
+        padding: 36px 0 40px;
+        border-bottom: 1px solid var(--line);
+      }
+      .featured .num-col {
+        font-family: var(--serif); font-style: italic;
+        font-size: 60px; line-height: 0.9; color: var(--accent);
+        font-weight: 400;
+      }
+      .featured .num-col .num-label {
+        display: block; font-family: var(--sans); font-style: normal;
+        font-size: 9.5px; color: var(--mute); letter-spacing: 0.16em;
+        text-transform: uppercase; margin-top: 10px; font-weight: 600;
+      }
+      .featured .feat-body .feat-kicker {
+        font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .featured .feat-body h3 {
+        font-family: var(--serif); font-size: 36px; font-weight: 600;
+        letter-spacing: -0.012em; line-height: 1.1; margin: 0 0 14px;
+        max-width: 22ch;
+      }
+      .featured .feat-body h3 a { color: var(--ink); }
+      .featured .feat-body h3 a:hover { color: var(--accent); }
+      .featured .feat-body .feat-dek {
+        font-family: var(--serif); font-size: 17.5px; line-height: 1.55;
+        color: var(--mute); margin: 0 0 18px; max-width: 60ch;
+      }
+      .featured .feat-meta {
+        font-family: var(--sans); font-size: 11.5px;
+        color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase;
+        display: flex; gap: 18px; flex-wrap: wrap;
+        padding-top: 14px; border-top: 1px solid var(--line-soft);
+        align-items: center;
+      }
+      .featured .feat-meta .meta-tag {
+        color: var(--accent); border: 1px solid var(--accent);
+        background: var(--accent-soft);
+        padding: 3px 8px; letter-spacing: 0.08em;
+        font-size: 10.5px;
+      }
+      .featured .feat-meta .read-more {
+        margin-left: auto; color: var(--accent); font-weight: 600;
+      }
+      .featured .feat-meta .read-more:hover { text-decoration: underline; }
+
+      /* Subsequent posts list */
       ol.posts {
         list-style: none; padding: 0; margin: 0;
       }
       ol.posts li.post {
-        padding: 22px 0;
-        border-top: 1px solid var(--line);
         display: grid;
-        grid-template-columns: 80px 1fr auto;
-        gap: 24px;
+        grid-template-columns: 110px 1fr 130px;
+        gap: 32px;
+        padding: 26px 0;
+        border-bottom: 1px solid var(--line);
         align-items: baseline;
       }
-      ol.posts li.post:last-child { border-bottom: 1px solid var(--line); }
+      .post .post-num {
+        font-family: var(--serif); font-style: italic;
+        font-size: 28px; color: var(--accent); line-height: 1;
+      }
+      .post .post-num small {
+        display: block; font-family: var(--sans); font-style: normal;
+        font-size: 9.5px; color: var(--mute); letter-spacing: 0.16em;
+        text-transform: uppercase; margin-top: 6px; font-weight: 600;
+      }
+      .post .post-body h3 {
+        font-family: var(--serif); font-size: 22px; font-weight: 600;
+        margin: 0 0 8px; letter-spacing: -0.005em; line-height: 1.25;
+      }
+      .post .post-body h3 a { color: var(--ink); border-bottom: 1px solid transparent; }
+      .post .post-body h3 a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+      .post .post-body p {
+        color: var(--mute); font-size: 15.5px; line-height: 1.6;
+        margin: 0 0 12px; max-width: 64ch;
+      }
+      .post .tag-row { display: flex; flex-wrap: wrap; gap: 5px; }
+      .post .tag {
+        font-family: var(--sans); font-size: 10.5px; padding: 2px 7px;
+        border: 1px solid var(--line); color: var(--mute);
+        letter-spacing: 0.04em; text-transform: uppercase;
+        background: #fff;
+      }
+      .post .tag.tag-accent {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-soft); font-weight: 500;
+      }
+      .post .post-meta {
+        font-family: var(--sans); font-size: 11.5px; color: var(--mute);
+        text-transform: uppercase; letter-spacing: 0.08em;
+        text-align: right; line-height: 1.7;
+      }
+      .post .post-meta strong { color: var(--ink); display: block; font-weight: 600; }
+      .post .post-meta .read-link {
+        color: var(--accent); font-weight: 600;
+        margin-top: 8px; display: inline-block;
+      }
+      .post .post-meta .read-link:hover { text-decoration: underline; }
 
-      .post-num {
+      /* Colophon — bottom note */
+      .colophon {
+        margin-top: 60px;
+        padding: 24px 0 0;
+        border-top: 3px double var(--ink);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 32px;
         font-family: var(--sans); font-size: 12px; color: var(--mute);
-        letter-spacing: 0.06em;
       }
-      .post-body h3 {
-        font-family: var(--serif); font-size: 20px; font-weight: 600;
-        margin: 0 0 6px;
+      .colophon h4 {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--ink); font-weight: 600;
+        margin: 0 0 8px;
       }
-      .post-body h3 a { color: var(--ink); border-bottom: 1px solid transparent; }
-      .post-body h3 a:hover { border-bottom-color: var(--accent); color: var(--accent); }
-
-      .post-body p { color: var(--mute); font-size: 15px; line-height: 1.6; margin: 0 0 10px; max-width: 68ch; }
-
-      .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-      .tag {
-        font-family: var(--sans); font-size: 11px; padding: 3px 8px;
-        border: 1px solid var(--accent); color: var(--accent);
-        background: var(--accent-soft);
-      }
-
-      .post-meta {
-        font-family: var(--sans); font-size: 12px; color: var(--mute);
-        text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
-      }
-
-      .post-body .read-more {
-        display: inline-block; margin-top: 10px;
-        font-family: var(--sans); font-size: 12.5px; color: var(--accent);
-      }
-      .post-body .read-more:hover { text-decoration: underline; }
+      .colophon p { margin: 0; line-height: 1.6; }
+      .colophon a { color: var(--accent); }
+      .colophon a:hover { text-decoration: underline; }
 
       footer.site-footer {
         padding: 18px 48px; border-top: 1px solid var(--line);
@@ -134,15 +301,28 @@
       @media (max-width: 980px) {
         .affiliation-row { padding: 12px 24px; }
         .masthead { padding: 18px 24px 20px; }
-        .wrap { padding: 32px 24px 64px; }
+        .editorial {
+          padding: 40px 24px 24px;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .ed-title-block h2 { font-size: 44px; }
+        .ed-meta { text-align: left; border-left: none;
+          border-top: 1px solid var(--line); padding-left: 0; padding-top: 14px; }
+        .wrap { padding: 20px 24px 64px; }
+        .featured { grid-template-columns: 1fr; gap: 14px; }
+        .featured .feat-body h3 { font-size: 28px; }
+        ol.posts li.post {
+          grid-template-columns: 1fr; gap: 10px;
+        }
+        .post .post-meta { text-align: left; }
+        .colophon { grid-template-columns: 1fr; gap: 18px; }
         footer.site-footer { padding: 16px 24px; }
-        ol.posts li.post { grid-template-columns: 1fr; gap: 10px; }
-        .post-num { order: -1; }
-        .post-meta { text-align: left; }
       }
       @media (max-width: 620px) {
         .masthead h1 { font-size: 26px; }
-        .page-head h2 { font-size: 26px; }
+        .ed-title-block h2 { font-size: 36px; }
+        .featured .feat-body h3 { font-size: 24px; }
       }
     </style>
   </head>
@@ -175,50 +355,85 @@
     </header>
 
     <main>
-      <div class="wrap">
-        <div class="page-head">
-          <div class="label">Writing</div>
-          <h2>Blog &amp; Side Projects</h2>
-          <p>Technical notes on tools and side projects built alongside research.</p>
+      <section class="editorial">
+        <div class="ed-title-block">
+          <div class="ed-eyebrow">
+            Notebook <span class="dot"></span> Side Projects <span class="dot"></span> Tools
+          </div>
+          <h2>Notes from <em>the margins</em>.</h2>
+          <p class="ed-sub">Things I built, things I read, and small ideas worth a longer look — written in the margins of research.</p>
         </div>
+        <div class="ed-meta">
+          <span>Wei Zhang, Editor</span>
+          <strong>Miami, Florida</strong>
+          <span class="vol">Vol. I · MMXXVI</span>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="intro-note">
+          <div class="label">Editor's Note</div>
+          <p>This is where I keep the things that don't fit into a paper — small tools, side projects, and stray observations from the everyday work of trying to keep up with the literature. Two posts to start; more as the year goes on.</p>
+          <div class="sig">— W. Z., April 2026</div>
+        </div>
+
+        <div class="sec-bar">
+          <div class="sec-eyebrow">In this issue</div>
+          <div class="sec-count">02 entries</div>
+        </div>
+
+        <article class="featured">
+          <div class="num-col">
+            01<span class="num-label">Feature</span>
+          </div>
+          <div class="feat-body">
+            <div class="feat-kicker">Tool · Literature Tracking</div>
+            <h3><a href="research-pipeline.html">Building a Personal Research Pipeline with AI</a></h3>
+            <p class="feat-dek">Keeping up with new papers across journals and preprint servers is a constant challenge. I built an automated pipeline that fetches, scores, and summarizes daily literature — so I can spend more time reading and less time searching.</p>
+            <div class="feat-meta">
+              <span class="meta-tag">Tool</span>
+              <span>April 2026</span>
+              <span>~ 6 min read</span>
+              <a class="read-more" href="research-pipeline.html">Read article →</a>
+            </div>
+          </div>
+        </article>
 
         <ol class="posts">
           <li class="post">
-            <div class="post-num">[1]</div>
-            <div class="post-body">
-              <h3><a href="research-pipeline.html">Building a Personal Research Pipeline with AI</a></h3>
-              <p>
-                Keeping up with new papers across journals and preprint servers is a constant challenge. I built an automated pipeline that fetches, scores, and summarizes daily literature — so I can spend more time reading and less time searching.
-              </p>
-              <div class="tag-row">
-                <span class="tag">Tool</span>
-                <span class="tag">Literature Tracking</span>
-                <span class="tag">AI Scoring</span>
-                <span class="tag">Self-hosted</span>
-              </div>
-              <a class="read-more" href="research-pipeline.html">Read article →</a>
-            </div>
-            <div class="post-meta">2026</div>
-          </li>
-
-          <li class="post">
-            <div class="post-num">[2]</div>
+            <div class="post-num">02<small>Entry</small></div>
             <div class="post-body">
               <h3><a href="bloomly.html">Bloomly: An Atomic Knowledge Hub</a></h3>
-              <p>
-                Ideas rarely arrive fully formed — they grow through connection. Bloomly is a personal knowledge app I built to capture atomic notes, link them into a network, and let AI help develop them further. Available on web and iOS.
-              </p>
+              <p>Ideas rarely arrive fully formed — they grow through connection. Bloomly is a personal knowledge app I built to capture atomic notes, link them into a network, and let AI help develop them further. Available on web and iOS.</p>
               <div class="tag-row">
-                <span class="tag">App</span>
+                <span class="tag tag-accent">App</span>
                 <span class="tag">Knowledge Management</span>
                 <span class="tag">AI-Powered</span>
                 <span class="tag">Web + iOS</span>
               </div>
-              <a class="read-more" href="bloomly.html">Read article →</a>
             </div>
-            <div class="post-meta">2026</div>
+            <div class="post-meta">
+              <strong>March 2026</strong>
+              <span>~ 5 min read</span>
+              <a class="read-link" href="bloomly.html">Read →</a>
+            </div>
           </li>
         </ol>
+
+        <div class="colophon">
+          <div>
+            <h4>About this notebook</h4>
+            <p>An informal log of tools and side projects that grew out of research work in biostatistics and computational biology. New entries appear irregularly — when something is worth writing down.</p>
+          </div>
+          <div>
+            <h4>Subscribe</h4>
+            <p>No mailing list yet. For updates, follow my <a href="https://github.com/novawz" target="_blank" rel="noreferrer">GitHub</a> or check back here.</p>
+          </div>
+          <div>
+            <h4>Correspondence</h4>
+            <p>Questions, comments, or pointers to relevant work: <a href="mailto:wei.zhang60@med.miami.edu">wei.zhang60@med.miami.edu</a>.</p>
+          </div>
+        </div>
       </div>
     </main>
 

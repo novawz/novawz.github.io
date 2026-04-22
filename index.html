@@ -271,6 +271,19 @@
         font-weight: 600; color: var(--ink); display: block; margin-bottom: 2px;
       }
       .project .psubs .psub-desc { color: var(--mute); font-size: 13.5px; }
+      .project .psubs .psub-links {
+        display: block;
+        margin-top: 6px;
+        font-family: var(--sans);
+        font-size: 12px;
+        letter-spacing: 0.02em;
+      }
+      .project .psubs .psub-links a {
+        color: var(--accent);
+        text-decoration: none;
+        margin-right: 14px;
+      }
+      .project .psubs .psub-links a:hover { text-decoration: underline; }
 
       /* Publications */
       .pub-filters {
@@ -582,6 +595,10 @@
                 <span>
                   <span class="psub-title">Variable Selection</span>
                   <span class="psub-desc">Robust biomarker ranking via an Inverse-Minimal-Depth (IMD) importance measure, with three selection strategies benchmarked on pan-cancer TCGA data and applied to dementia prediction in ADNI.</span>
+                  <span class="psub-links">
+                    <a href="https://github.com/TransBioInfoLab/multiRF-vs" target="_blank" rel="noreferrer">GitHub →</a>
+                    <a href="research/mrf1.html">Project page →</a>
+                  </span>
                 </span>
               </li>
               <li>
@@ -592,11 +609,6 @@
                 </span>
               </li>
             </ul>
-            <div class="plinks">
-              <a href="https://github.com/novawz/multiRF" target="_blank" rel="noreferrer">GitHub →</a>
-              <a href="https://novawz.github.io/multiRF/" target="_blank" rel="noreferrer">Vignette →</a>
-              <a href="research/mrf1.html">Project page →</a>
-            </div>
           </div>
           <div class="project">
             <div class="ptitle">Integrative Aging Biomarker of Blood DNA Methylation and Brain MRI for AD Prognosis</div>

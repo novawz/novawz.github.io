@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Wei Zhang | Multi-omics & Statistical Learning</title>
+    <title>Wei Zhang, Ph.D. | University of Miami</title>
     <meta
       name="description"
-      content="Wei Zhang — Postdoctoral Associate at the University of Miami. Multi-omics integration, statistical learning, biomarker discovery, and translational biomedical research."
+      content="Wei Zhang, Ph.D. — Postdoctoral Associate, Department of Public Health Sciences, University of Miami Miller School of Medicine. Research on multi-omics integration, statistical machine learning, and biomarker discovery in Alzheimer's disease and cancer."
     />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESMS0RZM0Z"></script>
@@ -19,777 +19,1002 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #f3f7f5;
-        --surface: #ffffff;
-        --surface-soft: #eef4f1;
-        --text: #10231d;
-        --text-soft: #4a635a;
-        --line: #d6e3dd;
-        --brand: #0f766e;
-        --brand-strong: #0b5f58;
-        --accent: #b45309;
-        --shadow: 0 20px 40px -26px rgba(16, 35, 29, 0.35);
-        --radius: 16px;
-        --radius-sm: 12px;
-        --container: 1120px;
+        --bg: #ffffff;
+        --ink: #1d1d1b;
+        --mute: #5c5c58;
+        --line: #dcd7ce;
+        --accent: #1f5138;        /* deep academic green */
+        --accent-strong: #173e2a;
+        --accent-soft: #e8efe8;
+        --sidebar: #f3f5f0;
+        --serif: "Source Serif 4", "Charter", Georgia, "Times New Roman", serif;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
+      * { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+      html, body { margin: 0; padding: 0; }
       body {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: "Space Grotesk", sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at 15% 0%, #dcf3ea 0, transparent 34%),
-          radial-gradient(circle at 85% 10%, #ffe9cc 0, transparent 25%),
-          var(--bg);
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 16px;
         line-height: 1.6;
       }
 
-      a {
-        color: inherit;
-      }
+      a { color: inherit; text-decoration: none; }
+      a.link { color: var(--accent); }
+      a.link:hover { color: var(--accent-strong); text-decoration: underline; }
 
-      .container {
-        width: min(var(--container), 100% - 2rem);
-        margin-inline: auto;
-      }
+      /* Top accent rule */
+      .accent-rule { height: 4px; background: var(--accent); }
 
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(10px);
-        background: rgba(243, 247, 245, 0.82);
-        border-bottom: 1px solid rgba(214, 227, 221, 0.85);
-      }
-
-      .header-inner {
+      /* ---------- Header ---------- */
+      header.site-header { border-bottom: 1px solid var(--line); background: #fff; }
+      .affiliation-row {
+        padding: 14px 48px;
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        min-height: 72px;
+        align-items: center;
         gap: 1rem;
+        flex-wrap: wrap;
       }
-
-      .brand {
+      .affiliation {
+        font-family: var(--serif);
+        font-size: 13.5px;
+        color: var(--mute);
+      }
+      .top-links {
+        font-family: var(--sans);
+        font-size: 12.5px;
         display: flex;
+        gap: 20px;
+      }
+      .top-links a { color: var(--mute); }
+      .top-links a:hover { color: var(--accent); }
+
+      .masthead {
+        padding: 22px 48px 24px;
+        display: flex;
+        justify-content: space-between;
         align-items: baseline;
-        gap: 0.65rem;
-        text-decoration: none;
+        gap: 1.5rem;
+        flex-wrap: wrap;
       }
-
-      .brand-name {
-        font-size: 1.06rem;
-        font-weight: 700;
-        letter-spacing: 0.01em;
+      .masthead .name-block {
+        font-family: var(--serif);
       }
-
-      .brand-tag {
-        font-size: 0.78rem;
-        color: var(--text-soft);
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-      }
-
-      nav ul {
-        display: flex;
-        gap: 1.05rem;
-        list-style: none;
-        padding: 0;
+      .masthead h1 {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
         margin: 0;
       }
-
-      nav a {
-        text-decoration: none;
-        font-size: 0.95rem;
-        color: var(--text-soft);
+      .masthead .role {
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--mute);
+        margin-top: 4px;
       }
-
-      nav a:hover,
-      nav a:focus-visible {
-        color: var(--brand-strong);
+      nav.primary {
+        display: flex;
+        gap: 28px;
+        font-family: var(--sans);
+        font-size: 14px;
       }
+      nav.primary a {
+        color: var(--ink);
+        border-bottom: 2px solid transparent;
+        padding-bottom: 4px;
+      }
+      nav.primary a:hover { border-bottom-color: var(--accent); color: var(--accent); }
 
       .menu-toggle {
         display: none;
         border: 1px solid var(--line);
-        background: var(--surface);
-        color: var(--text);
-        border-radius: 999px;
-        padding: 0.4rem 0.8rem;
+        background: #fff;
+        color: var(--ink);
+        padding: 6px 12px;
         font: inherit;
+        font-family: var(--sans);
+        font-size: 13px;
+        cursor: pointer;
       }
 
-      .hero {
-        padding: 5rem 0 2.5rem;
-      }
-
-      .hero-grid {
+      /* ---------- Body grid ---------- */
+      .page {
         display: grid;
-        grid-template-columns: 1.25fr 0.95fr;
-        gap: 1.5rem;
+        grid-template-columns: 300px 1fr;
+        gap: 48px;
+        padding: 48px 48px 80px;
+        max-width: 1180px;
       }
 
-      .hero-card,
-      .highlight-card {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-      }
-
-      .hero-card {
-        padding: 2rem;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        font-size: 0.75rem;
+      /* ---------- Sidebar ---------- */
+      aside.sidebar { font-family: var(--serif); }
+      .label {
+        font-family: var(--sans);
+        font-size: 10.5px;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        letter-spacing: 0.09em;
-        color: var(--brand-strong);
-        background: #dcf3ea;
-        padding: 0.35rem 0.65rem;
-        border-radius: 999px;
+        color: var(--mute);
+        font-weight: 500;
+      }
+      .sidebar .contact-card {
+        padding: 16px 18px;
+        background: var(--accent-soft);
+        border-top: 3px solid var(--accent);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 22px;
+      }
+      .sidebar .contact-card .label { color: var(--accent); margin-bottom: 6px; }
+      .sidebar .contact-card a.email {
+        color: var(--accent);
+        font-family: var(--sans);
+        font-size: 13.5px;
+        font-weight: 500;
+        word-break: break-all;
+      }
+      .sidebar .contact-card a.email:hover { text-decoration: underline; }
+      .sidebar .contact-card .note {
+        font-size: 13px;
+        color: var(--mute);
+        margin-top: 8px;
+        line-height: 1.55;
       }
 
-      h1,
-      h2,
-      h3 {
-        margin: 0;
-        line-height: 1.15;
-      }
-
-      h1 {
-        margin-top: 0.95rem;
-        font-size: clamp(2rem, 3.8vw, 3.2rem);
-        font-family: "Newsreader", serif;
-        font-weight: 600;
-      }
-
-      .hero-subtitle {
-        margin-top: 0.9rem;
-        color: var(--text-soft);
-        font-size: 1.03rem;
-      }
-
-      .hero-bio {
-        margin-top: 1.2rem;
-        max-width: 62ch;
-      }
-
-      .hero-actions {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        font-weight: 600;
-        border-radius: 999px;
-        padding: 0.65rem 1.05rem;
-        border: 1px solid transparent;
-        transition: 0.2s ease;
-      }
-
-      .btn-primary {
-        background: var(--brand);
-        color: #fff;
-      }
-
-      .btn-primary:hover {
-        background: var(--brand-strong);
-      }
-
-      .btn-ghost {
-        border-color: var(--line);
-        background: var(--surface-soft);
-      }
-
-      .btn-ghost:hover {
-        background: #e4eeea;
-      }
-
-.highlight-card {
-        padding: 1.35rem;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .highlight-card::before {
-        content: "";
-        position: absolute;
-        inset: auto -80px -80px auto;
-        width: 210px;
-        height: 210px;
-        border-radius: 50%;
-        background: linear-gradient(150deg, rgba(15, 118, 110, 0.3), rgba(180, 83, 9, 0.3));
-      }
-
-      .highlight-card h2 {
-        font-size: 1.12rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .focus-list {
-        margin: 0;
-        padding-left: 1.15rem;
-        display: grid;
-        gap: 0.3rem;
-      }
-
-      .focus-list li {
-        color: var(--text-soft);
-      }
-
-      .section {
-        padding: 1rem 0 2rem;
-      }
-
-      .section-header {
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        font-family: "Newsreader", serif;
-        font-size: clamp(1.5rem, 2.2vw, 2.05rem);
-      }
-
-      .section-note {
-        margin-top: 0.35rem;
-        color: var(--text-soft);
-      }
-
-      .grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .projects {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .card {
-        border: 1px solid var(--line);
-        background: var(--surface);
-        border-radius: var(--radius-sm);
-        padding: 1.1rem;
-      }
-
-      .card h3 {
-        font-size: 1.05rem;
-      }
-
-      .card p {
-        margin: 0.6rem 0 0;
-        color: var(--text-soft);
-        font-size: 0.95rem;
-      }
-
-      .pill-row {
-        margin-top: 0.75rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.42rem;
-      }
-
-      .pill {
-        font-size: 0.74rem;
-        font-weight: 600;
-        color: var(--brand-strong);
-        background: #dcf3ea;
-        border-radius: 999px;
-        padding: 0.25rem 0.55rem;
-      }
-
-      .card-links {
-        margin-top: 0.75rem;
-        display: flex;
-        gap: 0.8rem;
-      }
-
-      .card-links a {
-        color: var(--brand-strong);
-        font-size: 0.9rem;
-      }
-
-      .publications {
-        display: grid;
-        gap: 0.75rem;
-      }
-
-      .pub {
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: var(--surface);
-        padding: 1rem;
-      }
-
-      .pub-title {
-        font-size: 1rem;
-        font-weight: 600;
-      }
-
-      .pub-meta {
-        margin-top: 0.35rem;
-        color: var(--text-soft);
-        font-size: 0.9rem;
-      }
-
-      .pub-links {
-        margin-top: 0.55rem;
-        display: flex;
-        gap: 0.75rem;
-      }
-
-      .pub-links a {
-        color: var(--brand-strong);
-        font-size: 0.88rem;
-      }
-
-      .two-col {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .timeline {
+      .sidebar .group { margin-top: 26px; }
+      .sidebar .group > .label { margin-bottom: 10px; }
+      .sidebar ul.profile-list {
         list-style: none;
-        margin: 0;
         padding: 0;
-        display: grid;
-        gap: 0.7rem;
+        margin: 0;
+        font-size: 13.5px;
+      }
+      .sidebar ul.profile-list li { margin-bottom: 4px; }
+      .sidebar ul.profile-list a { color: var(--ink); }
+      .sidebar ul.profile-list a:hover { color: var(--accent); }
+
+      .tag-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+      .tag {
+        font-family: var(--sans);
+        font-size: 11px;
+        padding: 3px 8px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft);
       }
 
-      .timeline li {
-        border: 1px solid var(--line);
-        background: var(--surface);
-        border-radius: var(--radius-sm);
-        padding: 0.9rem;
+      .cv-link {
+        font-family: var(--sans);
+        font-size: 12.5px;
+        color: var(--accent);
+      }
+      .cv-link:hover { text-decoration: underline; }
+
+      /* ---------- Main column ---------- */
+      main.main-col { min-width: 0; }
+
+      section.sec { margin-top: 44px; }
+      section.sec:first-child { margin-top: 0; }
+
+      h2.sec-title {
+        font-family: var(--serif);
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        margin: 0 0 18px;
+        color: var(--ink);
       }
 
-      .timeline strong {
-        display: block;
-        font-size: 0.95rem;
+      h3.subhead {
+        font-family: var(--serif);
+        font-size: 18px;
+        font-weight: 600;
+        margin: 32px 0 14px;
       }
 
-      .timeline span {
-        color: var(--text-soft);
-        font-size: 0.88rem;
-      }
+      section.sec p { font-size: 16.5px; line-height: 1.65; margin: 0 0 16px; }
+      section.sec p.lede { font-size: 15.5px; color: var(--mute); line-height: 1.6; margin-bottom: 20px; }
 
-      .contact {
-        padding-bottom: 4rem;
+      /* Research focus ordered list */
+      ol.focus {
+        padding-left: 20px;
+        margin: 0;
+        line-height: 1.7;
       }
+      ol.focus li { margin-bottom: 10px; font-size: 15.5px; }
+      ol.focus li .title { font-weight: 600; }
+      ol.focus li .sub { color: var(--mute); font-style: italic; }
 
-      .contact-wrap {
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: linear-gradient(150deg, #ffffff, #ecf4f0);
-        padding: 1.4rem;
+      /* Active projects */
+      .project {
+        padding: 14px 0 14px 16px;
+        border-top: 1px solid var(--line);
+        border-left: 2px solid var(--accent);
+        margin-left: -18px;
+        padding-left: 16px;
       }
+      .project .ptitle { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+      .project .pdesc { font-size: 14px; color: var(--mute); line-height: 1.55; }
+      .project .plinks { margin-top: 8px; font-family: var(--sans); font-size: 12.5px; }
+      .project .plinks a { color: var(--accent); margin-right: 16px; }
+      .project .plinks a:hover { text-decoration: underline; }
+      .project-end-rule { border-top: 1px solid var(--line); }
 
-      .links {
+      /* Publications */
+      .pub-filters {
         display: flex;
+        gap: 4px;
+        margin-bottom: 18px;
         flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 1rem;
+      }
+      .pub-filters button {
+        font-family: var(--sans);
+        font-size: 12px;
+        padding: 5px 10px;
+        cursor: pointer;
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+      .pub-filters button.active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
       }
 
-      .links a {
-        text-decoration: none;
+      ol.pub-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      ol.pub-list li.pub {
+        padding: 14px 0;
+        border-top: 1px solid var(--line);
+      }
+      .pub-head {
+        display: grid;
+        grid-template-columns: 36px 1fr 22px;
+        gap: 12px;
+        cursor: pointer;
+        align-items: baseline;
+      }
+      .pub-num {
+        font-family: var(--sans);
+        font-size: 12px;
+        color: var(--mute);
+        padding-top: 2px;
+      }
+      .pub-cite { font-size: 15.5px; line-height: 1.5; }
+      .pub-cite .ptitle-inline { font-weight: 600; }
+      .pub-cite em.venue { font-style: italic; }
+      .pub-cite .meta { color: var(--mute); font-size: 13.5px; font-family: var(--sans); margin-top: 4px; display: block; }
+      .pub-toggle {
+        color: var(--mute);
+        transition: transform 0.2s;
+        font-family: var(--sans);
+        font-size: 18px;
+        line-height: 1;
+        user-select: none;
+      }
+      li.pub.open .pub-toggle { transform: rotate(45deg); }
+      .pub-detail {
+        display: none;
+        margin-top: 10px;
+        margin-left: 48px;
+        padding: 12px 14px;
+        border-left: 2px solid var(--accent);
+        background: var(--accent-soft);
+        font-size: 14.5px;
+        color: var(--mute);
+        line-height: 1.6;
+        max-width: 720px;
+      }
+      li.pub.open .pub-detail { display: block; }
+      .pub-detail .abstract-label {
+        color: var(--accent);
+        font-weight: 600;
+        font-family: var(--sans);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .pub-detail a { color: var(--accent); font-family: var(--sans); font-size: 12px; }
+      .pub-detail a:hover { text-decoration: underline; }
+      ol.pub-list-end { border-top: 1px solid var(--line); }
+
+      /* Presentations / Education / lists */
+      .item-list { margin: 0; padding: 0; list-style: none; }
+      .item-list li.item {
+        padding: 12px 0;
+        border-top: 1px dotted var(--line);
+      }
+      .item-list li.item:first-child { border-top: 1px solid var(--line); }
+      .item-list .ititle { font-size: 15px; line-height: 1.45; }
+      .item-list .imeta {
+        font-size: 13px; color: var(--mute); margin-top: 3px; font-style: italic;
+        font-family: var(--serif);
+      }
+      .item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+      }
+      .item-row .right-meta {
+        font-family: var(--sans);
+        font-size: 12px;
+        color: var(--mute);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+      }
+      .item-list-end { border-top: 1px solid var(--line); }
+
+      /* Two columns block */
+      .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+      /* Blogs section */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .blog-card {
         border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.45rem 0.8rem;
+        border-top: 3px solid var(--accent);
+        padding: 16px 18px;
         background: #fff;
       }
+      .blog-card h4 {
+        font-family: var(--serif);
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 6px;
+      }
+      .blog-card p {
+        font-size: 14px;
+        color: var(--mute);
+        line-height: 1.55;
+        margin: 0 0 10px;
+      }
+      .blog-card .blinks {
+        font-family: var(--sans);
+        font-size: 12.5px;
+      }
+      .blog-card .blinks a { color: var(--accent); margin-right: 14px; }
+      .blog-card .blinks a:hover { text-decoration: underline; }
+      .blog-all { font-family: var(--sans); font-size: 13px; margin-top: 16px; }
+      .blog-all a { color: var(--accent); font-weight: 500; }
+      .blog-all a:hover { text-decoration: underline; }
 
-      footer {
+      /* Correspondence */
+      .correspondence {
+        margin-top: 60px;
+        padding-top: 24px;
+        border-top: 2px solid var(--ink);
+      }
+      .correspondence p { font-size: 15px; line-height: 1.6; max-width: 620px; }
+
+      /* Footer */
+      footer.site-footer {
+        padding: 18px 48px;
         border-top: 1px solid var(--line);
-        color: var(--text-soft);
-        font-size: 0.87rem;
-        padding: 1rem 0 2rem;
+        font-family: var(--sans);
+        font-size: 12px;
+        color: var(--mute);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
       }
 
+      /* Reveal on scroll */
       .reveal {
         opacity: 0;
-        transform: translateY(14px);
+        transform: translateY(10px);
         transition: opacity 0.5s ease, transform 0.5s ease;
       }
+      .reveal.visible { opacity: 1; transform: none; }
 
-      .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-
+      /* ---------- Responsive ---------- */
       @media (max-width: 980px) {
-        .hero-grid,
-        .projects,
-        .two-col {
+        .page {
           grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 32px 24px 64px;
         }
-
-        nav {
-          display: none;
-          position: absolute;
-          top: 72px;
-          left: 0;
-          right: 0;
-          border-bottom: 1px solid var(--line);
-          background: rgba(243, 247, 245, 0.98);
-        }
-
-        nav.open {
-          display: block;
-        }
-
-        nav ul {
-          width: min(var(--container), 100% - 2rem);
-          margin: 0.75rem auto 1rem;
-          flex-direction: column;
-          gap: 0.6rem;
-        }
-
-        .menu-toggle {
-          display: inline-flex;
-        }
+        .affiliation-row { padding: 12px 24px; }
+        .masthead { padding: 18px 24px 20px; }
+        footer.site-footer { padding: 16px 24px; }
+        .twocol, .blog-grid { grid-template-columns: 1fr; }
+        nav.primary { display: none; width: 100%; flex-direction: column; gap: 10px; }
+        nav.primary.open { display: flex; }
+        .menu-toggle { display: inline-flex; }
       }
-
       @media (max-width: 620px) {
-        .hero {
-          padding-top: 4.2rem;
-        }
-
-        .hero-card,
-        .highlight-card,
-        .contact-wrap {
-          padding: 1.1rem;
-        }
+        .masthead h1 { font-size: 26px; }
+        .pub-head { grid-template-columns: 28px 1fr 20px; gap: 8px; }
+        .pub-detail { margin-left: 36px; }
       }
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top">
-          <span class="brand-name">Wei Zhang</span>
-          <span class="brand-tag">Academic Portfolio</span>
-        </a>
+    <div class="accent-rule"></div>
+
+    <header class="site-header" id="top">
+      <div class="affiliation-row">
+        <div class="affiliation">
+          University of Miami &nbsp;·&nbsp; Miller School of Medicine &nbsp;·&nbsp; Department of Public Health Sciences
+        </div>
+        <div class="top-links">
+          <a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a href="mailto:wei.zhang60@med.miami.edu">Contact</a>
+        </div>
+      </div>
+      <div class="masthead">
+        <div class="name-block">
+          <h1>Wei Zhang, Ph.D.</h1>
+          <div class="role">Postdoctoral Associate · Division of Biostatistics</div>
+        </div>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-        <nav id="site-nav" aria-label="Primary">
-          <ul>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#presentations">Presentations</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="blog/index.html">Blogs</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+        <nav class="primary" id="site-nav" aria-label="Primary">
+          <a href="#biography">Biography</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#presentations">Presentations</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#education">Education</a>
+          <a href="blog/index.html">Blog</a>
+          <a href="CV_WeiZhang.pdf" target="_blank" rel="noreferrer">CV</a>
         </nav>
       </div>
     </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="container hero-grid reveal">
-          <article class="hero-card">
-            <span class="eyebrow">University of Miami</span>
-            <h1>Multi-omics Integration and Statistical Learning for Precision Biomedicine</h1>
-            <p class="hero-subtitle">Postdoctoral Associate, Department of Public Health Sciences</p>
-            <p class="hero-bio">
-              I develop computational and statistical methods for biomarker discovery across neurodegenerative disease and cancer.
-              My work integrates genomic, transcriptomic, and epigenetic data to improve prediction quality and biological interpretability.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
-              <a class="btn btn-ghost" href="mailto:wei.zhang60@med.miami.edu">Email</a>
-              <a class="btn btn-ghost" href="https://github.com/novawz" target="_blank" rel="noreferrer">GitHub</a>
-            </div>
-          </article>
-
-          <aside class="highlight-card">
-            <h2>Current Focus</h2>
-            <ul class="focus-list">
-              <li>Multivariate random forest methods for multi-omics integration</li>
-              <li>Epigenetic biomarkers of dementia and cognitive resilience</li>
-              <li>Predictive models for treatment response in oncology</li>
-              <li>Robust variable selection and interpretation in high-dimensional data</li>
-            </ul>
-            <div class="pill-row" style="margin-top: 1rem;">
-              <span class="pill">Multi-omics</span>
-              <span class="pill">Statistical Learning</span>
-              <span class="pill">Biomarker Detection</span>
-              <span class="pill">Random Forest</span>
-            </div>
-            <hr style="border:none;border-top:1px solid var(--line);margin:1.1rem 0 0.9rem;">
-            <h2 style="font-size:1rem;margin-bottom:0.7rem;">Recent News</h2>
-            <ul class="focus-list">
-              <li><span style="font-weight:600;">Mar 2026</span> — Contributed talk at ASA Florida Chapter Meeting, Miami, FL.</li>
-              <li><span style="font-weight:600;">Oct 2025</span> — Submitted NIH K99/R00, BrightFocus Fellowship, and AARFA proposals.</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section" id="research">
-        <div class="container reveal">
-          <header class="section-header">
-            <h2 class="section-title">Research Projects</h2>
-            <p class="section-note">Method-driven and disease-focused projects, spanning model design to translational validation.</p>
-          </header>
-          <div class="grid projects">
-            <article class="card">
-              <h3>Multivariate Random Forest for Multi-omics Integration</h3>
-              <p>A random forest framework for integrated prediction and biomarker discovery across multiple omics modalities.</p>
-              <div class="pill-row">
-                <span class="pill">R</span>
-                <span class="pill">Method Development</span>
-                <span class="pill">Random Forest</span>
-              </div>
-              <div class="card-links">
-                <a href="https://github.com/novawz/multiRF-variable-selection" target="_blank" rel="noreferrer">Code</a>
-                <a href="research/mrf1.html">Project Page</a>
-              </div>
-            </article>
-
-            <article class="card">
-              <h3>Epigenetic Biomarkers for Alzheimer’s and Cognitive Health</h3>
-              <p>Discovery and validation of blood-based DNA methylation signatures predictive of incident dementia in longitudinal cohorts.</p>
-              <div class="pill-row">
-                <span class="pill">Longitudinal Data</span>
-                <span class="pill">DNA Methylation</span>
-                <span class="pill">Statistical Modeling</span>
-              </div>
-              <div class="card-links">
-                <a href="research/p3.html">Project Page</a>
-              </div>
-            </article>
-
-            <article class="card">
-              <h3>Prediction Models for Cancer Biomarkers</h3>
-              <p>Transcriptome-based models for chemotherapy response using matched colorectal tumor-organoid expression profiles.</p>
-              <div class="pill-row">
-                <span class="pill">Oncology</span>
-                <span class="pill">WGCNA</span>
-                <span class="pill">Meta-analysis</span>
-              </div>
-            </article>
+    <div class="page">
+      <!-- ---------- SIDEBAR ---------- -->
+      <aside class="sidebar reveal">
+        <div class="contact-card">
+          <div class="label">Contact</div>
+          <a class="email" href="mailto:wei.zhang60@med.miami.edu">wei.zhang60@med.miami.edu</a>
+          <div class="note">
+            Clinical Research Building, 1120 NW 14th Street, Miami, FL 33136. Open to research collaborations in computational biology and statistical methodology.
           </div>
         </div>
-      </section>
 
-      <section class="section" id="publications">
-        <div class="container reveal">
-          <header class="section-header">
-            <h2 class="section-title">Selected Publications</h2>
-            <p class="section-note">Selected works sorted by publication year (newest to oldest).</p>
-          </header>
-          <div class="publications">
-            <article class="pub">
-              <div class="pub-title">An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery</div>
-              <div class="pub-meta">GigaScience, Dec 2025</div>
-              <div class="pub-links"><a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf148/8374728" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-            <article class="pub">
-              <div class="pub-title">The Aging Epigenome: Integrative Analyses Reveal Functional Overlap with Alzheimer's Disease</div>
-              <div class="pub-meta">medRxiv Preprint, Jun 2025</div>
-              <div class="pub-links"><a href="https://doi.org/10.1101/2025.06.08.25329218" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-            <article class="pub">
-              <div class="pub-title">DNA Methylation Signature of a Lifestyle-based Resilience Index for Cognitive Health</div>
-              <div class="pub-meta">Alzheimer’s Research & Therapy, Apr 2025</div>
-              <div class="pub-links"><a href="https://doi.org/10.1186/s13195-025-01733-7" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-            <article class="pub">
-              <div class="pub-title">Blood DNA methylation signature for incident dementia: Evidence from longitudinal cohorts</div>
-              <div class="pub-meta">Alzheimer’s & Dementia, Mar 2025</div>
-              <div class="pub-links"><a href="https://doi.org/10.1002/alz.14496" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-            <article class="pub">
-              <div class="pub-title">Enhancing chemotherapy response prediction via matched colorectal tumor-organoid gene expression analysis</div>
-              <div class="pub-meta">Translational Oncology, Feb 2025</div>
-              <div class="pub-links"><a href="https://doi.org/10.1016/j.tranon.2024.102238" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-            <article class="pub">
-              <div class="pub-title">Critical evaluation of the reliability of DNA methylation probes on the Illumina MethylationEPIC v1.0 BeadChip microarrays</div>
-              <div class="pub-meta">Epigenetics, Dec 2024</div>
-              <div class="pub-links"><a href="https://doi.org/10.1080/15592294.2024.2333660" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-            <article class="pub">
-              <div class="pub-title">Distinct CSF biomarker-associated DNA methylation in Alzheimer’s disease and cognitively normal subjects</div>
-              <div class="pub-meta">Alzheimer’s Research & Therapy, Apr 2023</div>
-              <div class="pub-links"><a href="https://doi.org/10.1186/s13195-023-01216-7" target="_blank" rel="noreferrer">View</a></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="presentations">
-        <div class="container reveal">
-          <header class="section-header">
-            <h2 class="section-title">Presentations</h2>
-            <p class="section-note">Selected oral and poster presentations (newest to oldest).</p>
-          </header>
-          <ul class="timeline">
-            <li>
-              <strong>Multivariate Random Forest-Based Clustering for Integrative Multi-Omics Analysis</strong>
-              <span>ASA Florida Chapter Meeting · Contributed Talk · Mar 2026 · Miami, FL, USA.</span>
-            </li>
-            <li>
-              <strong>An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery</strong>
-              <span>STATGEN: Conference on Statistics in Genomics and Genetics · Contributed Talk · May 2025 · Minneapolis, MN, USA.</span>
-            </li>
-            <li>
-              <strong>An X chromosome-wide DNA methylation study of Alzheimers disease</strong>
-              <span>AAIC · Poster · Jul 2024.</span>
-            </li>
-            <li>
-              <strong>Unlocking the potential of multi-omics data integration using multivariate random forest approach</strong>
-              <span>International Biometric Society ENAR Annual Meeting · Contributed Talk · Mar 2024 · Baltimore, MD, USA.</span>
-            </li>
-            <li>
-              <strong>Distinct CSF biomarker-associated DNA methylation in Alzheimer’s disease and cognitively normal subjects</strong>
-              <span>AAIC · Poster · Jul 2023.</span>
-            </li>
-            <li>
-              <strong>Iterative Multivariate Random Forest for Feature Selection in Integrating Multi-Omics Datasets</strong>
-              <span>ASA Florida Chapter Meeting · Poster · Mar 2023 · Gainesville, FL, USA.</span>
-            </li>
+        <div class="group">
+          <div class="label">Profiles</div>
+          <ul class="profile-list">
+            <li><a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a></li>
+            <li><a href="https://www.researchgate.net/profile/Wei-Zhang-980?ev=hdr_xprf" target="_blank" rel="noreferrer">ResearchGate</a></li>
+            <li><a href="https://github.com/novawz" target="_blank" rel="noreferrer">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/nova-weizhang" target="_blank" rel="noreferrer">LinkedIn</a></li>
           </ul>
         </div>
-      </section>
 
-      <section class="section" id="education">
-        <div class="container reveal two-col">
-          <div>
-            <header class="section-header">
-              <h2 class="section-title">Education</h2>
-            </header>
-            <ul class="timeline">
-              <li>
-                <strong>Ph.D. in Biostatistics, University of Miami</strong>
-                <span>Aug 2024 · Advisor: Chen, X. Steven, Ph.D. · Dissertation on integrative multi-omics random forest.</span>
-              </li>
-              <li>
-                <strong>M.S. in Statistics, The George Washington University</strong>
-                <span>May 2019</span>
-              </li>
-              <li>
-                <strong>B.S. in Economics Analysis & Actuarial Math, SUNY Binghamton</strong>
-                <span>May 2017</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <header class="section-header">
-              <h2 class="section-title">Professional Development</h2>
-            </header>
-            <ul class="timeline">
-              <li>
-                <strong>Duke EHR Study Design Workshop</strong>
-                <span>Dec 2024 · Duke University</span>
-              </li>
-              <li>
-                <strong>Code Rigor and Reproducibility with R Boot Camp</strong>
-                <span>Jul 2023 · Columbia University</span>
-              </li>
-            </ul>
+        <div class="group">
+          <div class="label">Research Areas</div>
+          <div class="tag-grid">
+            <span class="tag">Multi-omics Integration</span>
+            <span class="tag">Statistical Learning</span>
+            <span class="tag">Random Forest</span>
+            <span class="tag">Biomarker Discovery</span>
+            <span class="tag">Epigenetics</span>
+            <span class="tag">Neuroimaging</span>
           </div>
         </div>
-      </section>
 
-      <section class="section" id="blog">
-        <div class="container reveal">
-          <header class="section-header">
-            <h2 class="section-title">Blogs</h2>
-            <p class="section-note">Technical notes on tools and side projects I've built alongside my research.</p>
-          </header>
-          <div class="grid two-col">
-            <article class="card">
-              <h3>Building a Personal Research Pipeline with AI</h3>
-              <p>An automated tool for fetching, scoring, and summarizing daily academic literature across Nature, Science, bioRxiv, and arXiv.</p>
-              <div class="pill-row">
-                <span class="pill">Literature Tracking</span>
-                <span class="pill">AI Scoring</span>
-                <span class="pill">Daily Digest</span>
-              </div>
-              <div class="card-links">
-                <a href="blog/research-pipeline.html">Read more</a>
-                <a href="https://github.com/novawz/research-pipeline" target="_blank" rel="noreferrer">GitHub</a>
-              </div>
-            </article>
-
-            <article class="card">
-              <h3>Bloomly: An Atomic Knowledge Hub</h3>
-              <p>A personal knowledge app to capture atomic notes, link them into a network, and use AI to help them grow. Available on web and iOS.</p>
-              <div class="pill-row">
-                <span class="pill">Knowledge Management</span>
-                <span class="pill">AI-Powered</span>
-                <span class="pill">Web + iOS</span>
-              </div>
-              <div class="card-links">
-                <a href="blog/bloomly.html">Read more</a>
-                <a href="https://bloom-ly.net" target="_blank" rel="noreferrer">Live</a>
-              </div>
-            </article>
-          </div>
-          <p style="margin-top:1rem;font-size:0.9rem;"><a href="blog/index.html" style="color:var(--brand);font-weight:600;">View all posts →</a></p>
+        <div class="group">
+          <div class="label">Recent News</div>
+          <ul class="profile-list" style="font-size:13px;">
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Aug 2026</strong> — Poster accepted at JSM, Boston, MA.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Jul 2026</strong> — Poster accepted at AAIC on an integrative epigenetic &amp; neurostructural age clock.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Mar 2026</strong> — Contributed talk at ASA Florida Chapter Meeting, Miami, FL.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Oct 2025</strong> — Submitted NIH K99/R00 and AARFA fellowship proposals (AARFA reviewer scores: 3 Exc, 1 Exceptional, 2 Outstanding).</li>
+          </ul>
         </div>
-      </section>
 
-      <section class="section contact" id="contact">
-        <div class="container reveal">
-          <div class="contact-wrap">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-note">Miami, FL · Open to research collaborations in computational biology and statistical methodology.</p>
-            <div class="links">
-              <a href="mailto:wei.zhang60@med.miami.edu">wei.zhang60@med.miami.edu</a>
-              <a href="https://github.com/novawz" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
-              <a href="https://www.researchgate.net/profile/Wei-Zhang-980?ev=hdr_xprf" target="_blank" rel="noreferrer">ResearchGate</a>
-              <a href="https://linkedin.com/in/nova-weizhang" target="_blank" rel="noreferrer">LinkedIn</a>
+        <div class="group">
+          <div class="label">Curriculum Vitae</div>
+          <a class="cv-link" href="CV_WeiZhang.pdf" target="_blank" rel="noreferrer">Download PDF →</a>
+        </div>
+      </aside>
+
+      <!-- ---------- MAIN ---------- -->
+      <main class="main-col">
+        <!-- Biography -->
+        <section class="sec reveal" id="biography">
+          <h2 class="sec-title">Biography</h2>
+          <p>
+            Dr. Wei Zhang is a Postdoctoral Associate in the Division of Biostatistics, Department of Public Health Sciences at the University of Miami Miller School of Medicine. His research develops statistical machine learning methods for integrative multi-omics analysis and biomarker discovery across neurodegenerative disease and cancer.
+          </p>
+          <p>
+            He integrates genomic, epigenomic, transcriptomic, and neuroimaging data to improve prediction quality and biological interpretability, with a methodological focus on multivariate random forest approaches and deep representation learning. He received his Ph.D. in Biostatistics from the University of Miami in 2024 under the supervision of Dr. X. Steven Chen, with a dissertation on <em>Integrative Multi-Omics Analysis Using Multivariate Random Forest</em>.
+          </p>
+        </section>
+
+        <!-- Research -->
+        <section class="sec reveal" id="research">
+          <h2 class="sec-title">Research</h2>
+          <p class="lede">Current research spans four methodological and translational threads:</p>
+          <ol class="focus">
+            <li><span class="title">Multivariate random forest methods</span> <span class="sub">— for matched multi-omics integration, clustering, and feature selection.</span></li>
+            <li><span class="title">Epigenetic biomarkers of aging and Alzheimer's disease</span> <span class="sub">— blood and brain DNA methylation signatures of cognitive decline, resilience, and dementia risk.</span></li>
+            <li><span class="title">Integrative epigenetic–neurostructural age clocks</span> <span class="sub">— combining blood DNA methylation with brain MRI for Alzheimer's disease prognosis.</span></li>
+            <li><span class="title">Predictive models for treatment response in oncology</span> <span class="sub">— matched tumor–organoid transcriptomes and network-based biomarker selection in colorectal and breast cancer.</span></li>
+          </ol>
+
+          <h3 class="subhead">Active Projects</h3>
+          <div class="project">
+            <div class="ptitle">Multivariate Random Forest Framework for Multi-omics Integration</div>
+            <div class="pdesc">A directed random forest framework that learns sample-by-sample similarity from shared terminal-node structure across omics blocks, and decomposes the result into shared and omics-specific components for clustering, variable selection, and visualization.</div>
+            <div class="plinks">
+              <a href="https://github.com/novawz/multiRF-variable-selection" target="_blank" rel="noreferrer">GitHub →</a>
+              <a href="research/mrf1.html">Project page →</a>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+          <div class="project">
+            <div class="ptitle">Integrative Aging Biomarker of Blood DNA Methylation and Brain MRI for AD Prognosis</div>
+            <div class="pdesc">A disease-focused integrative epigenetic and neurostructural age clock for Alzheimer's risk stratification. PI: Wei Zhang; Mentor: Lily Wang, Ph.D.; Co-Mentors: Tatjana Rundek, M.D., Ph.D., and David Loewenstein, Ph.D. Proposed under NIH K99/R00 and AARFA.</div>
+          </div>
+          <div class="project">
+            <div class="ptitle">Epigenetic Biomarkers for Alzheimer's and Cognitive Health</div>
+            <div class="pdesc">Discovery and validation of blood-based DNA methylation signatures of incident dementia, lifestyle-based cognitive resilience, and the aging epigenome in longitudinal cohorts.</div>
+            <div class="plinks">
+              <a href="research/p3.html">Project page →</a>
+            </div>
+          </div>
+          <div class="project">
+            <div class="ptitle">Prediction Models for Cancer Biomarkers</div>
+            <div class="pdesc">Transcriptome-based models for chemotherapy response using matched colorectal tumor–organoid expression profiles, with network-based biomarker selection and meta-analyses in triple-negative breast cancer.</div>
+          </div>
+          <div class="project-end-rule"></div>
+        </section>
 
-    <footer>
-      <div class="container">© <span id="year"></span> Wei Zhang</div>
+        <!-- Publications -->
+        <section class="sec reveal" id="publications">
+          <h2 class="sec-title">Selected Publications</h2>
+          <p class="lede">Selected peer-reviewed articles and preprints. Click any entry to expand. Full list on <a class="link" href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>.</p>
+
+          <div class="pub-filters" id="pub-filters">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="methods">Methodology</button>
+            <button data-filter="alzheimers">Neurodegeneration</button>
+            <button data-filter="oncology">Oncology</button>
+            <button data-filter="aging">Aging &amp; Imaging</button>
+          </div>
+
+          <ol class="pub-list" id="pub-list">
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">1.</span>
+                <div class="pub-cite">
+                  <span>O'Shea DM, Wang L, Lukacsovich D, Dhanekula D, <strong>Zhang W</strong>, Galvin C, Joshi M, Besser L, Rundek T, Galvin JE. (2026). <span class="ptitle-inline">Development and Validation of MethylCog, a Blood DNA Methylation Proxy for Cognition.</span> <em class="venue">Alzheimer's &amp; Dementia</em>, accepted.</span>
+                  <span class="meta">IF: 11.1</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Note.</span> Development and external validation of a blood DNA methylation proxy for cognition (MethylCog), with implications for scalable cognitive screening.
+              </div>
+            </li>
+
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">2.</span>
+                <div class="pub-cite">
+                  <span>Lukacsovich D, Young J, Gomez L, Kunkle B, Mao Z, <strong>Zhang W</strong>, Chen XS, …, Wang L. (2026). <span class="ptitle-inline">Blood DNA Methylation Signature of Cognitive Reserve Moderates the Association between CSF Tau Pathology and Memory in Prodromal Alzheimer's Disease.</span> <em class="venue">Alzheimer's &amp; Dementia: TRCI</em>, accepted.</span>
+                  <span class="meta">IF: 6.8</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Note.</span> A blood DNA methylation signature of cognitive reserve moderates the tau–memory association in prodromal AD.
+              </div>
+            </li>
+
+            <li class="pub" data-topic="aging">
+              <div class="pub-head">
+                <span class="pub-num">3.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Kunkle B, Chen XS, Martin ER, Wang L. (2025). <span class="ptitle-inline">The Aging Epigenome: Integrative Analyses Reveal Functional Overlap with Alzheimer's Disease.</span> <em class="venue">GeroScience</em>, accepted.</span>
+                  <span class="meta">IF: 5.4</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> Integrative analyses of aging and AD methylomes uncover shared loci and functional pathways, suggesting overlapping epigenetic programs between normal aging and neurodegeneration.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1101/2025.06.08.25329218" target="_blank" rel="noreferrer">View preprint →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="methods">
+              <div class="pub-head">
+                <span class="pub-num">4.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Huang H, Wang L, Lehmann BD, Chen XS. (2025). <span class="ptitle-inline">An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery.</span> <em class="venue">GigaScience</em>, giaf148.</span>
+                  <span class="meta">IF: 3.9 · First author</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> We introduce a multivariate random forest framework that jointly models multiple omics modalities, yielding robust biomarker rankings and improved prediction compared to single-omic baselines across benchmark cohorts.
+                <div style="margin-top:8px;"><a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf148/8374728" target="_blank" rel="noreferrer">View publication →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">5.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Martin ER, Kunkle BW, Chen X, O'Shea DM, Galvin JE, Wang L. (2025). <span class="ptitle-inline">DNA Methylation Signature of a Lifestyle-based Resilience Index for Cognitive Health.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 17, 88.</span>
+                  <span class="meta">IF: 7.6</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> A blood DNA-methylation signature captures lifestyle-based cognitive resilience and predicts trajectories of cognitive decline independent of known risk factors.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1186/s13195-025-01733-7" target="_blank" rel="noreferrer">View publication →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">6.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Kunkle B, Chen XS, Martin ER, Wang L. (2025). <span class="ptitle-inline">Blood DNA Methylation Signature for Incident Dementia: Evidence from Longitudinal Cohorts.</span> <em class="venue">Alzheimer's &amp; Dementia</em>, 21:e14496.</span>
+                  <span class="meta">IF: 11.1</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> Using multiple longitudinal cohorts we derive and validate a blood-based methylation signature that stratifies risk of incident dementia years before diagnosis.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1002/alz.14496" target="_blank" rel="noreferrer">View publication →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="oncology">
+              <div class="pub-head">
+                <span class="pub-num">7.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Wu C, Huang H, Bleu P, Zambare W, Alvarez J, Wang L, Paty PB, Romesser PB, Smith JJ, Chen XS. (2025). <span class="ptitle-inline">Enhancing Chemotherapy Response Prediction via Matched Colorectal Tumor-Organoid Gene Expression Analysis and Network-Based Biomarker Selection.</span> <em class="venue">Translational Oncology</em>, 52:102238.</span>
+                  <span class="meta">IF: 4.1 · First author</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> Matched tumor–organoid transcriptomes improve chemotherapy response prediction in colorectal cancer, supporting organoid-guided precision treatment.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1016/j.tranon.2024.102238" target="_blank" rel="noreferrer">View publication →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">8.</span>
+                <div class="pub-cite">
+                  <span>Lukacsovich D, O'Shea D, Huang H, <strong>Zhang W</strong>, Young JI, Chen XS, …, Wang L. (2024). <span class="ptitle-inline">MIAMI-AD: An Integrative Knowledgebase Facilitating Exploration of DNA Methylation across Sex, Aging, and Alzheimer's Disease.</span> <em class="venue">Database</em>, 2024, baae061.</span>
+                  <span class="meta">IF: 3.6</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Note.</span> An integrative knowledgebase of DNA methylation changes across sex, aging, and Alzheimer's disease.
+              </div>
+            </li>
+
+            <li class="pub" data-topic="methods">
+              <div class="pub-head">
+                <span class="pub-num">9.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Varma A, Chen XS, Kunkle B, Martin ER, Wang L. (2024). <span class="ptitle-inline">Critical Evaluation of the Reliability of DNA Methylation Probes on the Illumina MethylationEPIC v1.0 BeadChip Microarrays.</span> <em class="venue">Epigenetics</em>, 19(1):2333660.</span>
+                  <span class="meta">IF: 3.2 · First author</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> A systematic evaluation of probe reliability on the EPIC v1.0 BeadChip identifies probe subsets with variable reproducibility and offers filtering recommendations.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1080/15592294.2024.2333660" target="_blank" rel="noreferrer">View publication →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">10.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Varma A, Chen XS, Martin ER, Wang L. (2023). <span class="ptitle-inline">Distinct CSF Biomarker-Associated DNA Methylation in Alzheimer's Disease and Cognitively Normal Subjects.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 15:78.</span>
+                  <span class="meta">IF: 7.6 · First author</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Abstract.</span> CSF biomarker-associated methylation patterns differ between AD and cognitively normal subjects, highlighting disease-specific epigenetic regulation.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1186/s13195-023-01216-7" target="_blank" rel="noreferrer">View publication →</a></div>
+              </div>
+            </li>
+
+            <li class="pub" data-topic="oncology">
+              <div class="pub-head">
+                <span class="pub-num">11.</span>
+                <div class="pub-cite">
+                  <span><strong>Zhang W</strong>, Li E, Wang L, Lehmann BD, Chen XS. (2023). <span class="ptitle-inline">Transcriptome Meta-Analysis of Triple-Negative Breast Cancer Response to Neoadjuvant Chemotherapy.</span> <em class="venue">Cancers</em>, 15(8):2194.</span>
+                  <span class="meta">IF: 4.4 · First author</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Note.</span> Transcriptome meta-analysis of triple-negative breast cancer response to neoadjuvant chemotherapy.
+              </div>
+            </li>
+
+            <li class="pub" data-topic="alzheimers">
+              <div class="pub-head">
+                <span class="pub-num">12.</span>
+                <div class="pub-cite">
+                  <span>Silva TC, <strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Varma A, Chen XS, Wang L. (2022). <span class="ptitle-inline">Distinct Sex-Specific DNA Methylation Differences in Alzheimer's Disease.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 14(1), 121.</span>
+                  <span class="meta">IF: 7.6</span>
+                </div>
+                <span class="pub-toggle">+</span>
+              </div>
+              <div class="pub-detail">
+                <span class="abstract-label">Note.</span> Sex-specific DNA methylation differences in Alzheimer's disease cohorts.
+              </div>
+            </li>
+          </ol>
+          <div class="item-list-end"></div>
+        </section>
+
+        <!-- Software & Tools -->
+        <section class="sec reveal" id="software">
+          <h2 class="sec-title">Software &amp; Open-Source Tools</h2>
+          <div class="project">
+            <div class="ptitle">multiRF</div>
+            <div class="pdesc">
+              An R package for integrating matched multi-omics datasets with multivariate random forests. Fits directed forest models across omics blocks, learns sample-by-sample similarity from shared terminal-node structure, and decomposes the result into shared and omics-specific components for clustering, variable selection, and visualization.
+            </div>
+            <div class="plinks">
+              <a href="https://github.com/novawz/multiRF-variable-selection" target="_blank" rel="noreferrer">GitHub →</a>
+              <a href="research/mrf1.html">Project page →</a>
+            </div>
+          </div>
+          <div class="project-end-rule"></div>
+        </section>
+
+        <!-- Funding -->
+        <section class="sec reveal" id="funding">
+          <h2 class="sec-title">Research Funding</h2>
+          <ul class="item-list">
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>NIH K99/R00 Pathway to Independence Award</strong> — Integrative Aging Biomarker of Blood DNA Methylation and Brain MRI for Alzheimer's Disease Prognosis</div>
+                <div class="right-meta">Submitted · Oct 2025</div>
+              </div>
+              <div class="imeta">PI: Wei Zhang · Mentor: Lily Wang, Ph.D. · Co-Mentors: Tatjana Rundek, M.D., Ph.D.; David Loewenstein, Ph.D. · Under review.</div>
+            </li>
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>Alzheimer's Association Research Fellowship for All (AARFA)</strong> — Integrative Aging Biomarker of Blood DNA Methylation and Brain MRI for Alzheimer's Disease Prognosis</div>
+                <div class="right-meta">Submitted · Oct 2025</div>
+              </div>
+              <div class="imeta">PI: Wei Zhang · Reviewer scores: 3 (Excellent), 1 (Exceptional), 2 (Outstanding) on a 1–9 scale (1 = best).</div>
+            </li>
+          </ul>
+          <div class="item-list-end"></div>
+        </section>
+
+        <!-- Presentations -->
+        <section class="sec reveal" id="presentations">
+          <h2 class="sec-title">Presentations</h2>
+          <ul class="item-list">
+            <li class="item">
+              <div class="ititle"><strong>A Disease-Focused Integrative Epigenetic and Neurostructural Age Clock for Alzheimer's Risk</strong></div>
+              <div class="imeta">Alzheimer's Association International Conference (AAIC) · Poster · Jul 2026 · Virtual.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>Multivariate Random Forest-Based Clustering for Integrative Multi-Omics Analysis</strong></div>
+              <div class="imeta">Joint Statistical Meetings (JSM) · Poster · Aug 2026 · Boston, MA.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>Multivariate Random Forest-Based Clustering for Integrative Multi-Omics Analysis</strong></div>
+              <div class="imeta">ASA Florida Chapter Annual Meeting · Contributed Talk · Mar 2026 · Miami, FL.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery</strong></div>
+              <div class="imeta">STATGEN: Conference on Statistics in Genomics and Genetics · Contributed Talk · May 2025 · Minneapolis, MN.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>An X Chromosome-Wide DNA Methylation Study of Alzheimer's Disease</strong></div>
+              <div class="imeta">Alzheimer's Association International Conference (AAIC) · Poster · Jul 2024.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>Unlocking the Potential of Multi-Omics Data Integration Using Multivariate Random Forest Approach</strong></div>
+              <div class="imeta">International Biometric Society ENAR Annual Meeting · Contributed Talk · Mar 2024 · Baltimore, MD.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>Distinct CSF Biomarker-Associated DNA Methylation in Alzheimer's Disease and Cognitively Normal Subjects</strong></div>
+              <div class="imeta">Alzheimer's Association International Conference (AAIC) · Poster · Jul 2023.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>Iterative Multivariate Random Forest for Feature Selection in Integrating Multi-Omics Datasets</strong></div>
+              <div class="imeta">ASA Florida Chapter Annual Meeting · Poster · Mar 2023 · Gainesville, FL.</div>
+            </li>
+          </ul>
+          <div class="item-list-end"></div>
+        </section>
+
+        <!-- Teaching -->
+        <section class="sec reveal" id="teaching">
+          <h2 class="sec-title">Teaching</h2>
+          <ul class="item-list">
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>EPH 705: Advanced Statistical Methods</strong> — Teaching Assistant</div>
+                <div class="right-meta">2022 – 2024</div>
+              </div>
+              <div class="imeta">University of Miami · Instructor: Lily Wang, Ph.D.</div>
+            </li>
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>STAT 6201: Applied Linear Models</strong> — Teaching Assistant</div>
+                <div class="right-meta">2018</div>
+              </div>
+              <div class="imeta">The George Washington University · Instructor: Emre Barut, Ph.D.</div>
+            </li>
+          </ul>
+          <div class="item-list-end"></div>
+        </section>
+
+        <!-- Honors & Awards -->
+        <section class="sec reveal" id="honors">
+          <h2 class="sec-title">Honors &amp; Awards</h2>
+          <ul class="item-list">
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>Award of Academic Merit</strong></div>
+                <div class="right-meta">Aug 2024</div>
+              </div>
+              <div class="imeta">University of Miami.</div>
+            </li>
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>Best Student Poster Award</strong></div>
+                <div class="right-meta">Mar 2023</div>
+              </div>
+              <div class="imeta">ASA Florida Chapter Meeting.</div>
+            </li>
+            <li class="item">
+              <div class="item-row">
+                <div class="ititle"><strong>Travel Award</strong></div>
+                <div class="right-meta">Mar 2023</div>
+              </div>
+              <div class="imeta">University of Miami.</div>
+            </li>
+          </ul>
+          <div class="item-list-end"></div>
+        </section>
+
+        <!-- Education + Professional Development -->
+        <section class="sec reveal" id="education">
+          <div class="twocol">
+            <div>
+              <h2 class="sec-title">Education</h2>
+              <ul class="item-list">
+                <li class="item">
+                  <div class="item-row">
+                    <div class="ititle"><strong>Ph.D. in Biostatistics</strong></div>
+                    <div class="right-meta">Aug 2024</div>
+                  </div>
+                  <div class="imeta">University of Miami · Advisor: X. Steven Chen, Ph.D. · Dissertation on integrative multi-omics random forest.</div>
+                </li>
+                <li class="item">
+                  <div class="item-row">
+                    <div class="ititle"><strong>M.S. in Statistics</strong></div>
+                    <div class="right-meta">May 2019</div>
+                  </div>
+                  <div class="imeta">The George Washington University.</div>
+                </li>
+                <li class="item">
+                  <div class="item-row">
+                    <div class="ititle"><strong>B.S. in Economics Analysis &amp; Actuarial Mathematics</strong></div>
+                    <div class="right-meta">May 2017</div>
+                  </div>
+                  <div class="imeta">State University of New York at Binghamton.</div>
+                </li>
+              </ul>
+              <div class="item-list-end"></div>
+            </div>
+            <div>
+              <h2 class="sec-title">Professional Development</h2>
+              <ul class="item-list">
+                <li class="item">
+                  <div class="item-row">
+                    <div class="ititle"><strong>Duke EHR Study Design Workshop</strong></div>
+                    <div class="right-meta">Dec 2024</div>
+                  </div>
+                  <div class="imeta">Duke University.</div>
+                </li>
+                <li class="item">
+                  <div class="item-row">
+                    <div class="ititle"><strong>Code Rigor and Reproducibility with R Boot Camp</strong></div>
+                    <div class="right-meta">Jul 2023</div>
+                  </div>
+                  <div class="imeta">Columbia University.</div>
+                </li>
+              </ul>
+              <div class="item-list-end"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Service -->
+        <section class="sec reveal" id="service">
+          <h2 class="sec-title">Professional Service</h2>
+          <p class="lede" style="margin-bottom:10px;">Peer review for:</p>
+          <p style="font-size:15px;">
+            Nature Communications · Neurobiology of Aging · Statistics in Medicine · Scientific Reports · Discover Applied Sciences · Biology Direct · Discover Oncology · Medicine in Omics.
+          </p>
+          <p class="lede" style="margin-top:18px;margin-bottom:10px;">Other service:</p>
+          <p style="font-size:15px;">Reviewer, ASA South Florida Student Data Challenge (2026).</p>
+          <p class="lede" style="margin-top:18px;margin-bottom:10px;">Memberships:</p>
+          <p style="font-size:15px;">International Biometric Society (ENAR) · American Statistical Association (ASA) · International Society to Advance Alzheimer's Research and Treatment (ISTAART).</p>
+        </section>
+
+        <!-- Blog -->
+        <section class="sec reveal" id="blog">
+          <h2 class="sec-title">Blog &amp; Side Projects</h2>
+          <p class="lede">Technical notes on tools and side projects built alongside research.</p>
+          <div class="blog-grid">
+            <article class="blog-card">
+              <h4>Building a Personal Research Pipeline with AI</h4>
+              <p>An automated tool for fetching, scoring, and summarizing daily academic literature across Nature, Science, bioRxiv, and arXiv.</p>
+              <div class="blinks">
+                <a href="blog/research-pipeline.html">Read more →</a>
+                <a href="https://github.com/novawz/research-pipeline" target="_blank" rel="noreferrer">GitHub →</a>
+              </div>
+            </article>
+            <article class="blog-card">
+              <h4>Bloomly: An Atomic Knowledge Hub</h4>
+              <p>A personal knowledge app to capture atomic notes, link them into a network, and use AI to help them grow. Available on web and iOS.</p>
+              <div class="blinks">
+                <a href="blog/bloomly.html">Read more →</a>
+                <a href="https://bloom-ly.net" target="_blank" rel="noreferrer">Live →</a>
+              </div>
+            </article>
+          </div>
+          <div class="blog-all"><a href="blog/index.html">View all posts →</a></div>
+        </section>
+
+        <!-- Correspondence -->
+        <section class="sec reveal correspondence" id="contact">
+          <div class="label" style="margin-bottom:6px;">Correspondence</div>
+          <p>
+            Open to research collaborations in computational biology, biostatistics, and statistical methodology. Please direct inquiries to
+            <a class="link" href="mailto:wei.zhang60@med.miami.edu">wei.zhang60@med.miami.edu</a>.
+          </p>
+          <div class="label" style="margin-top:22px;text-align:right;">Updated April 2026</div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
+      <div>Last updated: April 2026</div>
     </footer>
 
     <script>
+      // Mobile menu
       const menuBtn = document.querySelector('.menu-toggle');
       const nav = document.querySelector('#site-nav');
-
       if (menuBtn && nav) {
         menuBtn.addEventListener('click', () => {
           const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
           menuBtn.setAttribute('aria-expanded', String(!expanded));
           nav.classList.toggle('open', !expanded);
         });
-
         nav.querySelectorAll('a').forEach((link) => {
           link.addEventListener('click', () => {
             menuBtn.setAttribute('aria-expanded', 'false');
@@ -798,8 +1023,45 @@
         });
       }
 
+      // Footer year
       document.querySelector('#year').textContent = String(new Date().getFullYear());
 
+      // Publication filters
+      const filterBtns = document.querySelectorAll('#pub-filters button');
+      const pubItems = document.querySelectorAll('#pub-list li.pub');
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          const f = btn.getAttribute('data-filter');
+          let visible = 0;
+          pubItems.forEach((item) => {
+            const topic = item.getAttribute('data-topic');
+            const show = f === 'all' || topic === f;
+            item.style.display = show ? '' : 'none';
+            if (show) {
+              visible++;
+              // Renumber visible
+              const numEl = item.querySelector('.pub-num');
+              if (numEl) numEl.textContent = visible + '.';
+            }
+          });
+        });
+      });
+
+      // Publication expand/collapse
+      pubItems.forEach((item) => {
+        const head = item.querySelector('.pub-head');
+        if (head) {
+          head.addEventListener('click', (e) => {
+            // Avoid toggling when clicking on an anchor inside detail
+            if (e.target.tagName === 'A') return;
+            item.classList.toggle('open');
+          });
+        }
+      });
+
+      // Reveal on scroll
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -809,9 +1071,8 @@
             }
           });
         },
-        { threshold: 0.14 }
+        { threshold: 0.1 }
       );
-
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
   </body>

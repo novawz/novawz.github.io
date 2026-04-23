@@ -49,6 +49,7 @@
       /* Site header (shared) */
       header.site-header { border-bottom: 1px solid var(--line); background: #fff; }
       .affiliation-row {
+        max-width: 1280px; margin: 0 auto;
         padding: 14px 48px;
         display: flex; justify-content: space-between; align-items: center;
         gap: 1rem; flex-wrap: wrap;
@@ -58,6 +59,7 @@
       .top-links a { color: var(--mute); }
       .top-links a:hover { color: var(--accent); }
       .masthead {
+        max-width: 1280px; margin: 0 auto;
         padding: 22px 48px 24px;
         display: flex; justify-content: space-between; align-items: baseline;
         gap: 1.5rem; flex-wrap: wrap;
@@ -71,7 +73,7 @@
 
       /* Project masthead */
       .proj-hero {
-        max-width: 1050px; margin: 0 auto;
+        max-width: 1280px; margin: 0 auto;
         padding: 48px 48px 28px;
       }
       .proj-hero .crumb {
@@ -92,7 +94,7 @@
       .proj-hero h2 {
         font-family: var(--serif); font-weight: 600;
         font-size: 44px; line-height: 1.1; letter-spacing: -0.015em;
-        margin: 0 0 12px; max-width: 20ch;
+        margin: 0 0 12px; max-width: 32ch;
       }
       .proj-hero .tagline {
         font-family: var(--serif); font-style: italic;
@@ -129,7 +131,7 @@
       }
 
       /* Main body */
-      .wrap { max-width: 1050px; margin: 0 auto; padding: 20px 48px 80px; }
+      .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 48px 80px; }
 
       /* Layout: sidebar TOC + article */
       .layout { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
@@ -449,7 +451,6 @@
           <div class="mitem">Program<strong>Multivariate Random Forest</strong></div>
           <div class="mitem">Venue<strong>GigaScience, 2025</strong></div>
           <div class="mitem">Data<strong>TCGA · ADNI</strong></div>
-          <div class="mitem">Role<strong>First author</strong></div>
         </div>
         <div class="links-row">
           <a class="pl-btn primary" href="https://doi.org/10.1093/gigascience/giaf148" target="_blank" rel="noreferrer">Read the paper →</a>

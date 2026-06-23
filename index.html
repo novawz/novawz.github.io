@@ -610,7 +610,14 @@
                 <span class="psub-marker">b.</span>
                 <span>
                   <span class="psub-title">Clustering</span>
-                  <span class="psub-desc">Subtype discovery using forest-based sample-similarity as a distance metric for integrative clustering — leveraging shared terminal-node structure across omics blocks to uncover joint and modality-specific patient subgroups.</span>
+                  <span class="psub-desc">A forest-based decomposition that separates shared cross-modal structure from modality-specific residual signal — letting each be clustered on its own terms. Applied to TCGA head-and-neck cancer and to matched blood DNAm + structural MRI in ADNI.</span>
+                  <span class="psub-links">
+                    <a href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">Preprint →</a>
+                    <a href="https://github.com/TransBioInfoLab/multiRF-cluster" target="_blank" rel="noreferrer">GitHub →</a>
+                    <a href="https://github.com/novawz/multiRF" target="_blank" rel="noreferrer">R package →</a>
+                    <a href="https://novawz.github.io/multiRF/" target="_blank" rel="noreferrer">Vignette →</a>
+                    <a href="research/mrf2.html">Project page →</a>
+                  </span>
                 </span>
               </li>
             </ul>
@@ -647,37 +654,24 @@
           </div>
 
           <ol class="pub-list" id="pub-list">
-            <li class="pub" data-topic="alzheimers">
+            <li class="pub" data-topic="methods">
               <div class="pub-head">
                 <span class="pub-num">1.</span>
                 <div class="pub-cite">
-                  <span>O'Shea DM, Wang L, Lukacsovich D, Dhanekula D, <strong>Zhang W</strong>, Galvin C, Joshi M, Besser L, Rundek T, Galvin JE. (2026). <span class="ptitle-inline">Development and Validation of MethylCog, a Blood DNA Methylation Proxy for Cognition.</span> <em class="venue">Alzheimer's &amp; Dementia</em>, accepted.</span>
-                  <span class="meta">IF: 11.1</span>
+                  <span><strong>Zhang W</strong>, Wang L, Franzmann EJ, Chen XS. (2026). <span class="ptitle-inline">Multivariate Random Forests for Cross-Modal Multi-Omics Integration.</span> <em class="venue">bioRxiv</em>, preprint.</span>
+                  <span class="meta">Preprint</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
               <div class="pub-detail">
-                <span class="abstract-label">Note.</span> Development and external validation of a blood DNA methylation proxy for cognition (MethylCog), with implications for scalable cognitive screening.
-              </div>
-            </li>
-
-            <li class="pub" data-topic="alzheimers">
-              <div class="pub-head">
-                <span class="pub-num">2.</span>
-                <div class="pub-cite">
-                  <span>Lukacsovich D, Young J, Gomez L, Kunkle B, Mao Z, <strong>Zhang W</strong>, Chen XS, …, Wang L. (2026). <span class="ptitle-inline">Blood DNA Methylation Signature of Cognitive Reserve Moderates the Association between CSF Tau Pathology and Memory in Prodromal Alzheimer's Disease.</span> <em class="venue">Alzheimer's &amp; Dementia: TRCI</em>, accepted.</span>
-                  <span class="meta">IF: 6.8</span>
-                </div>
-                <span class="pub-toggle">+</span>
-              </div>
-              <div class="pub-detail">
-                <span class="abstract-label">Note.</span> A blood DNA methylation signature of cognitive reserve moderates the tau–memory association in prodromal AD.
+                <span class="abstract-label">Abstract.</span> multiRF is a random-forest-based method that separates shared cross-modal structure from modality-specific residual signal in multi-omics data. It recovers shared clusters as well or better than established integrative methods under nonlinear structure; applied to TCGA head-and-neck cancer and to matched ADNI blood DNAm + structural MRI it recovers a common disease axis while preserving biology unique to a single data type.
+                <div style="margin-top:8px;"><a href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">View preprint →</a> · <a href="research/mrf2.html">Project page →</a></div>
               </div>
             </li>
 
             <li class="pub" data-topic="aging">
               <div class="pub-head">
-                <span class="pub-num">3.</span>
+                <span class="pub-num">2.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Kunkle B, Chen XS, Martin ER, Wang L. (2025). <span class="ptitle-inline">The Aging Epigenome: Integrative Analyses Reveal Functional Overlap with Alzheimer's Disease.</span> <em class="venue">GeroScience</em>, accepted.</span>
                   <span class="meta">IF: 5.4</span>
@@ -692,7 +686,7 @@
 
             <li class="pub" data-topic="methods">
               <div class="pub-head">
-                <span class="pub-num">4.</span>
+                <span class="pub-num">3.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Huang H, Wang L, Lehmann BD, Chen XS. (2025). <span class="ptitle-inline">An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery.</span> <em class="venue">GigaScience</em>, giaf148.</span>
                   <span class="meta">IF: 3.9</span>
@@ -701,13 +695,13 @@
               </div>
               <div class="pub-detail">
                 <span class="abstract-label">Abstract.</span> We introduce a multivariate random forest framework that jointly models multiple omics modalities, yielding robust biomarker rankings and improved prediction compared to single-omic baselines across benchmark cohorts.
-                <div style="margin-top:8px;"><a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf148/8374728" target="_blank" rel="noreferrer">View publication →</a></div>
+                <div style="margin-top:8px;"><a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf148/8374728" target="_blank" rel="noreferrer">View publication →</a> · <a href="research/mrf1.html">Project page →</a></div>
               </div>
             </li>
 
             <li class="pub" data-topic="alzheimers">
               <div class="pub-head">
-                <span class="pub-num">5.</span>
+                <span class="pub-num">4.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Martin ER, Kunkle BW, Chen X, O'Shea DM, Galvin JE, Wang L. (2025). <span class="ptitle-inline">DNA Methylation Signature of a Lifestyle-based Resilience Index for Cognitive Health.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 17, 88.</span>
                   <span class="meta">IF: 7.6</span>
@@ -722,7 +716,7 @@
 
             <li class="pub" data-topic="alzheimers">
               <div class="pub-head">
-                <span class="pub-num">6.</span>
+                <span class="pub-num">5.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Kunkle B, Chen XS, Martin ER, Wang L. (2025). <span class="ptitle-inline">Blood DNA Methylation Signature for Incident Dementia: Evidence from Longitudinal Cohorts.</span> <em class="venue">Alzheimer's &amp; Dementia</em>, 21:e14496.</span>
                   <span class="meta">IF: 11.1</span>
@@ -737,7 +731,7 @@
 
             <li class="pub" data-topic="oncology">
               <div class="pub-head">
-                <span class="pub-num">7.</span>
+                <span class="pub-num">6.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Wu C, Huang H, Bleu P, Zambare W, Alvarez J, Wang L, Paty PB, Romesser PB, Smith JJ, Chen XS. (2025). <span class="ptitle-inline">Enhancing Chemotherapy Response Prediction via Matched Colorectal Tumor-Organoid Gene Expression Analysis and Network-Based Biomarker Selection.</span> <em class="venue">Translational Oncology</em>, 52:102238.</span>
                   <span class="meta">IF: 4.1</span>
@@ -750,23 +744,9 @@
               </div>
             </li>
 
-            <li class="pub" data-topic="alzheimers">
-              <div class="pub-head">
-                <span class="pub-num">8.</span>
-                <div class="pub-cite">
-                  <span>Lukacsovich D, O'Shea D, Huang H, <strong>Zhang W</strong>, Young JI, Chen XS, …, Wang L. (2024). <span class="ptitle-inline">MIAMI-AD: An Integrative Knowledgebase Facilitating Exploration of DNA Methylation across Sex, Aging, and Alzheimer's Disease.</span> <em class="venue">Database</em>, 2024, baae061.</span>
-                  <span class="meta">IF: 3.6</span>
-                </div>
-                <span class="pub-toggle">+</span>
-              </div>
-              <div class="pub-detail">
-                <span class="abstract-label">Note.</span> An integrative knowledgebase of DNA methylation changes across sex, aging, and Alzheimer's disease.
-              </div>
-            </li>
-
             <li class="pub" data-topic="methods">
               <div class="pub-head">
-                <span class="pub-num">9.</span>
+                <span class="pub-num">7.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Varma A, Chen XS, Kunkle B, Martin ER, Wang L. (2024). <span class="ptitle-inline">Critical Evaluation of the Reliability of DNA Methylation Probes on the Illumina MethylationEPIC v1.0 BeadChip Microarrays.</span> <em class="venue">Epigenetics</em>, 19(1):2333660.</span>
                   <span class="meta">IF: 3.2</span>
@@ -781,7 +761,7 @@
 
             <li class="pub" data-topic="alzheimers">
               <div class="pub-head">
-                <span class="pub-num">10.</span>
+                <span class="pub-num">8.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Varma A, Chen XS, Martin ER, Wang L. (2023). <span class="ptitle-inline">Distinct CSF Biomarker-Associated DNA Methylation in Alzheimer's Disease and Cognitively Normal Subjects.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 15:78.</span>
                   <span class="meta">IF: 7.6</span>
@@ -796,7 +776,7 @@
 
             <li class="pub" data-topic="oncology">
               <div class="pub-head">
-                <span class="pub-num">11.</span>
+                <span class="pub-num">9.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Li E, Wang L, Lehmann BD, Chen XS. (2023). <span class="ptitle-inline">Transcriptome Meta-Analysis of Triple-Negative Breast Cancer Response to Neoadjuvant Chemotherapy.</span> <em class="venue">Cancers</em>, 15(8):2194.</span>
                   <span class="meta">IF: 4.4</span>
@@ -805,20 +785,6 @@
               </div>
               <div class="pub-detail">
                 <span class="abstract-label">Note.</span> Transcriptome meta-analysis of triple-negative breast cancer response to neoadjuvant chemotherapy.
-              </div>
-            </li>
-
-            <li class="pub" data-topic="alzheimers">
-              <div class="pub-head">
-                <span class="pub-num">12.</span>
-                <div class="pub-cite">
-                  <span>Silva TC, <strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Varma A, Chen XS, Wang L. (2022). <span class="ptitle-inline">Distinct Sex-Specific DNA Methylation Differences in Alzheimer's Disease.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 14(1), 121.</span>
-                  <span class="meta">IF: 7.6</span>
-                </div>
-                <span class="pub-toggle">+</span>
-              </div>
-              <div class="pub-detail">
-                <span class="abstract-label">Note.</span> Sex-specific DNA methylation differences in Alzheimer's disease cohorts.
               </div>
             </li>
           </ol>

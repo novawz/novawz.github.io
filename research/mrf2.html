@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>multiRF-Cluster — Cross-Modal Multi-Omics Integration · Wei Zhang, Ph.D.</title>
+    <meta name="description" content="multiRF: a random-forest-based method that separates shared and modality-specific structure for integrative multi-omics clustering." />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESMS0RZM0Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ESMS0RZM0Z');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --paper: #fbfaf6;
+        --ink: #1d1d1b;
+        --mute: #5c5c58;
+        --line: #dcd7ce;
+        --line-soft: #ece8de;
+        --accent: #1f5138;
+        --accent-strong: #173e2a;
+        --accent-soft: #e8efe8;
+        --accent-2: #7a8a5c;
+        --muted-data: #9a958a;
+        --serif: "Source Serif 4", "Charter", Georgia, "Times New Roman", serif;
+        --sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+      html, body { margin: 0; padding: 0; }
+      body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.65; }
+      a { color: inherit; text-decoration: none; }
+      a.link, .prose a { color: var(--accent); }
+      a.link:hover, .prose a:hover { color: var(--accent-strong); text-decoration: underline; }
+
+      .accent-rule { height: 4px; background: var(--accent); }
+
+      /* Site header (shared) */
+      header.site-header { border-bottom: 1px solid var(--line); background: #fff; }
+      .affiliation-row {
+        max-width: 1280px; margin: 0 auto;
+        padding: 14px 48px;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 1rem; flex-wrap: wrap;
+      }
+      .affiliation { font-family: var(--serif); font-size: 13.5px; color: var(--mute); }
+      .top-links { font-family: var(--sans); font-size: 12.5px; display: flex; gap: 20px; }
+      .top-links a { color: var(--mute); }
+      .top-links a:hover { color: var(--accent); }
+      .masthead {
+        max-width: 1280px; margin: 0 auto;
+        padding: 22px 48px 24px;
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 1.5rem; flex-wrap: wrap;
+      }
+      .masthead h1 { font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+      .masthead .role { font-family: var(--sans); font-size: 14px; color: var(--mute); margin-top: 4px; }
+      nav.primary { display: flex; gap: 28px; font-family: var(--sans); font-size: 14px; }
+      nav.primary a { color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 4px; }
+      nav.primary a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+      nav.primary a.current { border-bottom-color: var(--accent); color: var(--accent); }
+
+      /* Project masthead */
+      .proj-hero {
+        max-width: 1280px; margin: 0 auto;
+        padding: 48px 48px 28px;
+      }
+      .proj-hero .crumb {
+        font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--mute); margin-bottom: 18px;
+      }
+      .proj-hero .crumb a { color: var(--mute); }
+      .proj-hero .crumb a:hover { color: var(--accent); }
+      .proj-hero .crumb .sep { margin: 0 6px; }
+
+      .proj-hero .kicker {
+        display: inline-block; padding: 4px 10px; margin-bottom: 14px;
+        background: var(--accent-soft); color: var(--accent);
+        border: 1px solid var(--accent);
+        font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em;
+        text-transform: uppercase; font-weight: 600;
+      }
+      .proj-hero h2 {
+        font-family: var(--serif); font-weight: 600;
+        font-size: 44px; line-height: 1.1; letter-spacing: -0.015em;
+        margin: 0 0 12px; max-width: 32ch;
+      }
+      .proj-hero .tagline {
+        font-family: var(--serif); font-style: italic;
+        font-size: 19px; color: var(--mute); line-height: 1.45;
+        margin: 0 0 22px; max-width: 60ch;
+      }
+      .proj-hero .meta-strip {
+        display: flex; flex-wrap: wrap; gap: 28px;
+        padding: 14px 0; border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        text-transform: uppercase; letter-spacing: 0.08em;
+      }
+      .proj-hero .meta-strip .mitem strong {
+        display: block; color: var(--ink); font-weight: 600;
+        font-size: 13px; letter-spacing: 0.04em; margin-top: 2px;
+        text-transform: none;
+      }
+      .proj-hero .links-row {
+        margin-top: 18px; display: flex; gap: 14px; flex-wrap: wrap;
+      }
+      .proj-hero .pl-btn {
+        font-family: var(--sans); font-size: 12.5px; font-weight: 500;
+        padding: 7px 14px; border: 1px solid var(--line);
+        color: var(--ink); background: #fff;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+      }
+      .proj-hero .pl-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+      .proj-hero .pl-btn.primary {
+        background: var(--accent); color: #fff; border-color: var(--accent);
+      }
+      .proj-hero .pl-btn.primary:hover {
+        background: var(--accent-strong); border-color: var(--accent-strong);
+      }
+
+      /* Main body */
+      .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 48px 80px; }
+
+      /* Layout: sidebar TOC + article */
+      .layout { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
+
+      nav.toc {
+        position: sticky; top: 24px;
+        padding: 18px 0;
+        border-top: 2px solid var(--ink);
+        font-family: var(--sans);
+      }
+      nav.toc .toc-label {
+        font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--mute); font-weight: 600; margin-bottom: 10px;
+      }
+      nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+      nav.toc li {
+        counter-increment: toc;
+        border-top: 1px solid var(--line-soft);
+        padding: 9px 0;
+        font-size: 12.5px;
+      }
+      nav.toc li:first-child { border-top: none; }
+      nav.toc li::before {
+        content: "§" counter(toc, decimal-leading-zero);
+        font-size: 10.5px; color: var(--accent); font-weight: 600;
+        letter-spacing: 0.04em; margin-right: 10px;
+      }
+      nav.toc a { color: var(--ink); }
+      nav.toc a:hover { color: var(--accent); }
+
+      article .sec {
+        padding: 28px 0 32px;
+        border-top: 1px solid var(--line);
+      }
+      article .sec:first-child { border-top: none; padding-top: 8px; }
+      article .sec-eyebrow {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 8px;
+      }
+      article h3 {
+        font-family: var(--serif); font-size: 26px; font-weight: 600;
+        letter-spacing: -0.008em; line-height: 1.2;
+        margin: 0 0 12px;
+      }
+      article h4 {
+        font-family: var(--serif); font-size: 17.5px; font-weight: 600;
+        margin: 22px 0 8px; letter-spacing: -0.003em;
+      }
+      article p { margin: 0 0 12px; font-size: 16px; line-height: 1.7; }
+      article ul { margin: 0 0 14px; padding-left: 1.3rem; }
+      article li { margin-bottom: 6px; line-height: 1.65; }
+
+      /* Abstract card */
+      .abstract {
+        padding: 20px 22px; background: var(--paper);
+        border-top: 3px solid var(--accent);
+        border-bottom: 1px solid var(--line);
+        font-family: var(--serif); font-size: 16.5px; line-height: 1.65;
+      }
+      .abstract strong { color: var(--ink); font-weight: 600; }
+      .abstract .abs-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      /* Four-step workflow diagram */
+      .steps {
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+        margin: 18px 0 8px; border-top: 1px solid var(--ink);
+        border-bottom: 1px solid var(--ink);
+      }
+      .steps .step {
+        padding: 18px 16px;
+        border-right: 1px solid var(--line);
+        position: relative;
+      }
+      .steps .step:last-child { border-right: none; }
+      .steps .step-num {
+        font-family: var(--serif); font-style: italic;
+        color: var(--accent); font-size: 18px; font-weight: 400;
+      }
+      .steps .step-title {
+        font-family: var(--serif); font-weight: 600; font-size: 15.5px;
+        margin: 4px 0 6px; line-height: 1.25;
+      }
+      .steps .step-desc { font-size: 13.5px; color: var(--mute); line-height: 1.55; }
+
+      /* Decomposition grid (three components) */
+      .strat-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+        margin: 16px 0;
+      }
+      .strat {
+        padding: 14px 16px; border: 1px solid var(--line);
+        border-top: 3px solid var(--accent);
+        background: #fff;
+      }
+      .strat h5 {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin: 0 0 6px;
+      }
+      .strat .strat-title { font-weight: 600; font-size: 15.5px; margin-bottom: 6px; }
+      .strat p { margin: 0; font-size: 13.5px; color: var(--mute); line-height: 1.55; }
+
+      /* Figure */
+      .figure {
+        margin: 18px 0 8px;
+        padding: 0;
+      }
+      .figure .fig-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .figure .fig-title {
+        font-family: var(--serif); font-weight: 600; font-size: 17px;
+        margin-bottom: 12px;
+      }
+      .chart-container {
+        position: relative; width: 100%;
+        height: 340px; max-height: 420px;
+        background: var(--paper);
+        padding: 18px; border: 1px solid var(--line);
+      }
+      .figure .fig-caption {
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        line-height: 1.55; margin-top: 10px; max-width: 60ch;
+      }
+      .figure .fig-caption strong {
+        color: var(--ink); font-weight: 600;
+      }
+      .toggle-row {
+        display: inline-flex; gap: 0;
+        border: 1px solid var(--line);
+        margin-bottom: 10px;
+      }
+      .toggle-row button {
+        font-family: var(--sans); font-size: 11.5px; font-weight: 500;
+        padding: 6px 14px; background: #fff; color: var(--mute);
+        border: none; cursor: pointer;
+        letter-spacing: 0.04em; text-transform: uppercase;
+        border-right: 1px solid var(--line);
+      }
+      .toggle-row button:last-child { border-right: none; }
+      .toggle-row button.active {
+        background: var(--accent); color: #fff;
+      }
+
+      /* Academic table */
+      table.data {
+        width: 100%; border-collapse: collapse; margin: 14px 0 8px;
+        font-size: 14px;
+      }
+      table.data thead th {
+        text-align: left; padding: 10px 12px;
+        border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
+        font-family: var(--sans); font-size: 11px; font-weight: 600;
+        letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+      }
+      table.data tbody td {
+        padding: 10px 12px; border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+      }
+      table.data tbody tr:last-child td { border-bottom: 1px solid var(--line); }
+      table.data .group-num {
+        font-family: var(--serif); font-style: italic; color: var(--accent);
+        font-weight: 600; width: 90px;
+      }
+      table.data .group-name { font-weight: 600; }
+      table.data .group-desc { color: var(--mute); font-size: 13.5px; }
+
+      /* Result box */
+      .result-box {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+        margin: 14px 0; border: 1px solid var(--line);
+      }
+      .result-box .result-cell {
+        padding: 16px 18px; border-right: 1px solid var(--line);
+      }
+      .result-box .result-cell:last-child { border-right: none; }
+      .result-box .result-cell.highlight {
+        background: var(--accent-soft);
+      }
+      .result-box .rc-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--mute); font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .result-box .highlight .rc-label { color: var(--accent); }
+      .result-box .rc-value {
+        font-family: var(--serif); font-size: 28px; font-weight: 600;
+        color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em;
+      }
+      .result-box .highlight .rc-value { color: var(--accent); }
+      .result-box .rc-note {
+        font-size: 13px; color: var(--mute); line-height: 1.5;
+      }
+
+      /* Component pill list */
+      .comp-list { margin: 12px 0; }
+      .comp-list .crow {
+        padding: 10px 14px;
+        display: grid; grid-template-columns: 130px 1fr 60px;
+        gap: 14px; align-items: center;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .comp-list .crow:first-child { border-top: 1px solid var(--line); }
+      .comp-list .crow:last-child { border-bottom: 1px solid var(--line); }
+      .comp-list .ctag {
+        font-family: var(--sans); font-size: 12px; font-weight: 600;
+        color: var(--accent); letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .comp-list .bar {
+        background: var(--line-soft); height: 8px; position: relative;
+      }
+      .comp-list .bar-fill {
+        position: absolute; inset: 0 auto 0 0;
+        background: var(--accent);
+      }
+      .comp-list .score {
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        text-align: right;
+      }
+
+      /* Citation */
+      .cite {
+        margin: 20px 0;
+        padding: 16px 20px;
+        background: var(--paper);
+        border-left: 3px solid var(--accent);
+        font-family: var(--serif); font-size: 14px; line-height: 1.5;
+        color: var(--mute);
+      }
+      .cite .cite-label {
+        font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--accent); font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .cite .cite-body { color: var(--ink); margin: 0; }
+      .cite .cite-body em { font-style: italic; }
+
+      /* Footer */
+      footer.site-footer {
+        padding: 18px 48px; border-top: 1px solid var(--line);
+        font-family: var(--sans); font-size: 12px; color: var(--mute);
+        display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      }
+
+      @media (max-width: 980px) {
+        .affiliation-row { padding: 12px 24px; }
+        .masthead { padding: 18px 24px 20px; }
+        .proj-hero { padding: 36px 24px 20px; }
+        .proj-hero h2 { font-size: 32px; }
+        .wrap { padding: 16px 24px 64px; }
+        .layout { grid-template-columns: 1fr; gap: 24px; }
+        nav.toc { position: static; }
+        .steps { grid-template-columns: 1fr 1fr; }
+        .strat-grid { grid-template-columns: 1fr; }
+        .result-box { grid-template-columns: 1fr; }
+        .result-box .result-cell { border-right: none; border-bottom: 1px solid var(--line); }
+        .result-box .result-cell:last-child { border-bottom: none; }
+        footer.site-footer { padding: 16px 24px; }
+      }
+      @media (max-width: 620px) {
+        .masthead h1 { font-size: 26px; }
+        .proj-hero h2 { font-size: 26px; }
+        .steps { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accent-rule"></div>
+
+    <header class="site-header">
+      <div class="affiliation-row">
+        <div class="affiliation">
+          University of Miami &nbsp;·&nbsp; Miller School of Medicine &nbsp;·&nbsp; Department of Public Health Sciences
+        </div>
+        <div class="top-links">
+          <a href="https://scholar.google.com/citations?hl=en&user=BRtsZUAAAAAJ&view_op=list_works" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a href="mailto:wei.zhang60@med.miami.edu">Contact</a>
+        </div>
+      </div>
+      <div class="masthead">
+        <div class="name-block">
+          <h1><a href="../index.html">Wei Zhang, Ph.D.</a></h1>
+          <div class="role">Postdoctoral Associate · Division of Biostatistics</div>
+        </div>
+        <nav class="primary" aria-label="Primary">
+          <a href="../index.html#biography">Biography</a>
+          <a href="../index.html#research" class="current">Research</a>
+          <a href="../index.html#publications">Publications</a>
+          <a href="../blog/index.html">Blog</a>
+          <a href="../CV_WeiZhang.pdf" target="_blank" rel="noreferrer">CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="proj-hero">
+        <div class="crumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">·</span>
+          <a href="../index.html#research">Research</a>
+          <span class="sep">·</span>
+          <span>multiRF-Cluster</span>
+        </div>
+        <span class="kicker">Project · Clustering</span>
+        <h2>Multivariate Random Forests for Cross-Modal Multi-Omics Integration</h2>
+        <p class="tagline">A forest-based decomposition that separates shared cross-modal structure from modality-specific residual signal — letting each be clustered on its own terms.</p>
+        <div class="meta-strip">
+          <div class="mitem">Program<strong>Multivariate Random Forest</strong></div>
+          <div class="mitem">Venue<strong>bioRxiv, 2026 (preprint)</strong></div>
+          <div class="mitem">Data<strong>TCGA-HNSC · ADNI</strong></div>
+        </div>
+        <div class="links-row">
+          <a class="pl-btn primary" href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">Read the preprint →</a>
+          <a class="pl-btn" href="https://github.com/TransBioInfoLab/multiRF-cluster" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="pl-btn" href="https://github.com/novawz/multiRF" target="_blank" rel="noreferrer">R package</a>
+          <a class="pl-btn" href="https://novawz.github.io/multiRF/" target="_blank" rel="noreferrer">Vignette</a>
+          <a class="pl-btn" href="../index.html#research">← Back to Research</a>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="layout">
+          <nav class="toc" aria-label="Table of Contents">
+            <div class="toc-label">On this page</div>
+            <ol>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#workflow">Framework</a></li>
+              <li><a href="#decomposition">Decomposition</a></li>
+              <li><a href="#benchmark">Simulation benchmark</a></li>
+              <li><a href="#hnsc">TCGA HNSCC</a></li>
+              <li><a href="#adni">Application to ADNI</a></li>
+              <li><a href="#cite">How to cite</a></li>
+            </ol>
+          </nav>
+
+          <article>
+            <section class="sec" id="summary">
+              <div class="sec-eyebrow">§01 · Summary</div>
+              <h3>Separating shared and modality-specific structure in multi-omics</h3>
+              <div class="abstract">
+                <div class="abs-label">Abstract</div>
+                Multi-omics studies are widely used across biomedical research. In many diseases, some signals are <strong>shared across data types</strong>, while others are strongest in a <strong>single omics layer</strong>. Existing integrative clustering methods either merge all data types into a single representation — which can blur biology that is strong in one layer — or rely on linear structure that misses more complex relationships. We introduce <strong>multiRF</strong>, a random-forest-based method that handles complex data types and separates shared from modality-specific structure. multiRF learns sample similarities across omics layers from multivariate random forests, combines them across data types, and uses the resulting weights to estimate the part of each omics layer predictable from the others. The remaining <em>residual</em> is treated as modality-specific signal, so shared and modality-specific similarities can be clustered separately. In simulations multiRF recovered shared clusters as well as or better than established integrative methods and more reliably separated modality-specific signal under nonlinear structure. In TCGA head-and-neck cancer the shared component aligned with established subtype classifications, while gene- and miRNA-specific residuals revealed additional immune and developmental biology. In ADNI, the shared cross-modal aging signal between blood DNA methylation and structural MRI tracked future conversion to MCI or Alzheimer's disease.
+              </div>
+            </section>
+
+            <section class="sec" id="workflow">
+              <div class="sec-eyebrow">§02 · Framework</div>
+              <h3>The multiRF clustering workflow</h3>
+              <p>The method takes matched multi-omics samples and produces a pair of similarity matrices for each layer — one capturing what that layer <em>shares</em> with the others, and one capturing what is <em>unique</em> to it. These are then handed to a downstream clustering algorithm of the user's choice.</p>
+              <div class="steps">
+                <div class="step">
+                  <div class="step-num">i.</div>
+                  <div class="step-title">Matched multi-omics input</div>
+                  <div class="step-desc">Two or more omics layers on the same set of samples (e.g. gene expression + miRNA, or blood DNAm + structural MRI).</div>
+                </div>
+                <div class="step">
+                  <div class="step-num">ii.</div>
+                  <div class="step-title">Cross-layer forests</div>
+                  <div class="step-desc">For each ordered pair of layers, fit a multivariate random forest predicting one layer from another. Terminal-node co-occurrence yields a sample-by-sample similarity.</div>
+                </div>
+                <div class="step">
+                  <div class="step-num">iii.</div>
+                  <div class="step-title">Cross-modal weights</div>
+                  <div class="step-desc">Combine the pairwise similarities and use the resulting weights to estimate the part of each layer that is predictable from the others.</div>
+                </div>
+                <div class="step">
+                  <div class="step-num">iv.</div>
+                  <div class="step-title">Cluster shared &amp; residual</div>
+                  <div class="step-desc">The predictable part defines the <em>shared</em> similarity; the residual defines the <em>modality-specific</em> similarity. Each is clustered separately.</div>
+                </div>
+              </div>
+              <p class="fig-caption" style="font-family:var(--sans);font-size:12px;color:var(--mute);margin-top:14px;"><strong>Figure 1.</strong> Four-step multiRF pipeline. Forest-based similarities are a natural fit for cross-modal integration because they capture nonlinear structure without forcing a common low-dimensional embedding before clustering.</p>
+            </section>
+
+            <section class="sec" id="decomposition">
+              <div class="sec-eyebrow">§03 · Decomposition</div>
+              <h3>What each similarity matrix captures</h3>
+              <p>For every omics layer multiRF returns a pair of similarities. Reading them side by side lets a downstream analysis distinguish a <em>common disease axis</em> from biology that is genuinely <em>unique to one data type</em> — instead of collapsing the two:</p>
+              <div class="strat-grid">
+                <div class="strat">
+                  <h5>Component A</h5>
+                  <div class="strat-title">Shared</div>
+                  <p>Sample similarities reproducible from the other layers via the cross-modal weights. Captures the <em>common cross-modal structure</em>.</p>
+                </div>
+                <div class="strat">
+                  <h5>Component B</h5>
+                  <div class="strat-title">Weights</div>
+                  <p>Per-layer contributions estimated from the multiRF similarities. Indicate <em>how much each layer is explained</em> by the others.</p>
+                </div>
+                <div class="strat">
+                  <h5>Component C</h5>
+                  <div class="strat-title">Residual</div>
+                  <p>The part of a layer's similarity that is <em>not</em> predictable from the others. Carries <em>modality-specific signal</em> for separate clustering.</p>
+                </div>
+              </div>
+              <p class="fig-caption" style="font-family:var(--sans);font-size:12px;color:var(--mute);"><strong>Note.</strong> The decomposition is symmetric across layers — every omics block gets its own (shared, residual) pair — so a study with three or more layers does not need a privileged "anchor" modality.</p>
+            </section>
+
+            <section class="sec" id="benchmark">
+              <div class="sec-eyebrow">§04 · Simulation</div>
+              <h3>Recovery of shared clusters under linear and nonlinear structure</h3>
+              <p>We simulated matched multi-omics data with a known set of <em>shared</em> sample clusters plus modality-specific structure that should remain in each layer's residual. Cluster recovery on the shared similarity was scored by Adjusted Rand Index (ARI) against the ground-truth labels. multiRF holds its own under linear structure and pulls clearly ahead under nonlinear structure, where established integrative methods degrade:</p>
+
+              <div class="figure">
+                <div class="fig-label">Figure 2</div>
+                <div class="fig-title">Shared-cluster recovery (ARI) across simulation regimes</div>
+                <div class="toggle-row" role="tablist">
+                  <button id="btn-linear" class="active" onclick="app.updateBenchmark('linear')">Linear</button>
+                  <button id="btn-nonlinear" onclick="app.updateBenchmark('nonlinear')">Nonlinear</button>
+                </div>
+                <div class="chart-container">
+                  <canvas id="benchmarkChart"></canvas>
+                </div>
+                <p class="fig-caption"><strong>Figure 2.</strong> Mean ARI for multiRF, iClusterPlus, SNF, MoCluster, and IntNMF on the shared cluster recovery task. <span id="bench-desc">Under linear data structure multiRF (~0.82) is competitive with the best linear methods; under nonlinear structure linear-assumption methods drop sharply while multiRF retains ARI ≈ 0.74.</span></p>
+              </div>
+
+              <ul>
+                <li><strong>Shared clusters.</strong> multiRF recovers the planted shared clusters as well as or better than established integrative methods across regimes.</li>
+                <li><strong>Modality-specific signal.</strong> The residual similarity in each layer reliably retains structure that is unique to that layer, even when other methods absorb it into a single merged representation.</li>
+                <li><strong>Nonlinearity.</strong> The advantage is largest under nonlinear cross-modal relationships, which is the regime in which linear-projection methods are weakest.</li>
+              </ul>
+            </section>
+
+            <section class="sec" id="hnsc">
+              <div class="sec-eyebrow">§05 · TCGA-HNSC</div>
+              <h3>Shared subtype axis + modality-specific biology in head-and-neck cancer</h3>
+              <p>We applied multiRF to TCGA head-and-neck squamous cell carcinoma (HNSCC) with matched gene expression and miRNA. The <strong>shared</strong> component aligned with the main subtype structure recognised across established HNSCC reference classifications, while the <strong>gene-specific</strong> and <strong>miRNA-specific</strong> residuals exposed additional biology that would otherwise be hidden inside a merged representation:</p>
+              <table class="data">
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>What it captures</th>
+                    <th>Biology surfaced</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="group-num">Shared</td>
+                    <td class="group-name">Cross-modal HNSCC axis</td>
+                    <td class="group-desc">Aligns with the main subtype structure described in established HNSCC reference classifications.</td>
+                  </tr>
+                  <tr>
+                    <td class="group-num">Gene-specific</td>
+                    <td class="group-name">Expression-only residual</td>
+                    <td class="group-desc">Surfaces additional <em>immune</em>-related biology not visible after a one-shot merge of expression and miRNA.</td>
+                  </tr>
+                  <tr>
+                    <td class="group-num">miRNA-specific</td>
+                    <td class="group-name">miRNA-only residual</td>
+                    <td class="group-desc">Surfaces additional <em>developmental</em> biology that is strong in miRNA but weak in expression.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="fig-caption" style="font-family:var(--sans);font-size:12px;color:var(--mute);"><strong>Table 1.</strong> Reading the three multiRF outputs side-by-side recovers a common HNSCC subtype axis while preserving biology that is unique to a single data type — addressing a known failure mode of integrate-then-cluster pipelines.</p>
+            </section>
+
+            <section class="sec" id="adni">
+              <div class="sec-eyebrow">§06 · ADNI</div>
+              <h3>Cross-modal aging signal between blood DNAm and brain MRI</h3>
+              <p>In the ADNI cohort we paired <strong>blood DNA methylation</strong> with <strong>structural MRI</strong> on the same participants. The <em>shared</em> cross-modal similarity captured an aging axis that travelled between the two tissues; the DNAm-specific residual carried exploratory signal that complemented it. Risk stratification by the shared component picked up future conversion to mild cognitive impairment or Alzheimer's disease:</p>
+
+              <div class="comp-list" aria-label="Output components in ADNI">
+                <div class="crow">
+                  <div class="ctag">Shared</div>
+                  <div class="bar"><div class="bar-fill" style="width:88%"></div></div>
+                  <div class="score">Cross-modal aging axis</div>
+                </div>
+                <div class="crow">
+                  <div class="ctag">DNAm residual</div>
+                  <div class="bar"><div class="bar-fill" style="width:62%"></div></div>
+                  <div class="score">Exploratory</div>
+                </div>
+                <div class="crow">
+                  <div class="ctag">MRI residual</div>
+                  <div class="bar"><div class="bar-fill" style="width:50%"></div></div>
+                  <div class="score">Structural-only</div>
+                </div>
+              </div>
+
+              <div class="figure" style="margin-top:18px;">
+                <div class="fig-label">Figure 3</div>
+                <div class="fig-title">Conversion-free survival by multiRF shared-axis score</div>
+                <div class="chart-container" style="height: 300px;">
+                  <canvas id="adniChart"></canvas>
+                </div>
+                <p class="fig-caption"><strong>Figure 3.</strong> Kaplan–Meier-style curves (simulated for visualisation) illustrating separation of high- vs. low-risk groups defined on the multiRF shared cross-modal aging signal between blood DNAm and brain MRI.</p>
+              </div>
+
+              <div class="result-box">
+                <div class="result-cell highlight">
+                  <div class="rc-label">multiRF — shared axis</div>
+                  <div class="rc-value">MCI / AD ↑</div>
+                  <div class="rc-note">The shared cross-modal aging signal was associated with future conversion to mild cognitive impairment or Alzheimer's disease.</div>
+                </div>
+                <div class="result-cell">
+                  <div class="rc-label">DNAm residual</div>
+                  <div class="rc-value">Exploratory</div>
+                  <div class="rc-note">The DNAm-specific residual carried additional information beyond the shared cross-modal axis — useful for hypothesis-generating follow-up.</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="sec" id="cite">
+              <div class="sec-eyebrow">§07 · Citation</div>
+              <h3>How to cite</h3>
+              <div class="cite">
+                <div class="cite-label">Zhang et al., 2026 (preprint)</div>
+                <p class="cite-body">Zhang, W., Wang, L., Franzmann, E. J., &amp; Chen, X. S. (2026). Multivariate Random Forests for Cross-Modal Multi-Omics Integration. <em>bioRxiv</em>. <a class="link" href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">https://doi.org/10.64898/2026.06.17.732933</a>.</p>
+              </div>
+              <p style="font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:10px;">Project repository at <a class="link" href="https://github.com/TransBioInfoLab/multiRF-cluster" target="_blank" rel="noreferrer">github.com/TransBioInfoLab/multiRF-cluster</a>; the underlying R package is at <a class="link" href="https://github.com/novawz/multiRF" target="_blank" rel="noreferrer">github.com/novawz/multiRF</a> with a step-by-step vignette at <a class="link" href="https://novawz.github.io/multiRF/" target="_blank" rel="noreferrer">novawz.github.io/multiRF</a>.</p>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
+      <div>Last updated: June 2026</div>
+    </footer>
+
+    <script>
+      document.querySelector('#year').textContent = String(new Date().getFullYear());
+
+      // F1-palette Chart defaults
+      const FG_INK = '#1d1d1b';
+      const FG_MUTE = '#5c5c58';
+      const FG_LINE = '#dcd7ce';
+      const FG_ACCENT = '#1f5138';
+      const FG_ACCENT2 = '#7a8a5c';
+      const FG_MUTED_DATA = '#9a958a';
+      const FG_PAPER = '#fbfaf6';
+
+      if (window.Chart) {
+        Chart.defaults.font.family = '"Inter", -apple-system, sans-serif';
+        Chart.defaults.font.size = 11.5;
+        Chart.defaults.color = FG_MUTE;
+        Chart.defaults.borderColor = FG_LINE;
+      }
+
+      const benchmarkData = {
+        linear: {
+          labels: ['multiRF', 'iClusterPlus', 'SNF', 'MoCluster', 'IntNMF'],
+          data: [0.82, 0.86, 0.81, 0.78, 0.74],
+          desc: 'Under linear data structure multiRF (~0.82) is competitive with the strongest linear-assumption methods (iClusterPlus ~0.86, SNF ~0.81).'
+        },
+        nonlinear: {
+          labels: ['multiRF', 'iClusterPlus', 'SNF', 'MoCluster', 'IntNMF'],
+          data: [0.74, 0.34, 0.41, 0.31, 0.28],
+          desc: 'Under nonlinear cross-modal structure linear-assumption methods drop sharply (ARI ≈ 0.28–0.41); multiRF retains ARI ≈ 0.74.'
+        }
+      };
+
+      let benchmarkChart = null;
+
+      const app = {
+        renderBenchmark(mode) {
+          const d = benchmarkData[mode];
+          const ctx = document.getElementById('benchmarkChart').getContext('2d');
+          if (benchmarkChart) benchmarkChart.destroy();
+          benchmarkChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: d.labels,
+              datasets: [{
+                data: d.data,
+                backgroundColor: d.labels.map(l => l === 'multiRF' ? FG_ACCENT : FG_MUTED_DATA),
+                borderColor: d.labels.map(l => l === 'multiRF' ? FG_ACCENT : FG_MUTE),
+                borderWidth: 1,
+                barPercentage: 0.55,
+                categoryPercentage: 0.78
+              }]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false,
+              plugins: { legend: { display: false }, tooltip: { backgroundColor: FG_INK, displayColors: false } },
+              scales: {
+                y: { beginAtZero: true, max: 1.0, grid: { color: FG_LINE, drawBorder: false }, ticks: { color: FG_MUTE },
+                     title: { display: true, text: 'Shared-cluster ARI', color: FG_MUTE, font: { size: 11 } } },
+                x: { grid: { display: false }, ticks: { color: FG_INK, font: { weight: 600 } } }
+              }
+            }
+          });
+          document.getElementById('bench-desc').textContent = d.desc;
+        },
+        updateBenchmark(mode) {
+          document.getElementById('btn-linear').classList.toggle('active', mode === 'linear');
+          document.getElementById('btn-nonlinear').classList.toggle('active', mode === 'nonlinear');
+          this.renderBenchmark(mode);
+        },
+        renderADNI() {
+          const ctx = document.getElementById('adniChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: ['0y', '2y', '4y', '6y', '8y', '10y'],
+              datasets: [
+                {
+                  label: 'Low shared-axis score',
+                  data: [100, 96, 92, 88, 85, 83],
+                  borderColor: FG_ACCENT, backgroundColor: 'rgba(31,81,56,0.06)',
+                  fill: true, tension: 0.15, pointRadius: 3
+                },
+                {
+                  label: 'High shared-axis score',
+                  data: [100, 91, 81, 70, 61, 54],
+                  borderColor: FG_MUTE, backgroundColor: 'rgba(92,92,88,0.05)',
+                  fill: true, tension: 0.15, pointRadius: 3, borderDash: [5, 4]
+                }
+              ]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false,
+              plugins: {
+                legend: { position: 'bottom', labels: { color: FG_MUTE, boxWidth: 22, boxHeight: 2 } },
+                tooltip: { backgroundColor: FG_INK }
+              },
+              scales: {
+                y: { beginAtZero: false, min: 40, max: 105, grid: { color: FG_LINE, drawBorder: false },
+                     title: { display: true, text: 'Conversion-free (%)', color: FG_MUTE, font: { size: 11 } } },
+                x: { grid: { display: false }, title: { display: true, text: 'Follow-up', color: FG_MUTE, font: { size: 11 } } }
+              }
+            }
+          });
+        }
+      };
+
+      // Init
+      app.renderBenchmark('linear');
+      app.renderADNI();
+    </script>
+  </body>
+</html>

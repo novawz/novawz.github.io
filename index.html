@@ -6,8 +6,32 @@
     <title>Wei Zhang, Ph.D. | University of Miami</title>
     <meta
       name="description"
-      content="Wei Zhang, Ph.D. — Postdoctoral Associate, Department of Public Health Sciences, University of Miami Miller School of Medicine. Research on multi-omics integration, statistical machine learning, and biomarker discovery in Alzheimer's disease and cancer."
+      content="Wei Zhang, Ph.D., Postdoctoral Associate, Department of Public Health Sciences, University of Miami Miller School of Medicine. Research on multi-omics integration, statistical machine learning, and biomarker discovery in Alzheimer's disease and cancer."
     />
+    <link rel="canonical" href="https://novawz.github.io/" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://novawz.github.io/" />
+    <meta property="og:title" content="Wei Zhang, Ph.D. | University of Miami" />
+    <meta property="og:description" content="Statistical machine learning for multi-omics integration and biomarker discovery in Alzheimer's disease and cancer." />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Wei Zhang",
+      "honorificSuffix": "Ph.D.",
+      "jobTitle": "Postdoctoral Associate",
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Miami Miller School of Medicine" },
+      "email": "mailto:wei.zhang60@med.miami.edu",
+      "url": "https://novawz.github.io/",
+      "sameAs": [
+        "https://scholar.google.com/citations?user=BRtsZUAAAAAJ",
+        "https://github.com/novawz",
+        "https://linkedin.com/in/nova-weizhang",
+        "https://www.researchgate.net/profile/Wei-Zhang-980"
+      ]
+    }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESMS0RZM0Z"></script>
     <script>
@@ -140,7 +164,10 @@
       }
 
       /* ---------- Sidebar ---------- */
-      aside.sidebar { font-family: var(--serif); }
+      aside.sidebar { font-family: var(--serif); position: sticky; top: var(--sb-top, 24px); align-self: start; }
+      figure.pets { margin: 0; }
+      figure.pets img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+      figure.pets figcaption { font-size: 12.5px; font-style: italic; color: var(--mute); margin-top: 6px; }
       .label {
         font-family: var(--sans);
         font-size: 10.5px;
@@ -466,6 +493,18 @@
       }
       .reveal.visible { opacity: 1; transform: none; }
 
+      /* ---------- Collapsible sections ---------- */
+      h2.sec-title.is-toggle { cursor: pointer; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; user-select: none; }
+      h2.sec-title.is-toggle:hover { color: var(--accent); }
+      h2.sec-title.is-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+      h2.sec-title .sec-caret { font-family: var(--sans); font-size: 20px; font-weight: 400; color: var(--mute); transition: transform 0.2s ease; }
+      section.sec:not(.collapsed) > h2 .sec-caret { transform: rotate(45deg); }
+      section.sec.collapsed > .sec-body { display: none; }
+      section.sec.collapsed > h2.sec-title { margin-bottom: 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+      .item-list.clipped > li.extra { display: none; }
+      button.show-more { margin-top: 14px; padding: 0; border: 0; background: none; cursor: pointer; font-family: var(--sans); font-size: 13px; color: var(--accent); }
+      button.show-more:hover { text-decoration: underline; }
+
       /* ---------- Responsive ---------- */
       @media (max-width: 980px) {
         .page {
@@ -473,6 +512,9 @@
           gap: 32px;
           padding: 32px 24px 64px;
         }
+        aside.sidebar { position: static; order: 2; }
+        .main-col { order: 1; }
+        figure.pets { max-width: 420px; }
         .affiliation-row { padding: 12px 24px; }
         .masthead { padding: 18px 24px 20px; }
         footer.site-footer { padding: 16px 24px; }
@@ -556,16 +598,25 @@
         <div class="group">
           <div class="label">Recent News</div>
           <ul class="profile-list" style="font-size:13px;">
-            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Aug 2026</strong> — Poster accepted at JSM, Boston, MA.</li>
-            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Jul 2026</strong> — Poster accepted at AAIC on an integrative epigenetic &amp; neurostructural age clock.</li>
-            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Mar 2026</strong> — Contributed talk at ASA Florida Chapter Meeting, Miami, FL.</li>
-            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Oct 2025</strong> — Submitted NIH K99/R00 and AARFA fellowship proposals (AARFA reviewer scores: 3 Exc, 1 Exceptional, 2 Outstanding).</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Sep 2026</strong> · Faculty candidate job talk for Research Assistant Professor, Division of Biostatistics, University of Miami.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Aug 2026</strong> · Poster accepted at JSM, Boston, MA.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Jul 2026</strong> · Poster accepted at AAIC on an integrative epigenetic &amp; neurostructural age clock.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Mar 2026</strong> · Contributed talk at ASA Florida Chapter Meeting, Miami, FL.</li>
+            <li style="margin-bottom:8px;"><strong style="font-weight:600;">Oct 2025</strong> · Submitted NIH K99/R00 and AARFA fellowship proposals.</li>
           </ul>
         </div>
 
         <div class="group">
           <div class="label">Curriculum Vitae</div>
           <a class="cv-link" href="CV_WeiZhang.pdf" target="_blank" rel="noreferrer">Download PDF →</a>
+        </div>
+
+        <div class="group">
+          <div class="label">Off the Clock</div>
+          <figure class="pets">
+            <img src="assets/pets.jpg" width="900" height="675" loading="lazy" alt="A white and tabby cat resting on a blanket and a Shiba Inu sitting on a gray sofa" />
+            <figcaption>The home office supervisors.</figcaption>
+          </figure>
         </div>
       </aside>
 
@@ -584,10 +635,10 @@
           <h2 class="sec-title">Research</h2>
           <p class="lede">Current research spans four methodological and translational threads:</p>
           <ol class="focus">
-            <li><span class="title">Multivariate random forest methods</span> <span class="sub">— for matched multi-omics integration, clustering, and feature selection.</span></li>
-            <li><span class="title">Epigenetic biomarkers of aging and Alzheimer's disease</span> <span class="sub">— blood and brain DNA methylation signatures of cognitive decline, resilience, and dementia risk.</span></li>
-            <li><span class="title">Integrative epigenetic–neurostructural age clocks</span> <span class="sub">— combining blood DNA methylation with brain MRI for Alzheimer's disease prognosis.</span></li>
-            <li><span class="title">Predictive models for treatment response in oncology</span> <span class="sub">— matched tumor–organoid transcriptomes and network-based biomarker selection in colorectal and breast cancer.</span></li>
+            <li><span class="title">Multivariate random forest methods</span> <span class="sub">· for matched multi-omics integration, clustering, and feature selection.</span></li>
+            <li><span class="title">Epigenetic biomarkers of aging and Alzheimer's disease</span> <span class="sub">· blood and brain DNA methylation signatures of cognitive decline, resilience, and dementia risk.</span></li>
+            <li><span class="title">Integrative epigenetic and neurostructural age clocks</span> <span class="sub">· combining blood DNA methylation with brain MRI for Alzheimer's disease prognosis.</span></li>
+            <li><span class="title">Predictive models for treatment response in oncology</span> <span class="sub">· matched tumor-organoid transcriptomes and network-based biomarker selection in colorectal and breast cancer.</span></li>
           </ol>
 
           <h3 class="subhead">Active Projects</h3>
@@ -610,13 +661,12 @@
                 <span class="psub-marker">b.</span>
                 <span>
                   <span class="psub-title">Clustering</span>
-                  <span class="psub-desc">A forest-based decomposition that separates shared cross-modal structure from modality-specific residual signal — letting each be clustered on its own terms. Applied to TCGA head-and-neck cancer and to matched blood DNAm + structural MRI in ADNI.</span>
+                  <span class="psub-desc">A forest-based decomposition that separates shared cross-modal structure from modality-specific residual signal, letting each be clustered on its own terms. Applied to TCGA head-and-neck cancer and to matched blood DNAm + structural MRI in ADNI.</span>
                   <span class="psub-links">
                     <a href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">Preprint →</a>
                     <a href="https://github.com/TransBioInfoLab/multiRF-cluster" target="_blank" rel="noreferrer">GitHub →</a>
                     <a href="https://github.com/novawz/multiRF" target="_blank" rel="noreferrer">R package →</a>
                     <a href="https://novawz.github.io/multiRF/" target="_blank" rel="noreferrer">Vignette →</a>
-                    <a href="research/mrf2.html">Project page →</a>
                   </span>
                 </span>
               </li>
@@ -635,7 +685,7 @@
           </div>
           <div class="project">
             <div class="ptitle">Prediction Models for Cancer Biomarkers</div>
-            <div class="pdesc">Transcriptome-based models for chemotherapy response using matched colorectal tumor–organoid expression profiles, with network-based biomarker selection and meta-analyses in triple-negative breast cancer.</div>
+            <div class="pdesc">Transcriptome-based models for chemotherapy response using matched colorectal tumor-organoid expression profiles, with network-based biomarker selection and meta-analyses in triple-negative breast cancer.</div>
           </div>
           <div class="project-end-rule"></div>
         </section>
@@ -665,7 +715,7 @@
               </div>
               <div class="pub-detail">
                 <span class="abstract-label">Abstract.</span> multiRF is a random-forest-based method that separates shared cross-modal structure from modality-specific residual signal in multi-omics data. It recovers shared clusters as well or better than established integrative methods under nonlinear structure; applied to TCGA head-and-neck cancer and to matched ADNI blood DNAm + structural MRI it recovers a common disease axis while preserving biology unique to a single data type.
-                <div style="margin-top:8px;"><a href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">View preprint →</a> · <a href="research/mrf2.html">Project page →</a></div>
+                <div style="margin-top:8px;"><a href="https://doi.org/10.64898/2026.06.17.732933" target="_blank" rel="noreferrer">View preprint →</a></div>
               </div>
             </li>
 
@@ -673,14 +723,14 @@
               <div class="pub-head">
                 <span class="pub-num">2.</span>
                 <div class="pub-cite">
-                  <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Kunkle B, Chen XS, Martin ER, Wang L. (2025). <span class="ptitle-inline">The Aging Epigenome: Integrative Analyses Reveal Functional Overlap with Alzheimer's Disease.</span> <em class="venue">GeroScience</em>, accepted.</span>
-                  <span class="meta">IF: 5.4</span>
+                  <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Kunkle BW, Chen X, Martin ER, Wang L. (2026). <span class="ptitle-inline">The Aging Epigenome: Integrative Analyses Reveal Intersection with Alzheimer's Disease.</span> <em class="venue">GeroScience</em>, 48:3185-3203.</span>
+                  <span class="meta">IF: 6.0</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
               <div class="pub-detail">
                 <span class="abstract-label">Abstract.</span> Integrative analyses of aging and AD methylomes uncover shared loci and functional pathways, suggesting overlapping epigenetic programs between normal aging and neurodegeneration.
-                <div style="margin-top:8px;"><a href="https://doi.org/10.1101/2025.06.08.25329218" target="_blank" rel="noreferrer">View preprint →</a></div>
+                <div style="margin-top:8px;"><a href="https://doi.org/10.1007/s11357-026-02195-x" target="_blank" rel="noreferrer">View publication →</a></div>
               </div>
             </li>
 
@@ -688,8 +738,8 @@
               <div class="pub-head">
                 <span class="pub-num">3.</span>
                 <div class="pub-cite">
-                  <span><strong>Zhang W</strong>, Huang H, Wang L, Lehmann BD, Chen XS. (2025). <span class="ptitle-inline">An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery.</span> <em class="venue">GigaScience</em>, giaf148.</span>
-                  <span class="meta">IF: 3.9</span>
+                  <span><strong>Zhang W</strong>, Huang H, Wang L, Lehmann BD, Chen XS. (2026). <span class="ptitle-inline">An Integrative Multi-Omics Random Forest Framework for Robust Biomarker Discovery.</span> <em class="venue">GigaScience</em>, 15:giaf148.</span>
+                  <span class="meta">IF: 5.0</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
@@ -704,7 +754,7 @@
                 <span class="pub-num">4.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Lukacsovich D, Young JI, Gomez L, Schmidt MA, Martin ER, Kunkle BW, Chen X, O'Shea DM, Galvin JE, Wang L. (2025). <span class="ptitle-inline">DNA Methylation Signature of a Lifestyle-based Resilience Index for Cognitive Health.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 17, 88.</span>
-                  <span class="meta">IF: 7.6</span>
+                  <span class="meta">IF: 8.9</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
@@ -719,7 +769,7 @@
                 <span class="pub-num">5.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Kunkle B, Chen XS, Martin ER, Wang L. (2025). <span class="ptitle-inline">Blood DNA Methylation Signature for Incident Dementia: Evidence from Longitudinal Cohorts.</span> <em class="venue">Alzheimer's &amp; Dementia</em>, 21:e14496.</span>
-                  <span class="meta">IF: 11.1</span>
+                  <span class="meta">IF: 12.8</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
@@ -734,12 +784,12 @@
                 <span class="pub-num">6.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Wu C, Huang H, Bleu P, Zambare W, Alvarez J, Wang L, Paty PB, Romesser PB, Smith JJ, Chen XS. (2025). <span class="ptitle-inline">Enhancing Chemotherapy Response Prediction via Matched Colorectal Tumor-Organoid Gene Expression Analysis and Network-Based Biomarker Selection.</span> <em class="venue">Translational Oncology</em>, 52:102238.</span>
-                  <span class="meta">IF: 4.1</span>
+                  <span class="meta">IF: 4.9</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
               <div class="pub-detail">
-                <span class="abstract-label">Abstract.</span> Matched tumor–organoid transcriptomes improve chemotherapy response prediction in colorectal cancer, supporting organoid-guided precision treatment.
+                <span class="abstract-label">Abstract.</span> Matched tumor-organoid transcriptomes improve chemotherapy response prediction in colorectal cancer, supporting organoid-guided precision treatment.
                 <div style="margin-top:8px;"><a href="https://doi.org/10.1016/j.tranon.2024.102238" target="_blank" rel="noreferrer">View publication →</a></div>
               </div>
             </li>
@@ -749,7 +799,7 @@
                 <span class="pub-num">7.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Varma A, Chen XS, Kunkle B, Martin ER, Wang L. (2024). <span class="ptitle-inline">Critical Evaluation of the Reliability of DNA Methylation Probes on the Illumina MethylationEPIC v1.0 BeadChip Microarrays.</span> <em class="venue">Epigenetics</em>, 19(1):2333660.</span>
-                  <span class="meta">IF: 3.2</span>
+                  <span class="meta">IF: 3.7</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
@@ -764,7 +814,7 @@
                 <span class="pub-num">8.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Young JI, Gomez L, Schmidt MA, Lukacsovich D, Varma A, Chen XS, Martin ER, Wang L. (2023). <span class="ptitle-inline">Distinct CSF Biomarker-Associated DNA Methylation in Alzheimer's Disease and Cognitively Normal Subjects.</span> <em class="venue">Alzheimer's Research &amp; Therapy</em>, 15:78.</span>
-                  <span class="meta">IF: 7.6</span>
+                  <span class="meta">IF: 8.9</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
@@ -779,7 +829,7 @@
                 <span class="pub-num">9.</span>
                 <div class="pub-cite">
                   <span><strong>Zhang W</strong>, Li E, Wang L, Lehmann BD, Chen XS. (2023). <span class="ptitle-inline">Transcriptome Meta-Analysis of Triple-Negative Breast Cancer Response to Neoadjuvant Chemotherapy.</span> <em class="venue">Cancers</em>, 15(8):2194.</span>
-                  <span class="meta">IF: 4.4</span>
+                  <span class="meta">IF: 4.8</span>
                 </div>
                 <span class="pub-toggle">+</span>
               </div>
@@ -812,12 +862,16 @@
           <h2 class="sec-title">Presentations</h2>
           <ul class="item-list">
             <li class="item">
-              <div class="ititle"><strong>A Disease-Focused Integrative Epigenetic and Neurostructural Age Clock for Alzheimer's Risk</strong></div>
-              <div class="imeta">Alzheimer's Association International Conference (AAIC) · Poster · Jul 2026 · Virtual.</div>
+              <div class="ititle"><strong>From Epigenetic Signals to Multi-Omics Integration: Statistical Learning for Biomarker Discovery in Alzheimer's Disease</strong></div>
+              <div class="imeta">Division of Biostatistics, Department of Public Health Sciences, University of Miami · Job Talk · Sep 2026 · Miami, FL.</div>
             </li>
             <li class="item">
               <div class="ititle"><strong>Multivariate Random Forest-Based Clustering for Integrative Multi-Omics Analysis</strong></div>
               <div class="imeta">Joint Statistical Meetings (JSM) · Poster · Aug 2026 · Boston, MA.</div>
+            </li>
+            <li class="item">
+              <div class="ititle"><strong>A Disease-Focused Integrative Epigenetic and Neurostructural Age Clock for Alzheimer's Risk</strong></div>
+              <div class="imeta">Alzheimer's Association International Conference (AAIC) · Poster · Jul 2026 · Virtual.</div>
             </li>
             <li class="item">
               <div class="ititle"><strong>Multivariate Random Forest-Based Clustering for Integrative Multi-Omics Analysis</strong></div>
@@ -853,14 +907,14 @@
           <ul class="item-list">
             <li class="item">
               <div class="item-row">
-                <div class="ititle"><strong>EPH 705: Advanced Statistical Methods</strong> — Teaching Assistant</div>
-                <div class="right-meta">2022 – 2024</div>
+                <div class="ititle"><strong>EPH 705: Advanced Statistical Methods II</strong> · Teaching Assistant</div>
+                <div class="right-meta">2022 to 2024</div>
               </div>
               <div class="imeta">University of Miami · Instructor: Lily Wang, Ph.D.</div>
             </li>
             <li class="item">
               <div class="item-row">
-                <div class="ititle"><strong>STAT 6201: Applied Linear Models</strong> — Teaching Assistant</div>
+                <div class="ititle"><strong>STAT 6214: Applied Linear Models</strong> · Teaching Assistant</div>
                 <div class="right-meta">2018</div>
               </div>
               <div class="imeta">The George Washington University · Instructor: Emre Barut, Ph.D.</div>
@@ -920,7 +974,7 @@
                 </li>
                 <li class="item">
                   <div class="item-row">
-                    <div class="ititle"><strong>B.S. in Economics Analysis &amp; Actuarial Mathematics</strong></div>
+                    <div class="ititle"><strong>B.S. in Economic Analysis &amp; Actuarial Mathematics</strong></div>
                     <div class="right-meta">May 2017</div>
                   </div>
                   <div class="imeta">State University of New York at Binghamton.</div>
@@ -996,14 +1050,14 @@
             Open to research collaborations in computational biology, biostatistics, and statistical methodology. Please direct inquiries to
             <a class="link" href="mailto:wei.zhang60@med.miami.edu">wei.zhang60@med.miami.edu</a>.
           </p>
-          <div class="label" style="margin-top:22px;text-align:right;">Updated April 2026</div>
+          <div class="label" style="margin-top:22px;text-align:right;">Updated September 2026</div>
         </section>
       </main>
     </div>
 
     <footer class="site-footer">
       <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
-      <div>Last updated: April 2026</div>
+      <div>Last updated: September 2026</div>
     </footer>
 
     <script>
@@ -1075,6 +1129,78 @@
         { threshold: 0.1 }
       );
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+    <script>
+      // Keep the sidebar in view on desktop. If it is taller than the window, pin its bottom instead of its top.
+      (function () {
+        var sb = document.querySelector('aside.sidebar');
+        if (!sb) return;
+        function place() {
+          var top = Math.min(24, window.innerHeight - sb.offsetHeight - 24);
+          sb.style.setProperty('--sb-top', top + 'px');
+        }
+        place();
+        window.addEventListener('resize', place);
+        window.addEventListener('load', place);
+      })();
+    </script>
+    <script>
+      // Collapsible sections. Without JavaScript every section simply stays open.
+      (function () {
+        var collapsible = ['research', 'publications', 'software', 'presentations', 'teaching', 'honors', 'service', 'blog'];
+        var closedByDefault = ['teaching', 'honors', 'service'];
+        function setOpen(sec, open) {
+          sec.classList.toggle('collapsed', !open);
+          var h = sec.querySelector(':scope > h2.sec-title');
+          if (h) h.setAttribute('aria-expanded', open ? 'true' : 'false');
+          window.dispatchEvent(new Event('resize'));
+        }
+        collapsible.forEach(function (id) {
+          var sec = document.getElementById(id);
+          if (!sec) return;
+          var h = sec.querySelector(':scope > h2.sec-title');
+          if (!h) return;
+          var body = document.createElement('div');
+          body.className = 'sec-body';
+          while (h.nextSibling) body.appendChild(h.nextSibling);
+          sec.appendChild(body);
+          var caret = document.createElement('span');
+          caret.className = 'sec-caret';
+          caret.setAttribute('aria-hidden', 'true');
+          caret.textContent = '+';
+          h.appendChild(caret);
+          h.classList.add('is-toggle');
+          h.setAttribute('role', 'button');
+          h.setAttribute('tabindex', '0');
+          function toggle() { setOpen(sec, sec.classList.contains('collapsed')); }
+          h.addEventListener('click', toggle);
+          h.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+          });
+          setOpen(sec, closedByDefault.indexOf(id) === -1);
+        });
+        // Following a menu link opens its section.
+        function openFromHash() {
+          var sec = location.hash && document.getElementById(location.hash.slice(1));
+          if (sec && sec.classList.contains('collapsed')) { setOpen(sec, true); sec.scrollIntoView(); }
+        }
+        window.addEventListener('hashchange', openFromHash);
+        openFromHash();
+        // Presentations: show the five most recent, the rest on request.
+        var list = document.querySelector('#presentations .item-list');
+        if (list && list.children.length > 5) {
+          Array.prototype.slice.call(list.children, 5).forEach(function (li) { li.classList.add('extra'); });
+          list.classList.add('clipped');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'show-more';
+          var n = list.children.length - 5;
+          function label() { btn.textContent = list.classList.contains('clipped') ? 'Show ' + n + ' earlier presentations +' : 'Show fewer'; }
+          btn.addEventListener('click', function () { list.classList.toggle('clipped'); label(); window.dispatchEvent(new Event('resize')); });
+          label();
+          list.parentNode.insertBefore(btn, list.nextSibling);
+        }
+      })();
     </script>
   </body>
 </html>

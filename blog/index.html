@@ -220,6 +220,9 @@
         margin-left: auto; color: var(--accent); font-weight: 600;
       }
       .featured .feat-meta .read-more:hover { text-decoration: underline; }
+      .featured.has-art { grid-template-columns: 110px 1fr 168px; }
+      .featured .feat-art { align-self: center; }
+      .featured .feat-art img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
 
       /* Subsequent posts list */
       ol.posts {
@@ -312,7 +315,8 @@
         .ed-meta { text-align: left; border-left: none;
           border-top: 1px solid var(--line); padding-left: 0; padding-top: 14px; }
         .wrap { padding: 20px 24px 64px; }
-        .featured { grid-template-columns: 1fr; gap: 14px; }
+        .featured, .featured.has-art { grid-template-columns: 1fr; gap: 14px; }
+        .featured .feat-art { max-width: 168px; }
         .featured .feat-body h3 { font-size: 28px; }
         ol.posts li.post {
           grid-template-columns: 1fr; gap: 10px;
@@ -381,29 +385,50 @@
 
         <div class="sec-bar">
           <div class="sec-eyebrow">In this issue</div>
-          <div class="sec-count">02 entries</div>
+          <div class="sec-count">03 entries</div>
         </div>
 
-        <article class="featured">
+        <article class="featured has-art">
           <div class="num-col">
             01<span class="num-label">Feature</span>
           </div>
           <div class="feat-body">
-            <div class="feat-kicker">Tool · Literature Tracking</div>
-            <h3><a href="research-pipeline.html">Building a Personal Research Pipeline with AI</a></h3>
-            <p class="feat-dek">Keeping up with new papers across journals and preprint servers is a constant challenge. I built an automated pipeline that fetches, scores, and summarizes daily literature — so I can spend more time reading and less time searching.</p>
+            <div class="feat-kicker">App · National Parks</div>
+            <h3><a href="parkverie.html">Parkverie: A Journal for Every National Park</a></h3>
+            <p class="feat-dek">A travel journal for the 64 U.S. national parks. Each visit adds a dated stamp, and the page keeps the notes and photos from that day. It comes in four looks and runs in the browser and on iPhone.</p>
             <div class="feat-meta">
-              <span class="meta-tag">Tool</span>
-              <span>April 2026</span>
-              <span>~ 6 min read</span>
-              <a class="read-more" href="research-pipeline.html">Read article →</a>
+              <span class="meta-tag">App</span>
+              <span>November 2026</span>
+              <span>~ 4 min read</span>
+              <a class="read-more" href="parkverie.html">Read article →</a>
             </div>
           </div>
+          <a class="feat-art" href="parkverie.html" aria-label="Read the Parkverie article">
+            <img src="../assets/blog/parkverie/cover-field-journal.webp" width="560" height="729" alt="Parkverie journal cover, a dark green cloth notebook with a taped label" />
+          </a>
         </article>
 
         <ol class="posts">
           <li class="post">
             <div class="post-num">02<small>Entry</small></div>
+            <div class="post-body">
+              <h3><a href="research-pipeline.html">Building a Personal Research Pipeline with AI</a></h3>
+              <p>Keeping up with new papers across journals and preprint servers is a constant challenge. I built an automated pipeline that fetches, scores, and summarizes daily literature — so I can spend more time reading and less time searching.</p>
+              <div class="tag-row">
+                <span class="tag tag-accent">Tool</span>
+                <span class="tag">Literature Tracking</span>
+                <span class="tag">AI Scoring</span>
+                <span class="tag">Self-hosted</span>
+              </div>
+            </div>
+            <div class="post-meta">
+              <strong>April 2026</strong>
+              <span>~ 6 min read</span>
+              <a class="read-link" href="research-pipeline.html">Read →</a>
+            </div>
+          </li>
+          <li class="post">
+            <div class="post-num">03<small>Entry</small></div>
             <div class="post-body">
               <h3><a href="bloomly.html">Bloomly: An Atomic Knowledge Hub</a></h3>
               <p>Ideas rarely arrive fully formed — they grow through connection. Bloomly is a personal knowledge app I built to capture atomic notes, link them into a network, and let AI help develop them further. Available on web and iOS.</p>
@@ -441,7 +466,7 @@
 
     <footer class="site-footer">
       <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
-      <div>Last updated: April 2026</div>
+      <div>Last updated: November 2026</div>
     </footer>
 
     <script>

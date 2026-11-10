@@ -460,6 +460,9 @@
       }
       .blog-card .blinks a { color: var(--accent); margin-right: 14px; }
       .blog-card .blinks a:hover { text-decoration: underline; }
+      .blog-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 92px 1fr; gap: 18px; align-items: center; }
+      .blog-card.wide .blog-thumb { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+      .blog-card.wide .blinks a { display: inline-block; white-space: nowrap; }
       .blog-all { font-family: var(--sans); font-size: 13px; margin-top: 16px; }
       .blog-all a { color: var(--accent); font-weight: 500; }
       .blog-all a:hover { text-decoration: underline; }
@@ -1023,6 +1026,18 @@
           <h2 class="sec-title">Blog &amp; Side Projects</h2>
           <p class="lede">Technical notes on tools and side projects built alongside research.</p>
           <div class="blog-grid">
+            <article class="blog-card wide">
+              <a href="blog/parkverie.html" aria-label="Read the Parkverie article"><img class="blog-thumb" src="assets/blog/parkverie/cover-field-journal.webp" width="560" height="729" loading="lazy" alt="Parkverie journal cover, a dark green cloth notebook with a taped label" /></a>
+              <div>
+                <h4>Parkverie: A Journal for Every National Park</h4>
+                <p>A travel journal for the 64 U.S. national parks, with visit stamps, field notes, and four looks. Free on the web and on iPhone.</p>
+                <div class="blinks">
+                  <a href="blog/parkverie.html">Read more →</a>
+                  <a href="https://parkverie.com" target="_blank" rel="noreferrer">Live →</a>
+                  <a href="https://apps.apple.com/us/app/parkverie/id6812402752" target="_blank" rel="noreferrer">App Store →</a>
+                </div>
+              </div>
+            </article>
             <article class="blog-card">
               <h4>Building a Personal Research Pipeline with AI</h4>
               <p>An automated tool for fetching, scoring, and summarizing daily academic literature across Nature, Science, bioRxiv, and arXiv.</p>
@@ -1050,14 +1065,14 @@
             Open to research collaborations in computational biology, biostatistics, and statistical methodology. Please direct inquiries to
             <a class="link" href="mailto:wei.zhang60@med.miami.edu">wei.zhang60@med.miami.edu</a>.
           </p>
-          <div class="label" style="margin-top:22px;text-align:right;">Updated September 2026</div>
+          <div class="label" style="margin-top:22px;text-align:right;">Updated November 2026</div>
         </section>
       </main>
     </div>
 
     <footer class="site-footer">
       <div>© <span id="year"></span> Wei Zhang · Department of Public Health Sciences, University of Miami</div>
-      <div>Last updated: September 2026</div>
+      <div>Last updated: November 2026</div>
     </footer>
 
     <script>
